@@ -524,9 +524,9 @@ table tr th:last-child , table tr td:last-child {
   justify-content: end;
 }
 
-.add-to-cart-btndiv table  {
+/* .add-to-cart-btndiv table  {
   width: auto;
-}
+} */
 
 .add-to-cart-btndiv table , .add-to-cart-btndiv table th , .add-to-cart-btndiv table td  {
   padding: 5px;
