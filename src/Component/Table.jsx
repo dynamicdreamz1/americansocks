@@ -150,7 +150,7 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
                                                                             className='countsize'
                                                                             max={parseInt(stockNumber)}
                                                                             min={0}
-                                                                            value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
+                                                                            value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.variation_id) || {}).quantity || ""}
                                                                             onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item)}
                                                                         />
                                                                     </td>
