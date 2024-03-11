@@ -62,8 +62,13 @@ table td:first-child, table th:first-child {
 }
 
 .stoke_buy_data {
-  width: 36%;
+  /* width: 36%; */
+  width: 50%;
 }
+
+/* .table-sub tbody td:nth-child(6) {
+  width: 10%;
+} */
 
 .stoke_info_table tbody {
   display: flex;
@@ -79,13 +84,21 @@ table td:first-child, table th:first-child {
   margin-right: 6px;
 }
 
-.stoke_info_table tbody tr:first-child,
+/* .stoke_info_table tbody tr:first-child,
 .stoke_info_table tbody tr:nth-child(2) {
+  padding-bottom: 10px;
+} */
+
+.stoke_info_table tbody tr {
   padding-bottom: 10px;
 }
 
-.stoke_info_table tbody tr:first-child,
+/* .stoke_info_table tbody tr:first-child,
 .stoke_info_table tbody tr:nth-child(3) {
+  border-right: 1px solid #DDDDDD;
+} */
+ 
+.stoke_info_table tbody tr:nth-child(odd) {
   border-right: 1px solid #DDDDDD;
 }
 
@@ -557,6 +570,10 @@ table tr td:last-child  {
   margin-top: 0px;
 }
 
+/* table.stoke_info_table td {
+  font-size: 14px;
+} */
+
 
 /* @media (max-width: 1350px) {
   .add-to-cart-btndiv button {
@@ -621,7 +638,7 @@ table tr td:last-child  {
     width: auto;
    }
 
-   .stoke_info_table tbody tr:first-child, .stoke_info_table tbody tr:nth-child(3) {
+   .stoke_info_table tbody tr:first-child, .stoke_info_table tbody tr:nth-child(3) , .stoke_info_table tbody tr:nth-child(odd) {
     border: 0px
    }
 }
@@ -719,7 +736,11 @@ table tr td:last-child  {
     width: 45%;
    }
 
-   .stoke_info_table tbody tr:first-child, .stoke_info_table tbody tr:nth-child(3) {
+   /* .stoke_info_table tbody tr:first-child, .stoke_info_table tbody tr:nth-child(3) {
+    border-right: 1px solid #DDDDDD;;
+   } */
+
+   .stoke_info_table tbody tr:nth-child(odd) {
     border-right: 1px solid #DDDDDD;;
    }
 
@@ -755,7 +776,7 @@ table tr td:last-child  {
     /* display: block; */
     column-count: unset;
    }
-   .stoke_info_table tbody tr:first-child, .stoke_info_table tbody tr:nth-child(3) {
+   .stoke_info_table tbody tr:first-child, .stoke_info_table tbody tr:nth-child(3) ,  .stoke_info_table tbody tr:nth-child(odd) {
     border: 0px;
    }
    .stoke_info_table tbody tr {
