@@ -6,7 +6,6 @@ import TableHeader from './TableHead';
 
 const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
 
-    console.log("https://prnt.sc/DXA8bztUjtNp", selectedItems);
 
     const handleInputChange = (event, data, selectedSize, item) => {
         console.log("item", item);
@@ -129,7 +128,7 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
 
                                             {/* <TableHeader variationData={variationData} /> */}
                                             <tbody>
-                                                    <tr>
+                                                {/* <tr>
                                                         <td>S size</td>
                                                         <td className='stock_number'>46 In Stock</td>
                                                         <td><input type="number" name=""/></td>
@@ -143,30 +142,34 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
                                                         <td>L Size</td>
                                                         <td className='stock_number'>46 In Stock</td>
                                                         <td><input type="number" name=""/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>XL size</td>
-                                                        <td className='stock_number'>46 In Stock</td>
-                                                        <td><input type="number" name=""/></td>
-                                                    </tr>
+                                                    </tr> */}
+                                                {/* <tr>
+                                                    <td>XL size</td>
+                                                    <td className='stock_number'>46 In Stock</td>
+                                                    <td><input type="number" name="" /></td>
+                                                </tr> */}
                                                 {/* {variationData.length > 0 && ( )} */}
-                                                {/* {variationData.length > 0 && (
-                                                    <tr>
+                                                {variationData.length > 0 && (
+                                                    <tbody>
                                                         {variationData.map((data, index) => (
-                                                            <td key={index} data-label="SKU" >
-                                                                <input
-                                                                    type="number"
-                                                                    name={`quantity-${item.__attributes.id}`} // Include the selected size
-                                                                    className='countsize'
-                                                                    max={data.availability_html}
-                                                                    min={0}
-                                                                    value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
-                                                                    onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item)}
-                                                                />
-                                                            </td>
+                                                            <tr key={index}>
+                                                                <td>{data.attributes.attribute_pa_size} size</td>
+                                                                <td className='stock_number' dangerouslySetInnerHTML={{ __html: data.availability_html} } />
+                                                                <td>
+                                                                    <input
+                                                                        type="number"
+                                                                        name={`quantity-${data.variation_id}`}
+                                                                        className='countsize'
+                                                                        max={parseInt(data.availability_html)}
+                                                                        min={0}
+                                                                        value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
+                                                                        onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item)}
+                                                                    />
+                                                                </td>
+                                                            </tr>
                                                         ))}
-                                                    </tr>
-                                                )} */}
+                                                    </tbody>
+                                                )}
                                             </tbody>
                                         </table>
                                         <button className="add-cart-btn">
