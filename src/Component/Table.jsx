@@ -15,7 +15,6 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
         if (intValue > maxStockNumber || isNaN(intValue)) {
             intValue = 0; // Reset to 0 if value exceeds max stock or is not a number
         }
-        console.log("intValue", intValue);
 
         // Check if the variation is already selected
         const isSelected = selectedItems.some(selectedItem => selectedItem.variation_id === data.variation_id && selectedItem.selectedSize === selectedSize);
