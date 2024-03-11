@@ -2,15 +2,20 @@ import React from 'react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addToCart, addToCartProducts } from '../services/order';
-import TableHeader from './TableHead';
 
 const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
 
 
     const handleInputChange = (event, data, selectedSize, item) => {
-        console.log("item", item);
         const { value } = event.target;
-        const intValue = parseInt(value);
+        let intValue = parseInt(value);
+        const stockNumber = parseInt(data?.availability_html.match(/\d+/)[0]);
+
+        const maxStockNumber = parseInt(stockNumber);
+        if (intValue > maxStockNumber || isNaN(intValue)) {
+            intValue = 0; // Reset to 0 if value exceeds max stock or is not a number
+        }
+        console.log("intValue", intValue);
 
         // Check if the variation is already selected
         const isSelected = selectedItems.some(selectedItem => selectedItem.variation_id === data.variation_id && selectedItem.selectedSize === selectedSize);
@@ -128,46 +133,30 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
 
                                             {/* <TableHeader variationData={variationData} /> */}
                                             <tbody>
-                                                {/* <tr>
-                                                        <td>S size</td>
-                                                        <td className='stock_number'>46 In Stock</td>
-                                                        <td><input type="number" name=""/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>M size</td>
-                                                        <td className='stock_number'>46 In Stock</td>
-                                                        <td><input type="number" name=""/></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>L Size</td>
-                                                        <td className='stock_number'>46 In Stock</td>
-                                                        <td><input type="number" name=""/></td>
-                                                    </tr> */}
-                                                {/* <tr>
-                                                    <td>XL size</td>
-                                                    <td className='stock_number'>46 In Stock</td>
-                                                    <td><input type="number" name="" /></td>
-                                                </tr> */}
-                                                {/* {variationData.length > 0 && ( )} */}
                                                 {variationData.length > 0 && (
                                                     <tbody>
-                                                        {variationData.map((data, index) => (
-                                                            <tr key={index}>
-                                                                <td>{data.attributes.attribute_pa_size} size</td>
-                                                                <td className='stock_number' dangerouslySetInnerHTML={{ __html: data.availability_html} } />
-                                                                <td>
-                                                                    <input
-                                                                        type="number"
-                                                                        name={`quantity-${data.variation_id}`}
-                                                                        className='countsize'
-                                                                        max={parseInt(data.availability_html)}
-                                                                        min={0}
-                                                                        value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
-                                                                        onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item)}
-                                                                    />
-                                                                </td>
-                                                            </tr>
-                                                        ))}
+                                                        {variationData.map((data, index) => {
+                                                            const stockNumberMatch = data?.availability_html?.match(/\d+/);
+                                                            const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0
+                                                            return (
+
+                                                                <tr key={index}>
+                                                                    <td>{data.attributes.attribute_pa_size} {data.attributes.attribute_pa_size === "one-size" ? "" : "size"}</td>
+                                                                    <td className='stock_number' dangerouslySetInnerHTML={{ __html: data.availability_html }} />
+                                                                    <td>
+                                                                        <input
+                                                                            type="number"
+                                                                            name={`quantity-${data.variation_id}`}
+                                                                            className='countsize'
+                                                                            max={parseInt(stockNumber)}
+                                                                            min={0}
+                                                                            value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
+                                                                            onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item)}
+                                                                        />
+                                                                    </td>
+                                                                </tr>
+                                                            )
+                                                        })}
                                                     </tbody>
                                                 )}
                                             </tbody>
