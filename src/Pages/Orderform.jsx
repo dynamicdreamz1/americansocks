@@ -7,22 +7,25 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Orderform = () => {
     const [orderdata, setOrderData] = useState([]);
+    const [orderCategory, setOrderCategory] = useState();
+
     const [searchQuery, setSearchQuery] = useState('');
     const [pageSize, setPageSize] = useState(10); // Default page size
-    const [selectedCategory, setSelectedCategory] = useState('All');
+    const [selectedCategory, setSelectedCategory] = useState('All Categories');
     const [itemOffset, setItemOffset] = useState(0);
     const [selectedItems, setSelectedItems] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [loading, setLoading] = useState(false);
     const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
 
-
+    
     useEffect(() => {
         const fetchDataFromApi = async () => {
             try {
                 setLoading(true);
                 const result = await fetchData();
                 setOrderData(result.data);
+                setOrderCategory(result.categories)
                 setLoading(false);
             } catch (error) {
                 console.error('Error occurred while fetching data:', error);
@@ -101,7 +104,7 @@ const Orderform = () => {
     const resetFilter = () => {
         setPageSize(10);
         setSearchQuery("");
-        setSelectedCategory("All");
+        setSelectedCategory("All Categories");
         setCurrentPage(0);
         setItemOffset(0);
     };
@@ -137,7 +140,7 @@ const Orderform = () => {
     const filteredData = sortedData().filter(item => {
         const nameMatch = item?.name.toLowerCase().includes(searchQuery.toLowerCase());
         const skuMatch = item?.sku.toLowerCase().includes(searchQuery.toLowerCase());
-        const categoryMatch = selectedCategory === 'All' || item?.categories.toLowerCase().includes(selectedCategory.toLowerCase());
+        const categoryMatch = selectedCategory === 'All Categories' || item?.categories.toLowerCase().includes(selectedCategory.toLowerCase());
         return (nameMatch || skuMatch) && categoryMatch;
     });
 
@@ -168,8 +171,7 @@ const Orderform = () => {
                     pageCount={pageCount}
                     itemOffset={itemOffset}
                     orderdata={orderdata}
-                    addToCartProducts={addToCartProductsData}
-                    selectedItems={selectedItems}
+                    orderCategory={orderCategory}
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                     resetFilter={resetFilter}

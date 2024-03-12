@@ -1,33 +1,21 @@
 import React, { useEffect } from 'react'
 import ReactPaginate from 'react-paginate'
 
-const Header = ({ resetFilter, currentPage, selectedItems, addToCartProducts, orderdata, pageCount, handlePageClick, searchQuery, handleSearch, pageSize, handlePageSizeChange, filteredData, handleCategoryChange, selectedCategory }) => {
+const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount, handlePageClick, searchQuery, handleSearch, pageSize, handlePageSizeChange, filteredData, handleCategoryChange, selectedCategory }) => {
 
-  const color = selectedItems.length > 0 ? "#000000" : "#f7f7f7"
 
   useEffect(() => {
 
   }, [currentPage])
 
-
+  
   return (
     <div className="pannel-top-data">
       <div className="pannel-top-left-data">
         <select value={selectedCategory} onChange={handleCategoryChange}>
-          <option value="All">All categories</option>
-          <option value="Accesories">Accessories</option>
-          <option value="Ankle High">Ankle High</option>
-          <option value="Clothing">Clothing</option>
-          <option value="Displays">Displays</option>
-          <option value="Gift Boxes">Gift Boxes</option>
-          <option value="Knee High">Knee High</option>
-          <option value="Mid High">Mid High</option>
-          <option value="Signature Series">Signature Series</option>
-          <option value="Snow">Snow</option>
-          <option value="Socks">Socks</option>
-          <option value="Ultra High">Ultra High</option>
-          <option value="Underwear">Underwear</option>
-          <option value="Uncategorized">Uncategorized</option>
+          {orderCategory && Object.keys(orderCategory).map((key) => (
+            <option key={key} value={orderCategory[key]}>{orderCategory[key]}</option>
+          ))}
         </select>
         <h6 onClick={() => resetFilter()} style={{ cursor: 'pointer' }}>
 
@@ -79,10 +67,6 @@ const Header = ({ resetFilter, currentPage, selectedItems, addToCartProducts, or
             forcePage={currentPage}
           />
         </div>
-
-        {/* <div className="pannel-add-to-cart-btn">
-          <a style={{ backgroundColor: color }} onClick={() => addToCartProducts()} href="#">Add Selected To Cart</a>
-        </div> */}
       </div>
     </div>
   )

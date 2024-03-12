@@ -71,15 +71,12 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
             setLoading(false);
 
             if (result.cart_hash) {
-                // If successful response, show success toast
                 toast.success("Product added to cart successfully!");
             } else {
-                // If failed response, show error toast
                 toast.error("Failed to add product to cart.");
             }
         } catch (error) {
             setLoading(false);
-            // If there's an error, show error toast
             toast.error("Error occurred while adding product to cart. Please select Quantity");
         }
     };

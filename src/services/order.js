@@ -4,7 +4,7 @@ export const fetchData = async () => {
     myHeaders.append("accept", "application/json, text/javascript, */*; q=0.01");
     myHeaders.append("content-type", "application/x-www-form-urlencoded; charset=UTF-8");
 
-    const raw = "length=300&table_id=wcpt_a3c0f79a43ed08c5_1&action=orderform_fetch_products&dev=1";
+    const raw = "length=300&table_id=wcpt_a3c0f79a43ed08c5_1&action=orderform_fetch_products&dev=12";
 
     //   const raw = "table_id=wcpt_a3c0f79a43ed08c5_1&action=wcpt_load_products";
 
