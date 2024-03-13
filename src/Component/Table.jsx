@@ -121,7 +121,7 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
                                 <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.categories }}></td>
                                 <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.price }}></td>
                                 <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.stock }}></td>
-                                <td className="stoke_buy_data" data-label="Buy"> {/* Assuming item has a 'quantity' property */}
+                                <td className={`stoke_buy_data  variation-${variationData.length}`} data-label="Buy"> {/* Assuming item has a 'quantity' property */}
                                     <div className={`add-to-cart-btndiv ${variationData.length > 0 ? '' : 'add-to-cart-btndiv-two'}`}>
 
 
