@@ -66,6 +66,20 @@ table td:first-child, table th:first-child {
   width: 50%;
 }
 
+.stoke_buy_data.variation-0 , .stoke_buy_data.variation-1 {
+  width: auto;
+}
+
+.stoke_buy_data.variation-1 .stoke_info_table tbody {
+  display: block;
+  column-count:unset;
+}
+
+.stoke_buy_data.variation-1 .stoke_info_table tbody tr:nth-child(odd) {
+  border-right: 0px;
+}
+
+
 /* .table-sub tbody td:nth-child(6) {
   width: 10%;
 } */
