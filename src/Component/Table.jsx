@@ -114,7 +114,7 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
                 <tbody>
                     {orderdata.map((item, index) => {
                         const variationData = item?.variation_json && JSON.parse(item?.variation_json)
-                        return (
+                                        return (
                             <tr key={index}>
                                 <td data-label="SKU" dangerouslySetInnerHTML={{ __html: item.sku }} />
                                 <td data-label="Image" dangerouslySetInnerHTML={{ __html: item.image }} />
