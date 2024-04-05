@@ -792,6 +792,7 @@ table tr td:last-child  {
 }
 
 
+
 @media (max-width: 575px) {
 
 	.add-cart-btn {
@@ -834,4 +835,13 @@ table tr td:last-child  {
 	 .search-box h6 {
 	 	display: inline-block;
 	}
+}
+
+.add-to-cart-btndiv .countsize {
+  border: 0px;
+  width: 100%;
+  margin: 0;
+  height: unset;
+  text-align: center;
+  outline: unset;
 }

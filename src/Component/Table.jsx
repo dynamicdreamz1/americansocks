@@ -175,7 +175,7 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
                                                                             className='countsize'
                                                                             max={parseInt(stockNumber)}
                                                                             min={0}
-                                                                            value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.variation_id) || {}).quantity || ""}
+                                                                            value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
                                                                             onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item)}
                                                                         />
                                                                     </td>
@@ -187,8 +187,6 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
                                                 {variationData.length > 0 && (
                                                     <tr>
                                                         {variationData.map((data, index) => {
-                                                            const stockNumberMatch = data?.availability_html?.match(/\d+/);
-                                                            const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
                                                             return (
                                                                 <>
 
