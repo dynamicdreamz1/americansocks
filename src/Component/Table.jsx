@@ -187,10 +187,21 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
                                                 {variationData.length > 0 && (
                                                     <tr>
                                                         {variationData.map((data, index) => {
-                                                            return (
-                                                                <>
+                                                            const stockNumberMatch = data?.availability_html?.match(/\d+/);
+                                                            const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
 
-                                                                    <td key={index} dangerouslySetInnerHTML={{ __html: data.availability_html }} /></>
+                                                            // Define the CSS class based on availability
+                                                            let availabilityClass = '';
+                                                            if (data.availability_html.includes('Out of stock')) {
+                                                                availabilityClass = 'text-red';
+                                                            } else if (data.availability_html.includes('Available on backorder')) {
+                                                                availabilityClass = 'text-blue';
+                                                            } else if (stockNumber > 0) {
+                                                                availabilityClass = 'text-green';
+                                                            }
+
+                                                            return (
+                                                                <td className={availabilityClass} key={index} dangerouslySetInnerHTML={{ __html: data.availability_html }} />
                                                             );
                                                         })}
                                                     </tr>
