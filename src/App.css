@@ -146,6 +146,10 @@ table td:first-child, table th:first-child {
   margin: 0px 5px;
 }
 
+.add-to-cart-btndiv table {
+  margin-top: 0px;
+}
+
 @media (max-width:1760px) {  
   .stoke_buy_data {
     width: 50%;
