@@ -588,6 +588,9 @@ table tr td:last-child  {
   margin-top: 0px;
 }
 
+.add-to-cart-btndiv  table {
+  margin-top: 0px;
+}
 /* table.stoke_info_table td {
   font-size: 14px;
 } */
@@ -603,6 +606,12 @@ table tr td:last-child  {
     text-align: right;
    }
 } */
+
+@media (max-width:1250px) {  
+  .add-to-cart-btndiv {
+    display: block;
+  }
+}
 
 @media (max-width:1199px) {  
   .add-to-cart-btndiv {

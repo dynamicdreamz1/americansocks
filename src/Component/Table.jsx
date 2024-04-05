@@ -2,6 +2,7 @@ import React from 'react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addToCart, addToCartProducts } from '../services/order';
+import TableHeader from './TableHead';
 
 const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
 
@@ -125,9 +126,9 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
                                     <div className={`add-to-cart-btndiv ${variationData.length > 0 ? '' : 'add-to-cart-btndiv-two'}`}>
 
 
-                                        <table className='stoke_info_table'>
+                                        {/*   <table className='stoke_info_table'>
 
-                                            {/* <TableHeader variationData={variationData} /> */}
+                                            <TableHeader variationData={variationData} />
                                             <tbody>
                                                 {variationData.length > 0 && (
                                                     <tbody>
@@ -135,10 +136,38 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
                                                             const stockNumberMatch = data?.availability_html?.match(/\d+/);
                                                             const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0
                                                             return (
-
+                                                                 
                                                                 <tr key={index}>
-                                                                    <td>{data.attributes.attribute_pa_size} {data.attributes.attribute_pa_size === "one-size" ? "" : "size"}</td>
-                                                                    <td className='stock_number' dangerouslySetInnerHTML={{ __html: data.availability_html }} />
+                                                                     <td>{data.attributes.attribute_pa_size} {data.attributes.attribute_pa_size === "one-size" ? "" : "size"}</td> 
+                                                                    <td className='stock_numberss' dangerouslySetInnerHTML={{ __html: data.availability_html }} />
+                                                                     <td>
+                                                                        <input
+                                                                            type="number"
+                                                                            name={`quantity-${data.variation_id}`}
+                                                                            className='countsize'
+                                                                            max={parseInt(stockNumber)}
+                                                                            min={0}
+                                                                            value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.variation_id) || {}).quantity || ""}
+                                                                            onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item)}
+                                                                        />
+                                                                    </td> 
+                                                                </tr>
+                                                            )
+                                                        })}
+                                                    </tbody>
+                                                )}
+                                            </tbody>
+                                        </table>  */}
+                                        <table className='stoke_info_table_test'>
+                                            <TableHeader variationData={variationData} />
+                                            <tbody>
+                                                {variationData.length > 0 && (
+                                                    <tr>
+                                                        {variationData.map((data, index) => {
+                                                            const stockNumberMatch = data?.availability_html?.match(/\d+/);
+                                                            const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
+                                                            return (
+                                                                <>
                                                                     <td>
                                                                         <input
                                                                             type="number"
@@ -150,10 +179,23 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
                                                                             onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item)}
                                                                         />
                                                                     </td>
-                                                                </tr>
-                                                            )
+                                                                </>
+                                                            );
                                                         })}
-                                                    </tbody>
+                                                    </tr>
+                                                )}
+                                                {variationData.length > 0 && (
+                                                    <tr>
+                                                        {variationData.map((data, index) => {
+                                                            const stockNumberMatch = data?.availability_html?.match(/\d+/);
+                                                            const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
+                                                            return (
+                                                                <>
+
+                                                                    <td key={index} dangerouslySetInnerHTML={{ __html: data.availability_html }} /></>
+                                                            );
+                                                        })}
+                                                    </tr>
                                                 )}
                                             </tbody>
                                         </table>
