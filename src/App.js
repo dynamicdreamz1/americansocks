@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Orderform from './Pages/Orderform';
 import Shop from "./Pages/Shop";
+import Shopdetails from "./Pages/ShopDetails";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Orderform />} />
         <Route path="shop" element={<Shop />} />
-        <Route path="shop-filter" element={<p>hi vaidehi</p>} />
+        <Route path="shopdetails" element={<Shopdetails />} />
 
 
 

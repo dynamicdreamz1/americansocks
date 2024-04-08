@@ -3,7 +3,7 @@ import React from 'react'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styles from "../css/relatedproductslider.module.css";
+import {shirt1,shirt2,shirt3} from "../assets/Images/index"
 
 export default function Relatedproductslider() {
     var settings = {
@@ -21,6 +21,12 @@ export default function Relatedproductslider() {
             }
           },
           {
+            breakpoint: 991,
+            settings: {
+             slidesToShow: 2,
+            }
+          },
+          {
             breakpoint: 600,
             settings: {
              slidesToShow: 1,
@@ -29,42 +35,43 @@ export default function Relatedproductslider() {
         ]
       };
       return (
-          <div className="container">
-            <div className={styles.related_product_slider}>
+          <div class="container">
+            <div class="related_product_slider">
               <Slider {...settings} >
 
                 {/* Item 1 */}
-                <div className={styles.related_product_item}>
+                <div class="related_product_item">
                     <a href="/product/t-shirt">
-                        <img src="../../images/shirt-1.png"/>  
+                    <img src={shirt1}/>   
                     </a>
                 </div>
 
+
                 {/* Item 2 */}
-                <div className={styles.related_product_item}>
+                <div class="related_product_item">
                     <a href="/product/t-shirt">
-                        <img src="../../images/shirt-2.png"/>  
+                      <img src={shirt2}/>   
                     </a>
                 </div>
 
                 {/* Item 3 */}
-                <div className={styles.related_product_item}>
+                <div class="related_product_item">
                     <a href="/product/t-shirt">
-                        <img src="../../images/shirt-3.png"/>  
+                     <img src={shirt3}/>   
                     </a>
                 </div>
 
                 {/* Item 1 */}
-                <div className={styles.related_product_item}>
+                <div class="related_product_item">
                     <a href="/product/t-shirt">
-                        <img src="../../images/shirt-1.png"/>  
+                    <img src={shirt1}/>   
                     </a>
                 </div>
 
                 {/* Item 2 */}
-                <div className={styles.related_product_item}>
+                <div className="related_product_item">
                     <a href="/product/t-shirt">
-                        <img src="../../images/shirt-2.png"/>  
+                     <img src={shirt2}/>   
                     </a>
                 </div>
               </Slider>

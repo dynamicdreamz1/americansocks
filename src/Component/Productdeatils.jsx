@@ -1,9 +1,10 @@
 'use client'
 import React from "react";
-import Slider from "react-slick";
+import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styles from "../css/productdetails.module.css";
+import { tshirt1,tshirt2,tshirt3,facebook,twitter,pinterest,linkedin,telegram} from "../assets/Images/index"
+
 
 export default function Productdeatils() {
   
@@ -30,39 +31,39 @@ export default function Productdeatils() {
     ]
   };
   return (
-    <div className="container">
-      <div className={styles.product_detail_wrapper}>
-        <div className={styles.product_detail_left}>
-          <div className="container">
+    <div class="container">
+      <div class="product_detail_wrapper">
+        <div class="product_detail_left">
+          <div class="container">
               {/* Main Product */}
-            <div className={styles.product_nav_main}>
-              <div className={styles.product_item}>
+            <div class="product_nav_main">
+              <div class="product_item">
                     <a href="#">
-                        <img src="../../images/tshirt-1.png"/>  
+                        <img src={tshirt1}/>  
                     </a>
                 </div>
             </div>
             {/* Thumb Slider */}
-            <div className={styles.product_thumb_slider}>
+            <div class="product_thumb_slider">
               <Slider {...settings} >
-                <div className={styles.product_slider_item}>
+                <div class="product_slider_item">
                     <a href="#">
-                        <img src="../../images/tshirt-1.png"/>  
+                    <img src={tshirt1}/>  
                     </a>
                 </div>
-                <div className={styles.product_slider_item}>
+                <div class="product_slider_item">
                     <a href="#">
-                        <img src="../../images/tshirt-2.png"/>  
+                    <img src={tshirt2}/>  
                     </a>
                 </div>
-                <div className={styles.product_slider_item}>
+                <div class="product_slider_item">
                     <a href="#">
-                        <img src="../../images/tshirt-3.png"/>  
+                    <img src={tshirt3}/>  
                     </a>
                 </div>
-                <div className={styles.product_slider_item}>
+                <div class="product_slider_item">
                     <a href="#">
-                        <img src="../../images/tshirt-1.png"/>  
+                      <img src={tshirt1}/>  
                     </a>
                 </div>
 
@@ -70,10 +71,10 @@ export default function Productdeatils() {
               </div>
             </div>
         </div>
-        <div className={styles.product_detail_right}>
-              <h3 className={styles.product_title}>Tacos & Vatos - T-Shirt</h3>
-              <p className={styles.product_price}>12,00€</p>
-              <div className={styles.product_dec}>
+        <div class="product_detail_right">
+              <h3 class="product_title">Tacos & Vatos - T-Shirt</h3>
+              <p class="product_price">12,00€</p>
+              <div class="product_dec">
                 <p>White Unisex T-Shirt</p>
                 <p>Heritage Fit</p>
                 <p>Front and Back Full Color Print</p>
@@ -81,10 +82,10 @@ export default function Productdeatils() {
                 <p>Composition: 100% Cotton</p>
               </div>
               {/* Product Size and Price table */}
-              <div className={styles.price_table}>
+              <div class="price_table">
                 <table>
                   <tbody>
-                  <tr className={styles.price_table_head}>
+                  <tr class="price_table_head">
                     <th>Sizes</th>
                     <th>S</th>
                     <th>M</th>
@@ -93,34 +94,34 @@ export default function Productdeatils() {
                     <th>XXL</th>
                   </tr>
 
-                  <tr className={styles.price_table_price}>
+                  <tr class="price_table_price">
                     <td>Price</td>
                     <td>
-                      <div className={`${styles.price} ${styles.blue}`}>
+                      <div class="price blue">
                         <input type="number" id="quantity" name="quantity" placeholder="0"/>
                       </div>
                     </td>
 
                     <td>
-                      <div className={`${styles.price} ${styles.green}`}>
+                      <div class="price green">
                         <input type="number"  name="quantity" id="quantity" class="txt" placeholder="0"/>
                       </div>
                     </td>
 
                     <td>
-                      <div className={`${styles.price} ${styles.orange}`}>
+                      <div class="price orange">
                         <input type="number"  name="quantity" id="quantity" class="txt" placeholder="0"/>
                       </div>
                     </td>
 
                     <td>
-                      <div className={`${styles.price} ${styles.green}`}>
+                      <div class="price green">
                         <input type="number"  name="quantity" id="quantity" class="txt" placeholder="0"/>
                       </div>
                     </td>
 
                     <td>
-                      <div className={`${styles.price} ${styles.red}`}>
+                      <div class="price red">
                         <input type="number"  name="quantity" id="quantity" class="txt" placeholder="0"/>
                       </div>
                     </td>
@@ -130,66 +131,66 @@ export default function Productdeatils() {
                 </table>
               </div>
               {/* Product Total */}
-              <div className={styles.product_item_detail}>
-                <div className={styles.product_item_left}>
+              <div class="product_item_detail">
+                <div class="product_item_left">
                     <p>items: <span>0</span></p>
                     <p>Total: <span>0,00€</span></p>
-                    <div className={styles.product_order}>
-                      <div className={styles.product_order_item}>
-                        <div className={`${styles.circle} ${styles.greeen}`}></div>
+                    <div class="product_order">
+                      <div class="product_order_item">
+                        <div class="circle greeen"></div>
                         <p>Disponible</p>
                       </div>
 
-                      <div className={styles.product_order_item}>
-                        <div className={`${styles.circle} ${styles.red}`}></div>
+                      <div class="product_order_item">
+                        <div class="circle  red"></div>
                         <p>No Disponible </p>
                       </div>
 
-                      <div className={styles.product_order_item}>
-                        <div className={`${styles.circle} ${styles.orange}`}></div>
+                      <div class="product_order_item">
+                        <div class="circle orange"></div>
                         <p>Last Units</p>
                       </div>
 
-                      <div className={styles.product_order_item}>
-                        <div className={`${styles.circle} ${styles.yellow}`}></div>
+                      <div class="product_order_item">
+                        <div class="circle yellow"></div>
                         <p>Back-order</p>
                       </div>
 
-                      <div className={styles.product_order_item}>
-                        <div className={`${styles.circle} ${styles.blue}`}></div>
+                      <div class="product_order_item">
+                        <div class="circle blue"></div>
                         <p>Pre-order</p>
                       </div>
                     </div>
                 </div>
-                <div className={styles.product_item_right}>
-                  <a href="" className={styles.btn}>add to cart</a>
+                <div class="product_item_right">
+                  <a href="" class="btn">add to cart</a>
                 </div>
               </div>
 
               {/* Product Sku */}
-              <div className={styles.product_item_sku}>
+              <div class="product_item_sku">
                   <p><span>SKU</span>ASG104</p>
                   <p><span>Categories</span>Clothing, FW23</p>
               </div>
 
               {/* Social Share */}
-              <div className={styles.social_share}>
+              <div class="social_share">
                 <p>Share</p>
-                <div className={styles.social_share_wrap}>
+                <div class="social_share_wrap">
                   <a href="">
-                    <img src="../../images/facebook.png"/>
+                    <img src={facebook}/>  
                   </a>
                   <a href="">
-                      <img src="../../images/twitter.png"/>
+                    <img src={twitter}/>  
                   </a>
                   <a href="">
-                      <img src="../../images/pinterest-logo.png"/>
+                    <img src={pinterest}/>  
                   </a>
                   <a href="">
-                      <img src="../../images/linkedin.png"/>
+                    <img src={linkedin}/>  
                   </a>
                   <a href="">
-                      <img src="../../images/telegram.png"/>
+                    <img src={telegram}/>  
                   </a>
                 </div>
         

@@ -23,5 +23,25 @@ import product22 from "./product-22.png"
 import product23 from "./product-23.png"
 import product24 from "./product-24.png"
 
+import tshirt1 from "./tshirt-1.png"
+import tshirt2 from "./tshirt-2.png"
+import tshirt3 from "./tshirt-3.png"
+
+
+import shirt1 from "./shirt-1.png"
+import shirt2 from "./shirt-2.png"
+import shirt3 from "./shirt-3.png"
+
+import facebook from "./facebook.png"
+import twitter from "./twitter.png"
+import pinterest from "./pinterest-logo.png"
+import linkedin from "./linkedin.png"
+import telegram from "./telegram.png"
+
+import productsliderimg1 from "./product-slider-img-1.png"
+import productsliderimg2 from "./product-slider-img-2.png"
+import productsliderimg3 from "./product-slider-img-3.png"
+import productsliderimg4 from "./product-slider-img-4.png"
+
 export { product1,product2,product3,product4,product5,product6,product7,product8,product9,product10,
-    product11,product12,product13,product14,product15,product16,product17,product18,product19,product20,product21,product22,product23,product24}
+    product11,product12,product13,product14,product15,product16,product17,product18,product19,product20,product21,product22,product23,product24, tshirt1,tshirt2,tshirt3, facebook,twitter,pinterest,linkedin,telegram, productsliderimg1, productsliderimg2, productsliderimg3, productsliderimg4,shirt1,shirt2,shirt3}
