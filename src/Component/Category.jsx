@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "../css/category.module.css";
-import Categorybox from "../component/Categorybox";
+import Categorybox from "./Categorybox";
 
 export default function Category() {
   return (
