@@ -32,7 +32,7 @@ export default function ShopList({ product, setCurrentPage }) {
     };
   }, []);
 
-  
+
   return (
 
     <section className="shop">
@@ -43,7 +43,7 @@ export default function ShopList({ product, setCurrentPage }) {
               <a href={`/product/${product?.slug}`}>
                 <div className="product_image">
                   <img src={product11} alt={product?.images[1]?.alt} />
-                  {product.new && <div className="product_tag">NEW IN! </div>}
+                  {/* {product.new && <div className="product_tag">NEW IN! </div>} */}
                 </div>
                 <div className="product_text">
                   <h3>{product?.name}</h3>
