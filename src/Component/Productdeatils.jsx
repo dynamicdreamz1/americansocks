@@ -31,37 +31,37 @@ export default function Productdeatils() {
     ]
   };
   return (
-    <div class="container">
-      <div class="product_detail_wrapper">
-        <div class="product_detail_left">
-          <div class="container">
+    <div className="container">
+      <div className="product_detail_wrapper">
+        <div className="product_detail_left">
+          <div className="container">
               {/* Main Product */}
-            <div class="product_nav_main">
-              <div class="product_item">
+            <div className="product_nav_main">
+              <div className="product_item">
                     <a href="#">
                         <img src={tshirt1}/>  
                     </a>
                 </div>
             </div>
             {/* Thumb Slider */}
-            <div class="product_thumb_slider">
+            <div className="product_thumb_slider">
               <Slider {...settings} >
-                <div class="product_slider_item">
+                <div className="product_slider_item">
                     <a href="#">
                     <img src={tshirt1}/>  
                     </a>
                 </div>
-                <div class="product_slider_item">
+                <div className="product_slider_item">
                     <a href="#">
                     <img src={tshirt2}/>  
                     </a>
                 </div>
-                <div class="product_slider_item">
+                <div className="product_slider_item">
                     <a href="#">
                     <img src={tshirt3}/>  
                     </a>
                 </div>
-                <div class="product_slider_item">
+                <div className="product_slider_item">
                     <a href="#">
                       <img src={tshirt1}/>  
                     </a>
@@ -71,10 +71,10 @@ export default function Productdeatils() {
               </div>
             </div>
         </div>
-        <div class="product_detail_right">
-              <h3 class="product_title">Tacos & Vatos - T-Shirt</h3>
-              <p class="product_price">12,00€</p>
-              <div class="product_dec">
+        <div className="product_detail_right">
+              <h3 className="product_title">Tacos & Vatos - T-Shirt</h3>
+              <p className="product_price">12,00€</p>
+              <div className="product_dec">
                 <p>White Unisex T-Shirt</p>
                 <p>Heritage Fit</p>
                 <p>Front and Back Full Color Print</p>
@@ -82,10 +82,10 @@ export default function Productdeatils() {
                 <p>Composition: 100% Cotton</p>
               </div>
               {/* Product Size and Price table */}
-              <div class="price_table">
+              <div className="price_table">
                 <table>
                   <tbody>
-                  <tr class="price_table_head">
+                  <tr className="price_table_head">
                     <th>Sizes</th>
                     <th>S</th>
                     <th>M</th>
@@ -94,35 +94,35 @@ export default function Productdeatils() {
                     <th>XXL</th>
                   </tr>
 
-                  <tr class="price_table_price">
+                  <tr className="price_table_price">
                     <td>Price</td>
                     <td>
-                      <div class="price blue">
+                      <div className="price blue">
                         <input type="number" id="quantity" name="quantity" placeholder="0"/>
                       </div>
                     </td>
 
                     <td>
-                      <div class="price green">
-                        <input type="number"  name="quantity" id="quantity" class="txt" placeholder="0"/>
+                      <div className="price green">
+                        <input type="number"  name="quantity" id="quantity" className="txt" placeholder="0"/>
                       </div>
                     </td>
 
                     <td>
-                      <div class="price orange">
-                        <input type="number"  name="quantity" id="quantity" class="txt" placeholder="0"/>
+                      <div className="price orange">
+                        <input type="number"  name="quantity" id="quantity" className="txt" placeholder="0"/>
                       </div>
                     </td>
 
                     <td>
-                      <div class="price green">
-                        <input type="number"  name="quantity" id="quantity" class="txt" placeholder="0"/>
+                      <div className="price green">
+                        <input type="number"  name="quantity" id="quantity" className="txt" placeholder="0"/>
                       </div>
                     </td>
 
                     <td>
-                      <div class="price red">
-                        <input type="number"  name="quantity" id="quantity" class="txt" placeholder="0"/>
+                      <div className="price red">
+                        <input type="number"  name="quantity" id="quantity" className="txt" placeholder="0"/>
                       </div>
                     </td>
                   </tr>
@@ -131,52 +131,52 @@ export default function Productdeatils() {
                 </table>
               </div>
               {/* Product Total */}
-              <div class="product_item_detail">
-                <div class="product_item_left">
+              <div className="product_item_detail">
+                <div className="product_item_left">
                     <p>items: <span>0</span></p>
                     <p>Total: <span>0,00€</span></p>
-                    <div class="product_order">
-                      <div class="product_order_item">
-                        <div class="circle greeen"></div>
+                    <div className="product_order">
+                      <div className="product_order_item">
+                        <div className="circle greeen"></div>
                         <p>Disponible</p>
                       </div>
 
-                      <div class="product_order_item">
-                        <div class="circle  red"></div>
+                      <div className="product_order_item">
+                        <div className="circle  red"></div>
                         <p>No Disponible </p>
                       </div>
 
-                      <div class="product_order_item">
-                        <div class="circle orange"></div>
+                      <div className="product_order_item">
+                        <div className="circle orange"></div>
                         <p>Last Units</p>
                       </div>
 
-                      <div class="product_order_item">
-                        <div class="circle yellow"></div>
+                      <div className="product_order_item">
+                        <div className="circle yellow"></div>
                         <p>Back-order</p>
                       </div>
 
-                      <div class="product_order_item">
-                        <div class="circle blue"></div>
+                      <div className="product_order_item">
+                        <div className="circle blue"></div>
                         <p>Pre-order</p>
                       </div>
                     </div>
                 </div>
-                <div class="product_item_right">
-                  <a href="" class="btn">add to cart</a>
+                <div className="product_item_right">
+                  <a href="" className="btn">add to cart</a>
                 </div>
               </div>
 
               {/* Product Sku */}
-              <div class="product_item_sku">
+              <div className="product_item_sku">
                   <p><span>SKU</span>ASG104</p>
                   <p><span>Categories</span>Clothing, FW23</p>
               </div>
 
               {/* Social Share */}
-              <div class="social_share">
+              <div className="social_share">
                 <p>Share</p>
-                <div class="social_share_wrap">
+                <div className="social_share_wrap">
                   <a href="">
                     <img src={facebook}/>  
                   </a>

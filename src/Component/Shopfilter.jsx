@@ -2,62 +2,62 @@ import React from 'react'
 
 export default function Shopfilter() {
   return (
-<section class="shop_filter">
-    <div class="container">
-        <div class="shop_wrap_filter">
-            <div class="shop_filter_left">
+<section className="shop_filter">
+    <div className="container">
+        <div className="shop_wrap_filter">
+            <div className="shop_filter_left">
       
-                <a href="javascript:void(0)" class="search_btn">
+                <a href="javascript:void(0)" className="search_btn">
                     Search By
                 </a>
         
-                <div class="filter_box">
-                    <div class="filter_box_wrap">
-                        <h3 class="filter_title">FILTROS</h3>
-                        <div class="accordion_item">
-                            <div class="accrodion_title">
+                <div className="filter_box">
+                    <div className="filter_box_wrap">
+                        <h3 className="filter_title">FILTROS</h3>
+                        <div className="accordion_item">
+                            <div className="accrodion_title">
                                 <h4>PRECIOS</h4>
                             </div>
-                            <div class="accrodion_content">
-                                <div class="filter_price">
+                            <div className="accrodion_content">
+                                <div className="filter_price">
                                     <input type="range" id="vol" name="vol" min="0" max="100" />
                                 </div>
                             </div>
                         </div>
 
-                        <div class="accordion_item">
-                            <div class="accrodion_title">
+                        <div className="accordion_item">
+                            <div className="accrodion_title">
                                 <h4>TALLA</h4>
                             </div>
-                            <div class="accrodion_content">
-                                <ul class="filter_size">
+                            <div className="accrodion_content">
+                                <ul className="filter_size">
                                     <li>
                                         <label>
-                                            <input type="checkbox" class="filter_checkbox"  />
+                                            <input type="checkbox" className="filter_checkbox"  />
                                                 <span>XS</span>
                                         </label>
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" class="filter_checkbox"  />
+                                            <input type="checkbox" className="filter_checkbox"  />
                                                 <span>S</span>
                                         </label>
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" class="filter_checkbox"  />
+                                            <input type="checkbox" className="filter_checkbox"  />
                                                 <span>M</span>
                                         </label>
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" class="filter_checkbox"  />
+                                            <input type="checkbox" className="filter_checkbox"  />
                                                 <span>L</span>
                                         </label>
                                     </li>
                                     <li>
                                         <label>
-                                            <input type="checkbox" class="filter_checkbox"  />
+                                            <input type="checkbox" className="filter_checkbox"  />
                                                 <span>XL</span>
                                         </label>
                                     </li>
@@ -65,29 +65,29 @@ export default function Shopfilter() {
                             </div>
                         </div>
 
-                        <div class="accordion_item">
-                            <div class="accrodion_title">
+                        <div className="accordion_item">
+                            <div className="accrodion_title">
                                 <h4>color</h4>
                             </div>
-                            <div class="accrodion_content">
-                                <div class="filter_color">
-                                    <span class="color black"></span>
-                                    <span class="color yellow"></span>
-                                    <span class="color red"></span>
-                                    <span class="color purple"></span>
-                                    <span class="color darkgreen"></span>
-                                    <span class="color blue"></span>
-                                    <span class="color green"></span>
+                            <div className="accrodion_content">
+                                <div className="filter_color">
+                                    <span className="color black"></span>
+                                    <span className="color yellow"></span>
+                                    <span className="color red"></span>
+                                    <span className="color purple"></span>
+                                    <span className="color darkgreen"></span>
+                                    <span className="color blue"></span>
+                                    <span className="color green"></span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="accordion_item">
-                            <div class="accrodion_title">
+                        <div className="accordion_item">
+                            <div className="accrodion_title">
                                 <h4>COLECCIÓN</h4>
                             </div>
-                            <div class="accrodion_content">
-                                <div class="filter_collection">
+                            <div className="accrodion_content">
+                                <div className="filter_collection">
                                     <p>SS24</p>
                                     <p>FW23</p>
                                     <p>SS23</p>
@@ -101,7 +101,7 @@ export default function Shopfilter() {
                 </div>
             </div>
    
-            <div class="sorting">
+            <div className="sorting">
                 <select >
                     <option >Default sorting</option>
                     <option >Date</option>

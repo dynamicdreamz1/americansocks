@@ -5,18 +5,18 @@ import { product1,product2,product3,product4,product5,product6,product7,product8
 
 export default function Shop() {
   return (
-    <section class="shop">
-        <div class="container">
-            <div class="shop_wrap">
+    <section className="shop">
+        <div className="container">
+            <div className="shop_wrap">
  
-                <div class="shop_box">
+                <div className="shop_box">
                     <a href="/product/2-Hot-4-You-Mid-High">
-                        <div class="product_image">
+                        <div className="product_image">
                             <img src={product1}/>  
-                            <div class="product_tag">NEW IN! </div>
+                            <div className="product_tag">NEW IN! </div>
                         </div>
 
-                        <div class="product_text">
+                        <div className="product_text">
                             <h3>2 Hot 4 You - Mid High</h3>
                             <p>5,63€</p>
                         </div>
@@ -24,39 +24,39 @@ export default function Shop() {
                 </div>
 
 
-                 <div class="shop_box">
+                 <div className="shop_box">
                     <a href="/product/Bad-Trip-Mid-High">
-                        <div class="product_image">
+                        <div className="product_image">
                             <img src={product2}/>
-                            <div class="product_tag">NEW IN! </div>  
+                            <div className="product_tag">NEW IN! </div>  
                         </div>
-                        <div class="product_text">
+                        <div className="product_text">
                             <h3>Bad Trip - Mid High</h3>
                             <p>5,63€</p>
                         </div>
                     </a>
                 </div>
 
-                 <div class="shop_box">
+                 <div className="shop_box">
                     <a href="/product/Bike-Monster-Mid High">
-                        <div class="product_image">
+                        <div className="product_image">
                             <img src={product3}/>  
-                            <div class="product_tag">NEW IN! </div>
+                            <div className="product_tag">NEW IN! </div>
                         </div>
-                        <div class="product_text">
+                        <div className="product_text">
                             <h3>Bike Monster - Mid High</h3>
                             <p>7,37€</p>
                         </div>
                     </a>
                 </div>
 
-                 <div class="shop_box">
+                 <div className="shop_box">
                     <a href="/product/Black-Magic-Mid-High">
-                        <div class="product_image">
+                        <div className="product_image">
                             <img src={product4}/>  
-                            <div class="product_tag">NEW IN! </div>
+                            <div className="product_tag">NEW IN! </div>
                         </div>
-                        <div class="product_text">
+                        <div className="product_text">
                             <h3>Black Magic - Mid High</h3>
                             <p>7,37€</p>
                         </div>
@@ -64,13 +64,13 @@ export default function Shop() {
                 </div>
 
 
-                 <div class="shop_box">
+                 <div className="shop_box">
                     <a href="/product/Bloom-T-Shirt">
-                        <div class="product_image">
+                        <div className="product_image">
                             <img src={product5}/>  
-                            <div class="product_tag">NEW IN! </div>
+                            <div className="product_tag">NEW IN! </div>
                         </div>
-                        <div class="product_text">
+                        <div className="product_text">
                             <h3>Bloom T-Shirt</h3>
                             <p>12,00€</p>
                         </div>
@@ -78,13 +78,13 @@ export default function Shop() {
                 </div>
 
 
-                <div class="shop_box">
+                <div className="shop_box">
                     <a href="/product/Burger-Mania-Mid-High">
-                        <div class="product_image">
+                        <div className="product_image">
                             <img src={product6}/>  
-                            <div class="product_tag">NEW IN! </div>
+                            <div className="product_tag">NEW IN! </div>
                         </div>
-                        <div class="product_text">
+                        <div className="product_text">
                             <h3>Burger Mania - Mid High</h3>
                             <p>5,63€</p>
                         </div>

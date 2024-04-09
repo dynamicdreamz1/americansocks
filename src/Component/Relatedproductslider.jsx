@@ -35,12 +35,12 @@ export default function Relatedproductslider() {
         ]
       };
       return (
-          <div class="container">
-            <div class="related_product_slider">
+          <div className="container">
+            <div className="related_product_slider">
               <Slider {...settings} >
 
                 {/* Item 1 */}
-                <div class="related_product_item">
+                <div className="related_product_item">
                     <a href="/product/t-shirt">
                     <img src={shirt1}/>   
                     </a>
@@ -48,21 +48,21 @@ export default function Relatedproductslider() {
 
 
                 {/* Item 2 */}
-                <div class="related_product_item">
+                <div className="related_product_item">
                     <a href="/product/t-shirt">
                       <img src={shirt2}/>   
                     </a>
                 </div>
 
                 {/* Item 3 */}
-                <div class="related_product_item">
+                <div className="related_product_item">
                     <a href="/product/t-shirt">
                      <img src={shirt3}/>   
                     </a>
                 </div>
 
                 {/* Item 1 */}
-                <div class="related_product_item">
+                <div className="related_product_item">
                     <a href="/product/t-shirt">
                     <img src={shirt1}/>   
                     </a>
