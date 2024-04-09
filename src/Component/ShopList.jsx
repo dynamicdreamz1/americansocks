@@ -1,39 +1,38 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { product11 } from "../assets/Images/index"
 
 
-export default function ShopList({ product ,currentPage,setCurrentPage}) {
-
-
-  console.log("currentPage",currentPage);
+export default function ShopList({ product, setCurrentPage }) {
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     if (scrollY + windowHeight >= documentHeight - 100) {
-        setCurrentPage(prevPage => prevPage + 1);
+      setCurrentPage(prevPage => prevPage + 1);
     }
-};
+  };
 
-const debounce = (func, delay) => {
+  const debounce = (func, delay) => {
     let timeoutId;
     return (...args) => {
-        if (timeoutId) clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-            func(...args);
-        }, delay);
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func(...args);
+      }, delay);
     };
-};
+  };
 
-const debouncedHandleScroll = debounce(handleScroll, 200); // Adjust the debounce delay as needed
+  const debouncedHandleScroll = debounce(handleScroll, 200); // Adjust the debounce delay as needed
 
-useEffect(() => {
+  useEffect(() => {
     window.addEventListener('scroll', debouncedHandleScroll);
     return () => {
-        window.removeEventListener('scroll', debouncedHandleScroll);
+      window.removeEventListener('scroll', debouncedHandleScroll);
     };
-}, []);
+  }, []);
+
+  
   return (
 
     <section className="shop">
