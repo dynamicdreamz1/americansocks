@@ -2,9 +2,6 @@ import React, { useState } from 'react'
 
 export default function Shopfilter({ productCatgory, updateQueryString, setFilters, attributeSize, filters }) {
 
-    const [selectedCategories, setSelectedCategories] = useState([]);
-
-    console.log("selectedCategories",selectedCategories);
 
     const handleSizeClick = (id) => {
         setFilters(prevFilters => {
