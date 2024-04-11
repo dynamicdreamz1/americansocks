@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function Shopfilter({ updateQueryString, setFilters, attributeSize, filters }) {
+export default function Shopfilter({ productCatgory, updateQueryString, setFilters, attributeSize, filters }) {
+
+    const [selectedCategories, setSelectedCategories] = useState([]);
+
+    console.log("selectedCategories",selectedCategories);
 
     const handleSizeClick = (id) => {
         setFilters(prevFilters => {
@@ -18,10 +22,22 @@ export default function Shopfilter({ updateQueryString, setFilters, attributeSiz
         const order = orderBy === 'date' ? 'desc' : 'asc'; // Set default order based on the selected orderBy value
         setFilters(prevFilters => ({
             ...prevFilters,
-            orderBy : orderBy,
-            order : order// Include the order in the filters
+            orderBy: orderBy,
+            order: order// Include the order in the filters
         }));
         updateQueryString("orderBy", orderBy);
+    };
+
+
+    const handleCategoryChange = (id) => {
+        setFilters(prevFilters => {
+            const updatedSelectSize = prevFilters.categoryId.includes(id) ?
+                prevFilters.categoryId.filter(selectedId => selectedId !== id) :
+                [...prevFilters.categoryId, id];
+
+            updateQueryString("categoryId", updatedSelectSize);
+            return { ...prevFilters, categoryId: updatedSelectSize };
+        });
     };
 
 
@@ -97,11 +113,17 @@ export default function Shopfilter({ updateQueryString, setFilters, attributeSiz
                                     </div>
                                     <div className="accrodion_content">
                                         <div className="filter_collection">
-                                            <p>SS24</p>
-                                            <p>FW23</p>
-                                            <p>SS23</p>
-                                            <p>FW22</p>
-                                            <p>SS22</p>
+                                            {productCatgory.map(category => (
+                                                <div key={category.id}>
+                                                    <input
+                                                        type="checkbox"
+                                                        id={category.slug}
+                                                        checked={filters.categoryId.includes(category.id)}
+                                                        onChange={() => handleCategoryChange(category.id)}
+                                                    />
+                                                    <label htmlFor={category.slug}>{category.name}</label>
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
                                 </div>

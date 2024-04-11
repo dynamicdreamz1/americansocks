@@ -44,3 +44,14 @@ export const getProductAttribute = async () => {
   }
 };
 
+
+
+export const getProductCategoryList = async () => {
+  try {
+    const response = await api.get('/products/categories');
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
