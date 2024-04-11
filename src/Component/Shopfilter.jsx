@@ -1,17 +1,20 @@
 import React from 'react'
 
-export default function Shopfilter({setProducts, setFilters, attributeSize,filters }) {
+export default function Shopfilter({updateQueryString, setProducts, setFilters, attributeSize, filters }) {
 
     const handleSizeClick = (id) => {
         setProducts([])
         setFilters(prevFilters => {
             if (prevFilters.selectSize.includes(id)) {
+                updateQueryString("seize", { ...prevFilters, selectSize: prevFilters.selectSize.filter(selectedId => selectedId !== id) })
                 return { ...prevFilters, selectSize: prevFilters.selectSize.filter(selectedId => selectedId !== id) };
+
             } else {
+                updateQueryString("seize", { ...prevFilters, selectSize: [...prevFilters.selectSize, id] })
                 return { ...prevFilters, selectSize: [...prevFilters.selectSize, id] };
+
             }
         });
-        
     };
 
 

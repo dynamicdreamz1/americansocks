@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Shopfilter from "../Component/Shopfilter"
 import ShopList from "../Component/ShopList"
-import  { productList, getProductAttribute } from '../services/shop'; // Import the api instance and functions
+import { getQueryStringParams } from "../Common/function"
+import { productList, getProductAttribute } from '../services/shop'; // Import the api instance and functions
+import { useLocation, useNavigate } from 'react-router-dom';
+import queryString from 'query-string';
+import Loader from '../Component/Loader';
+
 
 
 const ShopComponent = () => {
@@ -9,11 +14,27 @@ const ShopComponent = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [attributeSize, setAttributeSize] = useState([]);
+    const queryParams = getQueryStringParams()
 
     const [filters, setFilters] = useState({
-        selectSize: []
+        selectSize: queryParams.seize || []
     });
+    const location = useLocation();
+    const navigate = useNavigate();
 
+    const updateQueryString = (param, value) => {
+        const currentQuery = queryString.parse(location.search, { arrayFormat: 'comma' });
+        if (Array.isArray(value)) {
+            currentQuery[param] = value;
+        } else if (typeof value === 'string') {
+            currentQuery[param] = value.split(',');
+        } else {
+            currentQuery[param] = value?.toString();
+        }
+
+        const newQueryString = queryString.stringify(currentQuery, { arrayFormat: 'comma' });
+        navigate(`${location.pathname}?${newQueryString}`);
+    }
 
     useEffect(() => {
         setCurrentPage(1); // Reset currentPage to 1 when filters change
@@ -25,7 +46,7 @@ const ShopComponent = () => {
 
         const fetchData = async () => {
             setLoading(true)
-            const result = await productList(currentPage,filters);
+            const result = await productList(currentPage, filters);
             setProducts(prevProducts => [...prevProducts, ...result]);
             if (result) {
                 setLoading(false)
@@ -33,35 +54,36 @@ const ShopComponent = () => {
         }
 
         fetchData();
-    }, [currentPage,filters]);
+    }, [currentPage, filters]);
 
 
     useEffect(() => {
 
         const getAttribute = async () => {
             const result = await getProductAttribute();
-            setAttributeSize(result.map(({id, name, slug}) => ({id, name, slug})))
+            setAttributeSize(result.map(({ id, name, slug }) => ({ id, name, slug })))
         }
-
         getAttribute();
     }, []);
 
 
-    const Loader = () => (
-        loading && (
-            <div className="loader-overlay">
-                <div className="loader-container">
-                    <div className="loader"></div>
-                    <div className="loader-text">Loading...</div>
-                </div>
-            </div>
-        )
-    );
 
+    useEffect(() => {
+        updateQueryString("seize",filters.selectSize)
+    }, [filters]); 
+
+
+ 
     return (
         <>
-            <Shopfilter  setProducts={setProducts} filters={filters} attributeSize={attributeSize} setFilters={setFilters} />
-            <Loader />
+            <Shopfilter
+                setProducts={setProducts}
+                filters={filters}
+                attributeSize={attributeSize}
+                setFilters={setFilters} 
+                updateQueryString={updateQueryString}
+                />
+            <Loader loading={loading}  />
             <ShopList product={product} setCurrentPage={setCurrentPage} />
         </>
     )
