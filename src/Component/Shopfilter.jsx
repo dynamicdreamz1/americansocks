@@ -134,6 +134,12 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                             <option value="">Default sorting</option>
                             <option value="date">Date</option>
                             <option value="title">A to Z</option>
+                            <option value="id">ID</option>
+                            <option value="include">Include</option>
+                            <option value="slug">Slug</option>
+                            <option value="price">Price</option>
+                            <option value="popularity">Popularity</option>
+                            <option value="rating">Rating</option>
                         </select>
                     </div>
                 </div>
