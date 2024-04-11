@@ -1013,7 +1013,7 @@ body {
   visibility: hidden;
   z-index: 9;
   background: #fff;
-  min-width: 400px;
+  min-width: 450px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   left: -100px;
 }
@@ -1092,7 +1092,7 @@ body {
   color: #fff !important;
 }  
 .filter_size li{
-  width: 19.5%;
+  width: 33.33%;
   margin-bottom: 25px;
   list-style: none;
   padding: 0px 10px;
@@ -1747,5 +1747,8 @@ a:focus-visible{
   /*------ shop filter --------*/
   .filter_box{
     min-width: 290px;
+  }
+  .filter_size li {
+    width: 50%;
   }
 }
