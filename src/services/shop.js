@@ -1,61 +1,43 @@
+import axios from 'axios';
 
-
-export const productList = async (page,filters) => {
-  const url = new URL(`${process.env.REACT_APP_API_URL}/products`);
-  url.searchParams.append('per_page', '20');
-  url.searchParams.append('page', page);
-
-  if (filters.selectSize) {
-    url.searchParams.append('attribute', 'pa_size');
-    url.searchParams.append('attribute_term', filters.selectSize.join(','));
+// Create an Axios instance with default configuration
+const api = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  auth: {
+    username: process.env.REACT_APP_CONSUMER_KEY,
+    password: process.env.REACT_APP_CONSUMER_SECRET
   }
+});
 
-
-  const cunsumerKey = process.env.REACT_APP_CONSUMER_KEY;
-  const cunsumerSecret = process.env.REACT_APP_CONSUMER_SECRET;
-
-  const auth = btoa(`${cunsumerKey}:${cunsumerSecret}`);
-  const headers = new Headers();
-  headers.append("Authorization", `Basic ${auth}`);
-  headers.append("Content-Type", "application/json");
-
-  const requestOptions = {
-    method: "GET",
-    headers: headers,
-    redirect: "follow"
-  };
-
+// Define your productList function
+export const productList = async (page, filters) => {
   try {
-    const response = await fetch(url, requestOptions);
-    const result = await response.json();
-    return result;
+    const response = await api.get('/products', {
+      params: {
+        per_page: 20,
+        page: page,
+        attribute: filters.selectSize ? 'pa_size' : undefined,
+        attribute_term: filters.selectSize ? filters.selectSize.join(',') : undefined
+      }
+    });
+    return response.data;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
 
-
+// Define getProductAttribute function
 export const getProductAttribute = async () => {
-  const url = `${process.env.REACT_APP_API_URL}/products/attributes/1/terms`
-  const cunsumerKey = process.env.REACT_APP_CONSUMER_KEY;
-  const cunsumerSecret = process.env.REACT_APP_CONSUMER_SECRET;
-
-  const auth = btoa(`${cunsumerKey}:${cunsumerSecret}`);
-  const headers = new Headers();
-  headers.append("Authorization", `Basic ${auth}`);
-  headers.append("Content-Type", "application/json");
-
-  const requestOptions = {
-    method: "GET",
-    headers: headers,
-    redirect: "follow"
-  };
-
   try {
-    const response = await fetch(url, requestOptions);
-    const result = await response.json();
-    return result;
+    const response = await api.get('/products/attributes/1/terms');
+    return response.data;
   } catch (error) {
     console.error(error);
+    throw error;
   }
 };
+

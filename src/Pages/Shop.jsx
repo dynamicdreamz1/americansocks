@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Shopfilter from "../Component/Shopfilter"
 import ShopList from "../Component/ShopList"
-import { getProductAttribute, productList } from "../services/shop"
+import  { productList, getProductAttribute } from '../services/shop'; // Import the api instance and functions
 
 
 const ShopComponent = () => {
