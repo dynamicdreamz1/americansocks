@@ -22,7 +22,8 @@ export const productList = async (page, filters) => {
         attribute: filters.selectSize ? 'pa_size' : undefined,
         attribute_term: filters.selectSize ? filters.selectSize.join(',') : undefined,
         orderby: filters.orderBy || 'date',
-        order : filters.order || "desc"
+        order : filters.order || "desc",
+        category : filters.selectSize ? filters.categoryId.join(',') : undefined,
         
       }
     });
