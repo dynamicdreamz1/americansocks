@@ -111,7 +111,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                                     <div className="accrodion_content">
                                         <div className="filter_collection">
                                             {productCatgory.map(category => (
-                                                <div key={category.id}>
+                                                <div key={category.id} className="filter_collection_item">
                                                     <input
                                                         type="checkbox"
                                                         id={category.slug}
