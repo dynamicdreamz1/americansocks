@@ -20,7 +20,10 @@ export const productList = async (page, filters) => {
         per_page: 20,
         page: page,
         attribute: filters.selectSize ? 'pa_size' : undefined,
-        attribute_term: filters.selectSize ? filters.selectSize.join(',') : undefined
+        attribute_term: filters.selectSize ? filters.selectSize.join(',') : undefined,
+        orderby: filters.orderBy || 'date',
+        order : filters.order || "desc"
+        
       }
     });
     return response.data;

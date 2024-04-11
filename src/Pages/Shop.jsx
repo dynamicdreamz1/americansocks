@@ -5,7 +5,7 @@ import { getQueryStringParams } from "../Common/function"
 import { productList, getProductAttribute } from '../services/shop'; // Import the api instance and functions
 import { useLocation, useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
-import Loader from '../Component/Loader';
+// import Loader from '../Component/Loader';
 
 
 
@@ -19,9 +19,12 @@ const ShopComponent = () => {
     const queryParams = getQueryStringParams()
 
     const [filters, setFilters] = useState({
-        selectSize: queryParams.seize || []
+        selectSize: queryParams?.seize?.map(Number) || [],
+        orderBy: queryParams?.orderBy && queryParams?.orderBy[0] || "",
+        order: queryParams?.orderBy && queryParams?.orderBy[0] === 'title' ? 'asc' : 'desc'|| ""
     });
 
+    console.log("filters",filters);
 
     const updateQueryString = (param, value) => {
         const currentQuery = queryString.parse(location.search, { arrayFormat: 'comma' });
@@ -38,7 +41,7 @@ const ShopComponent = () => {
     }
 
     useEffect(() => {
-        setCurrentPage(1); // Reset currentPage to 1 when filters change
+        setCurrentPage(1);
         setProducts([])
     }, [filters]);
 
@@ -67,18 +70,11 @@ const ShopComponent = () => {
         getAttribute();
     }, []);
 
-
-
-    useEffect(() => {
-        updateQueryString("seize", filters.selectSize)
-    }, [filters]);
-
-
+    console.log("filters", filters);
 
     return (
         <>
             <Shopfilter
-                setProducts={setProducts}
                 filters={filters}
                 attributeSize={attributeSize}
                 setFilters={setFilters}

@@ -1,23 +1,30 @@
 import React from 'react'
 
-export default function Shopfilter({updateQueryString, setProducts, setFilters, attributeSize, filters }) {
+export default function Shopfilter({ updateQueryString, setFilters, attributeSize, filters }) {
 
     const handleSizeClick = (id) => {
-        setProducts([])
         setFilters(prevFilters => {
-            if (prevFilters.selectSize.includes(id)) {
-                updateQueryString("seize", { ...prevFilters, selectSize: prevFilters.selectSize.filter(selectedId => selectedId !== id) })
-                return { ...prevFilters, selectSize: prevFilters.selectSize.filter(selectedId => selectedId !== id) };
+            const updatedSelectSize = prevFilters.selectSize.includes(id) ?
+                prevFilters.selectSize.filter(selectedId => selectedId !== id) :
+                [...prevFilters.selectSize, id];
 
-            } else {
-                updateQueryString("seize", { ...prevFilters, selectSize: [...prevFilters.selectSize, id] })
-                return { ...prevFilters, selectSize: [...prevFilters.selectSize, id] };
-
-            }
+            updateQueryString("seize", updatedSelectSize);
+            return { ...prevFilters, selectSize: updatedSelectSize };
         });
     };
 
-    
+    const handleSortChange = (event) => {
+        const orderBy = event.target.value;
+        const order = orderBy === 'date' ? 'desc' : 'asc'; // Set default order based on the selected orderBy value
+        setFilters(prevFilters => ({
+            ...prevFilters,
+            orderBy : orderBy,
+            order : order// Include the order in the filters
+        }));
+        updateQueryString("orderBy", orderBy);
+    };
+
+
     return (
         <section className="shop_filter">
             <div className="container">
@@ -49,7 +56,7 @@ export default function Shopfilter({updateQueryString, setProducts, setFilters, 
                                     <div className="accrodion_content">
                                         <ul className="filter_size">
                                             {attributeSize.map(size => (
-                                                <li key={size.id}>
+                                                <li key={size.id} className={filters.selectSize.includes(size.id) ? 'size selected' : 'size'}>
                                                     <label htmlFor={`size-${size.id}`}>
                                                         <input
                                                             type="checkbox"
@@ -104,10 +111,10 @@ export default function Shopfilter({updateQueryString, setProducts, setFilters, 
                     </div>
 
                     <div className="sorting">
-                        <select >
-                            <option >Default sorting</option>
-                            <option >Date</option>
-                            <option >A to Z</option>
+                        <select value={filters.orderBy} onChange={handleSortChange}>
+                            <option value="">Default sorting</option>
+                            <option value="date">Date</option>
+                            <option value="title">A to Z</option>
                         </select>
                     </div>
                 </div>

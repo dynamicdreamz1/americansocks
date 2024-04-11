@@ -1085,7 +1085,7 @@ body {
   margin-bottom: 0px;
 
 }
-.filter_size input:checked + span{background-color: #2a2b2d;color: #fff;}
+.filter_size .size.selected  span{background-color: #2a2b2d;color: #fff;}
 .filter_size li input {
   position: absolute;
   display: none;
