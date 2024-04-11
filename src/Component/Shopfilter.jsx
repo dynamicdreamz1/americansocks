@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 
 export default function Shopfilter({ productCatgory, updateQueryString, setFilters, attributeSize, filters }) {
+    const [showFilterBox, setShowFilterBox] = useState(false);
+
+    const handleSearchByHover = (isHovering) => {
+        setShowFilterBox(isHovering);
+    };
 
 
     const handleSizeClick = (id) => {
@@ -44,11 +49,11 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                 <div className="shop_wrap_filter">
                     <div className="shop_filter_left">
 
-                        <a href="javascript:void(0)" className="search_btn">
+                        <a href="javascript:void(0)" className="search_btn"  onMouseEnter={() => handleSearchByHover(true)} >
                             Search By
                         </a>
 
-                        <div className="filter_box">
+                        <div onMouseLeave={() => handleSearchByHover(false)} className="filter_box" style={{ display: showFilterBox ? 'block' : 'none' }}>
                             <div className="filter_box_wrap">
                                 <h3 className="filter_title">FILTROS</h3>
                                 <div className="accordion_item">
@@ -111,7 +116,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                                     <div className="accrodion_content">
                                         <div className="filter_collection">
                                             {productCatgory.map(category => (
-                                                <div key={category.id}>
+                                                <div key={category.id} className="filter_collection_item">
                                                     <input
                                                         type="checkbox"
                                                         id={category.slug}

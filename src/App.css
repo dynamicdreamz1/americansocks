@@ -1010,7 +1010,7 @@ body {
 .filter_box{
   position: absolute;
   top: 50px;
-  visibility: hidden;
+  visibility: visible;
   z-index: 9;
   background: #fff;
   min-width: 450px;
@@ -1520,8 +1520,63 @@ a:focus-visible{
   outline: 0px;
 }
 
+.filter_collection_item input{
+  border: 1px solid #191919;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: none;
+  color: #121212;
+  font-size: 14px;
+  letter-spacing: 0;
+  line-height: 24px;
+  padding: 12px;
+}
+.filter_collection_item input{
+  display: none;
+}
+.filter_collection_item label{
+  position: relative;
+}
+.filter_collection_item label:before {
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 1px solid #191919;
+  border-radius: 0px;
+  content: "";
+  cursor: pointer;
+  display: inline-block;
+  height: 22px;
+  margin-right: 12px;
+  position: absolute;
+  vertical-align: middle;
+  width: 22px;
+  flex-shrink: 0;
+  left: 0px;
+}
+.filter_collection_item{
+  margin-bottom: 10px;
+}
+.filter_collection_item label{
+  padding-left: 40px;
+  line-height: 25px;
+}
 
-
+.filter_collection_item input:checked+label:after {
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  content: "";
+  display: block;
+  height: 11px;
+  left: 9px;
+  position: absolute;
+  top: 0px;
+  transform: rotate(45deg);
+  width: 5px;
+}
+.filter_collection_item input:checked+label:before {
+  background-color: #191919;
+  border-color: transparent;
+}
 /*------------- Responsive css ----------*/
 @media (min-width: 2000px) {
   /*------ Product slider-----*/
@@ -1672,6 +1727,7 @@ a:focus-visible{
   .search_btn{
       font-size: 14px;
   }
+
   /*------- product detail --------*/
   .product_nav_main{
     margin-bottom: 40px;
