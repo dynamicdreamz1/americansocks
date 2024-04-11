@@ -10,6 +10,8 @@ import Loader from '../Component/Loader';
 
 
 const ShopComponent = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
     const [product, setProducts] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(false);
@@ -19,8 +21,7 @@ const ShopComponent = () => {
     const [filters, setFilters] = useState({
         selectSize: queryParams.seize || []
     });
-    const location = useLocation();
-    const navigate = useNavigate();
+
 
     const updateQueryString = (param, value) => {
         const currentQuery = queryString.parse(location.search, { arrayFormat: 'comma' });
@@ -69,21 +70,21 @@ const ShopComponent = () => {
 
 
     useEffect(() => {
-        updateQueryString("seize",filters.selectSize)
-    }, [filters]); 
+        updateQueryString("seize", filters.selectSize)
+    }, [filters]);
 
 
- 
+
     return (
         <>
             <Shopfilter
                 setProducts={setProducts}
                 filters={filters}
                 attributeSize={attributeSize}
-                setFilters={setFilters} 
+                setFilters={setFilters}
                 updateQueryString={updateQueryString}
-                />
-            <Loader loading={loading}  />
+            />
+            {/* <Loader loading={loading}  /> */}
             <ShopList product={product} setCurrentPage={setCurrentPage} />
         </>
     )

@@ -17,7 +17,7 @@ export default function Shopfilter({updateQueryString, setProducts, setFilters, 
         });
     };
 
-
+    
     return (
         <section className="shop_filter">
             <div className="container">
