@@ -22,7 +22,7 @@ const ShopComponent = () => {
     const [filters, setFilters] = useState({
         selectSize: queryParams?.seize?.map(Number) || [],
         orderBy: queryParams?.orderBy && queryParams?.orderBy[0] || "",
-        order: queryParams?.orderBy && queryParams?.orderBy[0] === 'title' ? 'asc' : 'desc'|| "",
+        order: queryParams?.orderBy && queryParams?.orderBy[0] === 'date' ? 'desc' : 'asc',
         categoryId: queryParams?.categoryId?.map(Number) || [],
     });
 
@@ -66,11 +66,11 @@ const ShopComponent = () => {
         const fetchData = async () => {
             const resultAttribute = await getProductAttribute();
             setAttributeSize(resultAttribute.map(({ id, name, slug }) => ({ id, name, slug })));
-    
+
             const resultCategory = await getProductCategoryList();
             setProductCatgory(resultCategory);
         };
-    
+
         fetchData();
     }, []);
 

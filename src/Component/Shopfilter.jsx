@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 
 export default function Shopfilter({ productCatgory, updateQueryString, setFilters, attributeSize, filters }) {
+    const [showFilterBox, setShowFilterBox] = useState(false);
+
+    const handleSearchByHover = (isHovering) => {
+        setShowFilterBox(isHovering);
+    };
 
 
     const handleSizeClick = (id) => {
@@ -44,11 +49,11 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                 <div className="shop_wrap_filter">
                     <div className="shop_filter_left">
 
-                        <a href="javascript:void(0)" className="search_btn">
+                        <a href="javascript:void(0)" className="search_btn"  onMouseEnter={() => handleSearchByHover(true)} >
                             Search By
                         </a>
 
-                        <div className="filter_box">
+                        <div onMouseLeave={() => handleSearchByHover(false)} className="filter_box" style={{ display: showFilterBox ? 'block' : 'none' }}>
                             <div className="filter_box_wrap">
                                 <h3 className="filter_title">FILTROS</h3>
                                 <div className="accordion_item">
@@ -134,6 +139,12 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                             <option value="">Default sorting</option>
                             <option value="date">Date</option>
                             <option value="title">A to Z</option>
+                            <option value="id">ID</option>
+                            <option value="include">Include</option>
+                            <option value="slug">Slug</option>
+                            <option value="price">Price</option>
+                            <option value="popularity">Popularity</option>
+                            <option value="rating">Rating</option>
                         </select>
                     </div>
                 </div>

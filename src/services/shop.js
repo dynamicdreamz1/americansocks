@@ -19,12 +19,12 @@ export const productList = async (page, filters) => {
       params: {
         per_page: 20,
         page: page,
-        attribute: filters.selectSize ? 'pa_size' : undefined,
+        attribute: 'pa_size' ,
         attribute_term: filters.selectSize ? filters.selectSize.join(',') : undefined,
         orderby: filters.orderBy || 'date',
         order : filters.order || "desc",
         category : filters.selectSize ? filters.categoryId.join(',') : undefined,
-        
+
       }
     });
     return response.data;
