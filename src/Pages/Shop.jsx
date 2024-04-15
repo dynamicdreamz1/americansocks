@@ -2,13 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Shopfilter from "../Component/Shopfilter"
 import ShopList from "../Component/ShopList"
 import { getQueryStringParams } from "../Common/function"
-import { productList, getProductAttribute, getProductCategoryList } from '../services/shop'; // Import the api instance and functions
+import { productList, getProductAttribute, getProductCategoryList } from '../services/shop';
 import { useLocation, useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
-import Skeleton  from '../Component/Skeleton';
 import axios from 'axios';
-// import Loader from '../Component/Loader';
-
 
 
 const ShopComponent = () => {
@@ -17,12 +14,9 @@ const ShopComponent = () => {
     const [product, setProducts] = useState([])
     const [productCatgory, setProductCatgory] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
-    // const [loading, setLoading] = useState(false);
     const [attributeSize, setAttributeSize] = useState([]);
     const queryParams = getQueryStringParams()
     const [requestInProgress, setRequestInProgress] = useState(false);
-
-
 
     const [filters, setFilters] = useState({
         selectSize: queryParams?.seize?.map(Number) || [],
@@ -33,7 +27,6 @@ const ShopComponent = () => {
         maxPrice : 15000
     });
 
-    console.log("filters",filters);
 
     const updateQueryString = (param, value) => {
         const currentQuery = queryString.parse(location.search, { arrayFormat: 'comma' });
@@ -102,7 +95,6 @@ const ShopComponent = () => {
                 updateQueryString={updateQueryString}
                 productCatgory={productCatgory}
             />
-            {/* <Loader loading={loading}  /> */}
             <ShopList requestInProgress={requestInProgress} product={product} setCurrentPage={setCurrentPage} setRequestInProgress={setRequestInProgress} />
         </>
     )
