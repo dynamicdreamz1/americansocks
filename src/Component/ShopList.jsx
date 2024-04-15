@@ -3,7 +3,7 @@ import { CircularProgress } from '@mui/material';
 import { product11 } from "../assets/Images/index";
 import Skeleton from './Skeleton';
 
-export default function ShopList({ setRequestInProgress, product, setCurrentPage, requestInProgress }) {
+export default function ShopList({loading, setRequestInProgress, product, setCurrentPage, requestInProgress }) {
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -28,7 +28,7 @@ export default function ShopList({ setRequestInProgress, product, setCurrentPage
   const debouncedHandleScroll = debounce(handleScroll, 200); // Adjust the debounce delay as needed
 
   useEffect(() => {
-    if (!requestInProgress) {
+    if (!requestInProgress && product.length > 0) {
       window.addEventListener('scroll', debouncedHandleScroll);
       return () => {
         window.removeEventListener('scroll', debouncedHandleScroll);
@@ -57,7 +57,9 @@ export default function ShopList({ setRequestInProgress, product, setCurrentPage
               </div>
             ))
           ) : (
-            <Skeleton /> // Render Skeleton when product list is empty
+            <>
+           <Skeleton /> 
+            </>
           )}
         </div>
         <div className="loade_wrap">
@@ -65,7 +67,7 @@ export default function ShopList({ setRequestInProgress, product, setCurrentPage
         </div>
         
         <div className="loade_wrap">
-        { product.length === 0 && !requestInProgress &&  <h1>No products found. Please reset filters.</h1>}
+        { product.length === 0 && !loading &&  <h1>No products found. Please reset filters.</h1>}
         </div>
       </div>
     </section>
