@@ -942,6 +942,7 @@ body {
   width: 100%;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 5px;
+  min-height: 270px;
 }  
 .shop_box .product_image img{
   height: 100%;
@@ -1602,14 +1603,20 @@ a:focus-visible{
   width: 100%;
 }
 
-
-
 .skeleton_item{
   width: 16.66%;
   position: relative;
   min-height: 1px;
   margin-bottom: 70px;
   padding: 0px 15px;
+}
+.loade_wrap{
+  position: absolute;
+  z-index: 9;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 9;
 }
 /*------------- Responsive css ----------*/
 @media (min-width: 2000px) {

@@ -45,8 +45,10 @@ export default function ShopList({setRequestInProgress, product, setCurrentPage,
   return (
     <section className="shop">
       <div className="container">
-      { <CircularProgress />} 
         <div className="shop_wrap">
+          <div className="loade_wrap">
+          { <CircularProgress />} 
+          </div>
           {product.length > 0 ? (
             product.map((product, index) => (
               <div className="shop_box" key={index}>
