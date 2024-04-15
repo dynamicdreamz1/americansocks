@@ -6,10 +6,10 @@ import Shopdetails from "./Pages/ShopDetails";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/wordpress/2024/americansocks">
       <Routes>
         <Route path="/" element={<Orderform />} />
-        <Route path="shop" element={<Shop />} />
+        <Route path="/shop" element={<Shop />} />
         <Route path="shopdetails" element={<Shopdetails />} />
 
 
