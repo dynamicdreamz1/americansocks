@@ -53,7 +53,6 @@ export default function ShopList({setRequestInProgress, product, setCurrentPage,
                 <a href={`/product/${product?.slug}`}>
                   <div className="product_image">
                     <img src={product?.images[0]?.src || product11} alt={product?.images[0]?.alt} />
-                    {/* {product.new && <div className="product_tag">NEW IN! </div>} */}
                   </div>
                   <div className="product_text">
                     <h3>{product?.name}</h3>
