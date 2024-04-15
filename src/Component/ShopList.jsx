@@ -34,7 +34,7 @@ export default function ShopList({loading, setRequestInProgress, product, setCur
         window.removeEventListener('scroll', debouncedHandleScroll);
       };
     }
-  }, [requestInProgress]);
+  }, [requestInProgress,product]);
 
 
   return (
