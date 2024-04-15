@@ -3,7 +3,7 @@ import { CircularProgress } from '@mui/material';
 import { product11 } from "../assets/Images/index";
 import Skeleton from './Skeleton';
 
-export default function ShopList({ product, setCurrentPage }) {
+export default function ShopList({setRequestInProgress, product, setCurrentPage,requestInProgress }) {
   const [loading, setLoading] = useState(false);
 
   const handleScroll = () => {
@@ -12,6 +12,7 @@ export default function ShopList({ product, setCurrentPage }) {
     const documentHeight = document.documentElement.scrollHeight;
     if (scrollY + windowHeight >= documentHeight - 100) {
       setCurrentPage(prevPage => prevPage + 1);
+      setRequestInProgress(true)
       setLoading(true)
     }
   };
@@ -29,11 +30,13 @@ export default function ShopList({ product, setCurrentPage }) {
   const debouncedHandleScroll = debounce(handleScroll, 200); // Adjust the debounce delay as needed
 
   useEffect(() => {
-    window.addEventListener('scroll', debouncedHandleScroll);
-    return () => {
-      window.removeEventListener('scroll', debouncedHandleScroll);
-    };
-  }, []);
+    if (!requestInProgress) {  
+      window.addEventListener('scroll', debouncedHandleScroll);
+      return () => {
+        window.removeEventListener('scroll', debouncedHandleScroll);
+      };
+    }
+  }, [requestInProgress]);
 
   useEffect(() => {
     setLoading(false); // Reset loading state when new products are loaded

@@ -20,6 +20,8 @@ const ShopComponent = () => {
     // const [loading, setLoading] = useState(false);
     const [attributeSize, setAttributeSize] = useState([]);
     const queryParams = getQueryStringParams()
+    const [requestInProgress, setRequestInProgress] = useState(false);
+
 
 
     const [filters, setFilters] = useState({
@@ -60,6 +62,9 @@ const ShopComponent = () => {
             try {
                 const result = await productList(currentPage, filters, source.token);
                 setProducts(prevProducts => [...prevProducts, ...result]);
+                if (result) {
+                   setRequestInProgress(false) 
+                }
             } catch (error) {
                 if (!axios.isCancel(error)) {
                     console.error('Error:', error.message);
@@ -98,7 +103,7 @@ const ShopComponent = () => {
                 productCatgory={productCatgory}
             />
             {/* <Loader loading={loading}  /> */}
-            <ShopList product={product} setCurrentPage={setCurrentPage} />
+            <ShopList requestInProgress={requestInProgress} product={product} setCurrentPage={setCurrentPage} setRequestInProgress={setRequestInProgress} />
         </>
     )
 }
