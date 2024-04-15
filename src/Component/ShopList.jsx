@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { product11 } from "../assets/Images/index"
+import Skeleton from './Skeleton';
 
 
 export default function ShopList({ product, setCurrentPage }) {
@@ -32,17 +33,19 @@ export default function ShopList({ product, setCurrentPage }) {
     };
   }, []);
 
+  console.log("product",product);
+
 
   return (
 
     <section className="shop">
       <div className="container">
         <div className="shop_wrap">
-          {product.length > 0 && product.map((product, index) => (
+          {product.length > 0 ? product.map((product, index) => (
             <div className="shop_box" key={index}>
               <a href={`/product/${product?.slug}`}>
                 <div className="product_image">
-                  <img src={product11} alt={product?.images[1]?.alt} />
+                  <img src={product?.images[0]?.src} alt={product?.images[0]?.alt} />
                   {/* {product.new && <div className="product_tag">NEW IN! </div>} */}
                 </div>
                 <div className="product_text">
@@ -51,7 +54,10 @@ export default function ShopList({ product, setCurrentPage }) {
                 </div>
               </a>
             </div>
-          ))}
+          ))
+        :
+        <Skeleton />
+        }
         </div>
       </div>
     </section>

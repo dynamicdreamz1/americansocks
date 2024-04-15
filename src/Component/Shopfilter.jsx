@@ -1,10 +1,21 @@
 import React, { useState } from 'react'
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
+
+
+function valuetext(value) {
+    return `${value} Price`;
+}
 
 export default function Shopfilter({ productCatgory, updateQueryString, setFilters, attributeSize, filters }) {
     const [showFilterBox, setShowFilterBox] = useState(false);
 
     const handleSearchByHover = (isHovering) => {
         setShowFilterBox(isHovering);
+    };
+
+    const valuetext = (value) => {
+        return `${value} USD`;
     };
 
 
@@ -43,13 +54,39 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
     };
 
 
+    const debounce = (func, delay) => {
+        let timeoutId;
+        return function(...args) {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
+            func.apply(this, args);
+          }, delay);
+        };
+      };
+    
+      // Debounced version of handleChange
+      const debouncedHandleChange = debounce((event, newValue) => {
+        setFilters(prevFilters => ({
+          ...prevFilters,
+          minPrice: newValue[0],
+          maxPrice: newValue[1]
+        }));
+        // Call your API here
+      }, 500); // Adjust the debounce time as needed, e.g., 500 milliseconds
+    
+      const handleChange = (event, newValue) => {
+        debouncedHandleChange(event, newValue);
+      };
+
+
+
     return (
         <section className="shop_filter">
             <div className="container">
                 <div className="shop_wrap_filter">
                     <div className="shop_filter_left">
 
-                        <a href="javascript:void(0)" className="search_btn"  onMouseEnter={() => handleSearchByHover(true)} >
+                        <a href="javascript:void(0)" className="search_btn" onMouseEnter={() => handleSearchByHover(true)} >
                             Search By
                         </a>
 
@@ -62,7 +99,17 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                                     </div>
                                     <div className="accrodion_content">
                                         <div className="filter_price">
-                                            <input type="range" id="vol" name="vol" min="0" max="100" />
+                                            <Box sx={{ width: 400 }}>
+                                                <Slider
+                                                    getAriaLabel={() => 'Price range'}
+                                                    value={[filters.minPrice,filters.maxPrice]}
+                                                    onChange={handleChange}
+                                                    valueLabelDisplay="auto"
+                                                    getAriaValueText={valuetext}
+                                                    min={1} // Set the minimum value
+                                                    max={15000} // Set the maximum value
+                                                />
+                                            </Box>
                                         </div>
                                     </div>
                                 </div>
