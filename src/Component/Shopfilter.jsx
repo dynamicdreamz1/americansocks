@@ -50,28 +50,33 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
     };
 
 
-    const debounce = (func, delay) => {
-        let timeoutId;
-        return function (...args) {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => {
-                func.apply(this, args);
-            }, delay);
-        };
-    };
+    // const debounce = (func, delay) => {
+    //     let timeoutId;
+    //     return function (...args) {
+    //         clearTimeout(timeoutId);
+    //         timeoutId = setTimeout(() => {
+    //             func.apply(this, args);
+    //         }, delay);
+    //     };
+    // };
 
     // Debounced version of handleChange
-    const debouncedHandleChange = debounce((event, newValue) => {
+    // const debouncedHandleChange = debounce((event, newValue) => {
+    //     setFilters(prevFilters => ({
+    //         ...prevFilters,
+    //         minPrice: newValue[0],
+    //         maxPrice: newValue[1]
+    //     }));
+    //     // Call your API here
+    // }, 500);
+
+    const handleChange = (event, newValue) => {
+        // debouncedHandleChange(event, newValue);
         setFilters(prevFilters => ({
             ...prevFilters,
             minPrice: newValue[0],
             maxPrice: newValue[1]
         }));
-        // Call your API here
-    }, 500);
-
-    const handleChange = (event, newValue) => {
-        debouncedHandleChange(event, newValue);
         updateQueryString("price", newValue)
     };
 
