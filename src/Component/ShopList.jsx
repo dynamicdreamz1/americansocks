@@ -33,6 +33,8 @@ export default function ShopList({ product, setCurrentPage }) {
     };
   }, []);
 
+  console.log("product",product);
+
 
   return (
 
@@ -43,7 +45,7 @@ export default function ShopList({ product, setCurrentPage }) {
             <div className="shop_box" key={index}>
               <a href={`/product/${product?.slug}`}>
                 <div className="product_image">
-                  <img src={product11} alt={product?.images[1]?.alt} />
+                  <img src={product?.images[0]?.src} alt={product?.images[0]?.alt} />
                   {/* {product.new && <div className="product_tag">NEW IN! </div>} */}
                 </div>
                 <div className="product_text">
