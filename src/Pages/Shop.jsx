@@ -55,21 +55,23 @@ const ShopComponent = () => {
 
     useEffect(() => {
         const source = axios.CancelToken.source();
-
+    
         const fetchData = async () => {
-            // setLoading(true)
-            const result = await productList(currentPage, filters,source.token);
-            setProducts(prevProducts => [...prevProducts, ...result]);
-            // if (result) {
-            //     setLoading(false)
-            // }
-        }
-
+            try {
+                const result = await productList(currentPage, filters, source.token);
+                setProducts(prevProducts => [...prevProducts, ...result]);
+            } catch (error) {
+                if (!axios.isCancel(error)) {
+                    console.error('Error:', error.message);
+                }
+            }
+        };
+    
         fetchData();
-
+    
         return () => {
             source.cancel('Component unmounted');
-          };
+        };
     }, [currentPage, filters]);
 
 
