@@ -14,7 +14,7 @@ const api = axios.create({
 
 // Define your productList function
 export const productList = async (page, filters,cancelToken) => {
-  try {
+    try {
     const response = await api.get('/products', {
       params: {
         per_page: 20,
@@ -27,7 +27,7 @@ export const productList = async (page, filters,cancelToken) => {
         min_price:filters.minPrice,
         max_price :filters.maxPrice
       },
-      // cancelToken: cancelToken
+      cancelToken: cancelToken
     });
     return response.data;
   } catch (error) {
