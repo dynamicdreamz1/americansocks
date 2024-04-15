@@ -27,6 +27,7 @@ export default function ShopList({loading, setRequestInProgress, product, setCur
 
   const debouncedHandleScroll = debounce(handleScroll, 200); // Adjust the debounce delay as needed
 
+  console.log("requestInProgress",requestInProgress);
   useEffect(() => {
     if (!requestInProgress && product.length > 0) {
       window.addEventListener('scroll', debouncedHandleScroll);
@@ -34,7 +35,7 @@ export default function ShopList({loading, setRequestInProgress, product, setCur
         window.removeEventListener('scroll', debouncedHandleScroll);
       };
     }
-  }, [requestInProgress]);
+  }, [requestInProgress,product]);
 
 
   return (
