@@ -18,13 +18,14 @@ const ShopComponent = () => {
     const queryParams = getQueryStringParams()
     const [requestInProgress, setRequestInProgress] = useState(false);
 
+
     const [filters, setFilters] = useState({
         selectSize: queryParams?.seize?.map(Number) || [],
         orderBy: queryParams?.orderBy && queryParams?.orderBy[0] || "",
         order: queryParams?.orderBy && queryParams?.orderBy[0] === 'date' ? 'desc' : 'asc',
         categoryId: queryParams?.categoryId?.map(Number) || [],
-        minPrice : 1,
-        maxPrice : 15000
+        minPrice: queryParams.price && parseInt(queryParams?.price[0]) || 1,
+        maxPrice: queryParams.price && parseInt(queryParams?.price[1]) || 15000
     });
 
 
@@ -50,13 +51,13 @@ const ShopComponent = () => {
 
     useEffect(() => {
         const source = axios.CancelToken.source();
-    
+
         const fetchData = async () => {
             try {
                 const result = await productList(currentPage, filters, source.token);
                 setProducts(prevProducts => [...prevProducts, ...result]);
                 if (result) {
-                   setRequestInProgress(false) 
+                    setRequestInProgress(false)
                 }
             } catch (error) {
                 if (!axios.isCancel(error)) {
@@ -64,9 +65,9 @@ const ShopComponent = () => {
                 }
             }
         };
-    
+
         fetchData();
-    
+
         return () => {
             source.cancel('Component unmounted');
         };

@@ -3,8 +3,7 @@ import { CircularProgress } from '@mui/material';
 import { product11 } from "../assets/Images/index";
 import Skeleton from './Skeleton';
 
-export default function ShopList({setRequestInProgress, product, setCurrentPage,requestInProgress }) {
-  const [loading, setLoading] = useState(false);
+export default function ShopList({ setRequestInProgress, product, setCurrentPage, requestInProgress }) {
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -13,7 +12,6 @@ export default function ShopList({setRequestInProgress, product, setCurrentPage,
     if (scrollY + windowHeight >= documentHeight - 100) {
       setCurrentPage(prevPage => prevPage + 1);
       setRequestInProgress(true)
-      setLoading(true)
     }
   };
 
@@ -30,7 +28,7 @@ export default function ShopList({setRequestInProgress, product, setCurrentPage,
   const debouncedHandleScroll = debounce(handleScroll, 200); // Adjust the debounce delay as needed
 
   useEffect(() => {
-    if (!requestInProgress) {  
+    if (!requestInProgress) {
       window.addEventListener('scroll', debouncedHandleScroll);
       return () => {
         window.removeEventListener('scroll', debouncedHandleScroll);
@@ -38,17 +36,11 @@ export default function ShopList({setRequestInProgress, product, setCurrentPage,
     }
   }, [requestInProgress]);
 
-  useEffect(() => {
-    setLoading(false); // Reset loading state when new products are loaded
-  }, [product]);
 
   return (
     <section className="shop">
       <div className="container">
         <div className="shop_wrap">
-          <div className="loade_wrap">
-          { <CircularProgress />} 
-          </div>
           {product.length > 0 ? (
             product.map((product, index) => (
               <div className="shop_box" key={index}>
@@ -68,6 +60,9 @@ export default function ShopList({setRequestInProgress, product, setCurrentPage,
           )}
         </div>
         {/* {loading && <CircularProgress />}  */}
+        <div className="loade_wrap">
+          <CircularProgress />
+        </div>
       </div>
     </section>
   );

@@ -3,10 +3,6 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 
 
-function valuetext(value) {
-    return `${value} Price`;
-}
-
 export default function Shopfilter({ productCatgory, updateQueryString, setFilters, attributeSize, filters }) {
     const [showFilterBox, setShowFilterBox] = useState(false);
 
@@ -56,27 +52,28 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
 
     const debounce = (func, delay) => {
         let timeoutId;
-        return function(...args) {
-          clearTimeout(timeoutId);
-          timeoutId = setTimeout(() => {
-            func.apply(this, args);
-          }, delay);
+        return function (...args) {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                func.apply(this, args);
+            }, delay);
         };
-      };
-    
-      // Debounced version of handleChange
-      const debouncedHandleChange = debounce((event, newValue) => {
+    };
+
+    // Debounced version of handleChange
+    const debouncedHandleChange = debounce((event, newValue) => {
         setFilters(prevFilters => ({
-          ...prevFilters,
-          minPrice: newValue[0],
-          maxPrice: newValue[1]
+            ...prevFilters,
+            minPrice: newValue[0],
+            maxPrice: newValue[1]
         }));
         // Call your API here
-      }, 500); // Adjust the debounce time as needed, e.g., 500 milliseconds
-    
-      const handleChange = (event, newValue) => {
+    }, 500);
+
+    const handleChange = (event, newValue) => {
         debouncedHandleChange(event, newValue);
-      };
+        updateQueryString("price", newValue)
+    };
 
 
 
@@ -102,7 +99,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                                             <Box sx={{ width: 400 }}>
                                                 <Slider
                                                     getAriaLabel={() => 'Price range'}
-                                                    value={[filters.minPrice,filters.maxPrice]}
+                                                    value={[filters.minPrice, filters.maxPrice]}
                                                     onChange={handleChange}
                                                     valueLabelDisplay="auto"
                                                     getAriaValueText={valuetext}
