@@ -59,9 +59,12 @@ export default function ShopList({ setRequestInProgress, product, setCurrentPage
             <Skeleton /> // Render Skeleton when product list is empty
           )}
         </div>
-        {/* {loading && <CircularProgress />}  */}
         <div className="loade_wrap">
-          <CircularProgress />
+          {requestInProgress && product.length > 0 && <CircularProgress />}
+        </div>
+        
+        <div className="loade_wrap">
+        { product.length === 0 && !requestInProgress &&  <h1>No products found. Please reset filters.</h1>}
         </div>
       </div>
     </section>
