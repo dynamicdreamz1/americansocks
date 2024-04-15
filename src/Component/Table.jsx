@@ -124,40 +124,6 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
                                 <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.stock }}></td>
                                 <td className={`stoke_buy_data  variation-${variationData.length}`} data-label="Buy"> {/* Assuming item has a 'quantity' property */}
                                     <div className={`add-to-cart-btndiv ${variationData.length > 0 ? '' : 'add-to-cart-btndiv-two'}`}>
-
-
-                                        {/*   <table className='stoke_info_table'>
-
-                                            <TableHeader variationData={variationData} />
-                                            <tbody>
-                                                {variationData.length > 0 && (
-                                                    <tbody>
-                                                        {variationData.map((data, index) => {
-                                                            const stockNumberMatch = data?.availability_html?.match(/\d+/);
-                                                            const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0
-                                                            return (
-                                                                 
-                                                                <tr key={index}>
-                                                                     <td>{data.attributes.attribute_pa_size} {data.attributes.attribute_pa_size === "one-size" ? "" : "size"}</td> 
-                                                                    <td className='stock_numberss' dangerouslySetInnerHTML={{ __html: data.availability_html }} />
-                                                                     <td>
-                                                                        <input
-                                                                            type="number"
-                                                                            name={`quantity-${data.variation_id}`}
-                                                                            className='countsize'
-                                                                            max={parseInt(stockNumber)}
-                                                                            min={0}
-                                                                            value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.variation_id) || {}).quantity || ""}
-                                                                            onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item)}
-                                                                        />
-                                                                    </td> 
-                                                                </tr>
-                                                            )
-                                                        })}
-                                                    </tbody>
-                                                )}
-                                            </tbody>
-                                        </table>  */}
                                         <table className='stoke_info_table_test'>
                                             <TableHeader variationData={variationData} />
                                             <tbody>
