@@ -15,6 +15,8 @@ const ShopComponent = () => {
     const [productCatgory, setProductCatgory] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [attributeSize, setAttributeSize] = useState([]);
+    const [loading, setloading] = useState(false);
+
     const queryParams = getQueryStringParams()
     const [requestInProgress, setRequestInProgress] = useState(false);
 
@@ -53,10 +55,12 @@ const ShopComponent = () => {
         const source = axios.CancelToken.source();
 
         const fetchData = async () => {
+            setloading(true)
             try {
                 const result = await productList(currentPage, filters, source.token);
                 setProducts(prevProducts => [...prevProducts, ...result]);
                 if (result) {
+                    setloading(false)
                     setRequestInProgress(false)
                 }
             } catch (error) {
@@ -83,7 +87,14 @@ const ShopComponent = () => {
             setProductCatgory(resultCategory);
         };
 
+        const fetchDataCategory = async () => {
+            const resultCategory = await getProductCategoryList();
+            setProductCatgory(resultCategory);
+        };
+
         fetchData();
+
+        fetchDataCategory()
     }, []);
 
 
@@ -96,7 +107,7 @@ const ShopComponent = () => {
                 updateQueryString={updateQueryString}
                 productCatgory={productCatgory}
             />
-            <ShopList requestInProgress={requestInProgress} product={product} setCurrentPage={setCurrentPage} setRequestInProgress={setRequestInProgress} />
+            <ShopList loading={loading} requestInProgress={requestInProgress} product={product} setCurrentPage={setCurrentPage} setRequestInProgress={setRequestInProgress} />
         </>
     )
 }
