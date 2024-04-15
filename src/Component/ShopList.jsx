@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { product11 } from "../assets/Images/index"
+import Skeleton from './Skeleton';
 
 
 export default function ShopList({ product, setCurrentPage }) {
@@ -38,7 +39,7 @@ export default function ShopList({ product, setCurrentPage }) {
     <section className="shop">
       <div className="container">
         <div className="shop_wrap">
-          {product.length > 0 && product.map((product, index) => (
+          {product.length > 0 ? product.map((product, index) => (
             <div className="shop_box" key={index}>
               <a href={`/product/${product?.slug}`}>
                 <div className="product_image">
@@ -51,7 +52,10 @@ export default function ShopList({ product, setCurrentPage }) {
                 </div>
               </a>
             </div>
-          ))}
+          ))
+        :
+        <Skeleton />
+        }
         </div>
       </div>
     </section>

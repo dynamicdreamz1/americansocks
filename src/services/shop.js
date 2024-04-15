@@ -13,7 +13,7 @@ const api = axios.create({
 });
 
 // Define your productList function
-export const productList = async (page, filters) => {
+export const productList = async (page, filters,cancelToken) => {
   try {
     const response = await api.get('/products', {
       params: {
@@ -24,8 +24,10 @@ export const productList = async (page, filters) => {
         orderby: filters.orderBy || 'date',
         order : filters.order || "desc",
         category : filters.selectSize ? filters.categoryId.join(',') : undefined,
-
-      }
+        min_price:filters.minPrice,
+        max_price :filters.maxPrice
+      },
+      // cancelToken: cancelToken
     });
     return response.data;
   } catch (error) {
