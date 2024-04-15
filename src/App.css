@@ -1088,8 +1088,9 @@ body {
 .filter_size{
   display: flex;
   flex-wrap: wrap;
-  margin: 0px -10px;
+  margin: 0px -5px;
   padding: 0px;
+  row-gap: 20px;
 }
 
 .filter_size li label{
@@ -1104,10 +1105,9 @@ body {
   color: #fff !important;
 }  
 .filter_size li{
-  width: 33.33%;
-  margin-bottom: 25px;
+  width: max-content;
   list-style: none;
-  padding: 0px 10px;
+  padding: 0px 5px;
 }
 .filter_size li:last-child{
   margin-bottom: 0px;
@@ -1118,7 +1118,7 @@ body {
   font-weight: 400;
   line-height: 30px;
   color: #2a2b2d;
-  padding: 3px 6px;
+  padding: 3px 10px;
   text-align: center;
   cursor: pointer;
   display: block;
@@ -1196,6 +1196,17 @@ body {
 .filter_price .MuiBox-root .MuiSlider-root{
   color: #2a2b2d;
 }
+.filter_price .MuiBox-root{
+  width: 380px;
+}
+.filter_collection{
+  display: flex;
+  flex-wrap: wrap;
+}
+.filter_collection_item{
+  width: 50%;
+}
+
 /*----- Product Details -----*/
 .product_detail_wrapper{
   display: flex;
@@ -1826,11 +1837,12 @@ a:focus-visible{
     right: -25px !important;
   }
   .shop_box .product_image {
-    min-height: 150px;
+    min-height: auto;
   }
   .skeleton_item{
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
+
 }
 
 @media (max-width: 320px) {
