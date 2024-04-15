@@ -1684,6 +1684,7 @@ a:focus-visible{
   /*---------- shop ---------*/
   .shop_box,.skeleton_item{
       width: 33.33%;
+      margin-bottom: 40px;
   }
   .product_text h3{
       font-size: 16px;
@@ -1696,10 +1697,6 @@ a:focus-visible{
       left: 20px;
   }
 
-  /*----- shop filter ---*/
-  .filter_box{
-      left: -50px;
-  }
   /*------- product detail --------*/
   .product_detail_left,.product_detail_right{
     width: 100%;
@@ -1730,6 +1727,8 @@ a:focus-visible{
   .shop_box .product_image{
     min-height: 230px;
   }
+  
+
 }
 
 @media (max-width: 767px) {
@@ -1762,9 +1761,17 @@ a:focus-visible{
     margin-bottom: 40px;
   }
   .filter_box{
-      left: 0px;
-      min-width: max-content;
+    left: 0px;
+    min-width: auto;
+    margin: 0px 15px;
+    top: 12%;
   }
+  .shop_filter_left {
+    position: unset;
+}
+  .filter_price .MuiBox-root {
+    width: 100%;
+}
   .shop_wrap_filter .sorting select{
       min-width: 150px;
       font-size: 14px;
@@ -1842,7 +1849,9 @@ a:focus-visible{
   .skeleton_item{
     margin-bottom: 30px;
   }
-
+  .filter_collection_item {
+    width: 100%;
+  }
 }
 
 @media (max-width: 320px) {
