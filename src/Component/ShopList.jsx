@@ -45,6 +45,7 @@ export default function ShopList({setRequestInProgress, product, setCurrentPage,
   return (
     <section className="shop">
       <div className="container">
+      { <CircularProgress />} 
         <div className="shop_wrap">
           {product.length > 0 ? (
             product.map((product, index) => (
@@ -65,7 +66,7 @@ export default function ShopList({setRequestInProgress, product, setCurrentPage,
             <Skeleton /> // Render Skeleton when product list is empty
           )}
         </div>
-        {loading && <CircularProgress />} {/* Render CircularProgress while loading */}
+        {/* {loading && <CircularProgress />}  */}
       </div>
     </section>
   );
