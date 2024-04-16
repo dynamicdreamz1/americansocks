@@ -1018,6 +1018,9 @@ body {
   background: #191919;
   text-decoration: none;
 }
+.search_btn:hover{
+  color: #fff;
+}
 .shop_filter_left{
   position: relative;
 }
@@ -1597,7 +1600,7 @@ a:focus-visible{
   height: 11px;
   left: 9px;
   position: absolute;
-  top: 0px;
+  top: 4px;
   transform: rotate(45deg);
   width: 5px;
 }
