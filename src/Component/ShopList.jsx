@@ -57,9 +57,7 @@ export default function ShopList({loading, setRequestInProgress, product, setCur
               </div>
             ))
           ) : (
-            <>
            <Skeleton /> 
-            </>
           )}
         </div>
         <div className="loade_wrap">

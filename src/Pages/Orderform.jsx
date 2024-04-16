@@ -159,7 +159,7 @@ const Orderform = () => {
         <>
             <div className='table-panel-main'>
                 <ToastContainer />
-                <Loader />
+                {/* <Loader /> */}
                 <Header
                     searchQuery={searchQuery}
                     handleSearch={handleSearch}

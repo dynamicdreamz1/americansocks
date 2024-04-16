@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addToCart, addToCartProducts } from '../services/order';
 import TableHeader from './TableHead';
+import { Skeleton } from '@mui/material';
 
 const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
 
@@ -112,79 +113,92 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
                 </tr>
 
                 <tbody>
-                    {orderdata.map((item, index) => {
-                        const variationData = item?.variation_json && JSON.parse(item?.variation_json)
-                                        return (
-                            <tr key={index}>
-                                <td data-label="SKU" dangerouslySetInnerHTML={{ __html: item.sku }} />
-                                <td data-label="Image" dangerouslySetInnerHTML={{ __html: item.image }} />
-                                <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.name }}></td>
-                                <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.categories }}></td>
-                                <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.price }}></td>
-                                <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.stock }}></td>
-                                <td className={`stoke_buy_data  variation-${variationData.length}`} data-label="Buy"> {/* Assuming item has a 'quantity' property */}
-                                    <div className={`add-to-cart-btndiv ${variationData.length > 0 ? '' : 'add-to-cart-btndiv-two'}`}>
-                                        <table className='stoke_info_table_test'>
-                                            <TableHeader variationData={variationData} />
-                                            <tbody>
-                                                {variationData.length > 0 && (
-                                                    <tr>
-                                                        {variationData.map((data, index) => {
-                                                            const stockNumberMatch = data?.availability_html?.match(/\d+/);
-                                                            const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
-                                                            return (
-                                                                <>
-                                                                    <td>
-                                                                        <input
-                                                                            type="number"
-                                                                            name={`quantity-${data.variation_id}`}
-                                                                            className='countsize'
-                                                                            max={parseInt(stockNumber)}
-                                                                            min={0}
-                                                                            value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
-                                                                            onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item)}
-                                                                        />
-                                                                    </td>
-                                                                </>
-                                                            );
-                                                        })}
-                                                    </tr>
-                                                )}
-                                                {variationData.length > 0 && (
-                                                    <tr>
-                                                        {variationData.map((data, index) => {
-                                                            const stockNumberMatch = data?.availability_html?.match(/\d+/);
-                                                            const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
+                    {orderdata.length > 0 ? (
+                        orderdata.map((item, index) => {
+                            const variationData = item?.variation_json && JSON.parse(item?.variation_json)
+                            return (
+                                <tr key={index}>
+                                    <td data-label="SKU" dangerouslySetInnerHTML={{ __html: item.sku }} />
+                                    <td data-label="Image" dangerouslySetInnerHTML={{ __html: item.image }} />
+                                    <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.name }}></td>
+                                    <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.categories }}></td>
+                                    <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.price }}></td>
+                                    <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.stock }}></td>
+                                    <td className={`stoke_buy_data  variation-${variationData.length}`} data-label="Buy"> {/* Assuming item has a 'quantity' property */}
+                                        <div className={`add-to-cart-btndiv ${variationData.length > 0 ? '' : 'add-to-cart-btndiv-two'}`}>
+                                            <table className='stoke_info_table_test'>
+                                                <TableHeader variationData={variationData} />
+                                                <tbody>
+                                                    {variationData.length > 0 && (
+                                                        <tr>
+                                                            {variationData.map((data, index) => {
+                                                                const stockNumberMatch = data?.availability_html?.match(/\d+/);
+                                                                const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
+                                                                return (
+                                                                    <>
+                                                                        <td>
+                                                                            <input
+                                                                                type="number"
+                                                                                name={`quantity-${data.variation_id}`}
+                                                                                className='countsize'
+                                                                                max={parseInt(stockNumber)}
+                                                                                min={0}
+                                                                                value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
+                                                                                onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item)}
+                                                                            />
+                                                                        </td>
+                                                                    </>
+                                                                );
+                                                            })}
+                                                        </tr>
+                                                    )}
+                                                    {variationData.length > 0 && (
+                                                        <tr>
+                                                            {variationData.map((data, index) => {
+                                                                const stockNumberMatch = data?.availability_html?.match(/\d+/);
+                                                                const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
 
-                                                            // Define the CSS class based on availability
-                                                            let availabilityClass = '';
-                                                            if (data.availability_html.includes('Out of stock')) {
-                                                                availabilityClass = 'text-red';
-                                                            } else if (data.availability_html.includes('Available on backorder')) {
-                                                                availabilityClass = 'text-blue';
-                                                            } else if (stockNumber > 0) {
-                                                                availabilityClass = 'text-green';
-                                                            }
+                                                                // Define the CSS class based on availability
+                                                                let availabilityClass = '';
+                                                                if (data.availability_html.includes('Out of stock')) {
+                                                                    availabilityClass = 'text-red';
+                                                                } else if (data.availability_html.includes('Available on backorder')) {
+                                                                    availabilityClass = 'text-blue';
+                                                                } else if (stockNumber > 0) {
+                                                                    availabilityClass = 'text-green';
+                                                                }
 
-                                                            return (
-                                                                <td className={availabilityClass} key={index} dangerouslySetInnerHTML={{ __html: data.availability_html }} />
-                                                            );
-                                                        })}
-                                                    </tr>
-                                                )}
-                                            </tbody>
-                                        </table>
-                                        <button className="add-cart-btn">
-                                            <a onClick={() => handleSubmit(variationData.length > 0 ? "" : item)} href="#">add to cart</a>
-                                        </button>
+                                                                return (
+                                                                    <td className={availabilityClass} key={index} dangerouslySetInnerHTML={{ __html: data.availability_html }} />
+                                                                );
+                                                            })}
+                                                        </tr>
+                                                    )}
+                                                </tbody>
+                                            </table>
+                                            <button className="add-cart-btn">
+                                                <a onClick={() => handleSubmit(variationData.length > 0 ? "" : item)} href="#">add to cart</a>
+                                            </button>
 
-                                    </div>
+                                        </div>
 
-                                </td>
-                            </tr>
-                        )
-                    })}
-
+                                    </td>
+                                </tr>
+                            )
+                        })
+                    ) : (
+                        <>
+                            {Array.from({ length: 13 }, (_, index) => (
+                                <tr key={index}>
+                                    {Array.from({ length: 7 }, (_, index) => (
+                                        <td key={index} colSpan="1">
+                                            <Skeleton variant="rectangular" height={48} />
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </>
+                    )}
                 </tbody>
             </table>
         </div>
