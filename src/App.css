@@ -1728,6 +1728,8 @@ a:focus-visible{
 }
 
 
+
+
 @-webkit-keyframes shine-loading-image {
   0% {
     background-position: -32px;
@@ -1764,6 +1766,19 @@ a:focus-visible{
     background-position: 140px;
   }
 }
+
+
+.table-sub p{
+  font-size: 15px;
+  line-height: 20px;
+}
+.loade_wrap h5{
+  margin-top: 50px;
+  font-size: 25px;
+  line-height: 30px;
+
+}
+
 /*------------- Responsive css ----------*/
 @media (min-width: 2000px) {
   /*------ Product slider-----*/
