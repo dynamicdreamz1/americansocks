@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 export default function Shopfilter({ productCatgory, updateQueryString, setFilters, attributeSize, filters }) {
     const [showFilterBox, setShowFilterBox] = useState(false);
 
-    const handleSearchByHover = (isHovering) => {
-        setShowFilterBox(isHovering);
+    const handleSearchByHover = () => {
+        setShowFilterBox(!showFilterBox);
     };
 
     const valuetext = (value) => {
@@ -88,95 +90,137 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                 <div className="shop_wrap_filter">
                     <div className="shop_filter_left">
 
-                        <a href="javascript:void(0)" className="search_btn" onMouseEnter={() => handleSearchByHover(true)} >
+                        <button className="search_btn" onClick={() => handleSearchByHover()} >
                             Search By
-                        </a>
+                        </button>
 
-                        <div onMouseLeave={() => handleSearchByHover(false)} className="filter_box" style={{ display: showFilterBox ? 'block' : 'none' }}>
+                        <div className="filter_box" style={{ display: showFilterBox ? 'block' : 'none' }}>
                             <div className="filter_box_wrap">
                                 <h3 className="filter_title">filter</h3>
                                 <div className="accordion_item">
-                                    <div className="accrodion_title">
-                                        <h4>PRICE</h4>
-                                    </div>
-                                    <div className="accrodion_content">
-                                        <div className="filter_price">
-                                            <Box sx={{ width: 400 }}>
-                                                <Slider
-                                                    getAriaLabel={() => 'Price range'}
-                                                    value={[filters.minPrice, filters.maxPrice]}
-                                                    onChange={handleChange}
-                                                    valueLabelDisplay="auto"
-                                                    getAriaValueText={valuetext}
-                                                    min={1} // Set the minimum value
-                                                    max={15000} // Set the maximum value
-                                                />
-                                            </Box>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="accordion_item">
-                                    <div className="accrodion_title">
-                                        <h4>Size</h4>
-                                    </div>
-                                    <div className="accrodion_content">
-                                        <ul className="filter_size">
-                                            {attributeSize.map(size => (
-                                                <li key={size.id} className={filters.selectSize.includes(size.id) ? 'size selected' : 'size'}>
-                                                    <label htmlFor={`size-${size.id}`}>
-                                                        <input
-                                                            type="checkbox"
-                                                            id={`size-${size.id}`}
-                                                            className="filter_checkbox"
-                                                            checked={filters.selectSize.includes(size.id)}
-                                                            onChange={() => handleSizeClick(size.id)}
+                                    <Accordion>
+                                        <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls="panel1-content"
+                                            id="panel1-header"
+                                        >
+                                            <div className="accrodion_title">
+                                                <h4>PRICE</h4>
+                                            </div>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <div className="accrodion_content">
+                                                <div className="filter_price">
+                                                    <Box sx={{ width: 400 }}>
+                                                        <Slider
+                                                            getAriaLabel={() => 'Price range'}
+                                                            value={[filters.minPrice, filters.maxPrice]}
+                                                            onChange={handleChange}
+                                                            valueLabelDisplay="auto"
+                                                            getAriaValueText={valuetext}
+                                                            min={1} // Set the minimum value
+                                                            max={15000} // Set the maximum value
                                                         />
-                                                        <span>{size.name}</span>
-                                                    </label>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                </div>
-
-                                <div className="accordion_item">
-                                    <div className="accrodion_title">
-                                        <h4>color</h4>
-                                    </div>
-                                    <div className="accrodion_content">
-                                        <div className="filter_color">
-                                            <span className="color black"></span>
-                                            <span className="color yellow"></span>
-                                            <span className="color red"></span>
-                                            <span className="color purple"></span>
-                                            <span className="color darkgreen"></span>
-                                            <span className="color blue"></span>
-                                            <span className="color green"></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="accordion_item">
-                                    <div className="accrodion_title">
-                                        <h4>Collection</h4>
-                                    </div>
-                                    <div className="accrodion_content">
-                                        <div className="filter_collection">
-                                            {productCatgory.map(category => (
-                                                <div key={category.id} className="filter_collection_item">
-                                                    <input
-                                                        type="checkbox"
-                                                        id={category.slug}
-                                                        checked={filters.categoryId.includes(category.id)}
-                                                        onChange={() => handleCategoryChange(category.id)}
-                                                    />
-                                                    <label htmlFor={category.slug}>{category.name}</label>
+                                                    </Box>
                                                 </div>
-                                            ))}
-                                        </div>
-                                    </div>
+                                            </div>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                </div>
+
+                                <div className="accordion_item">
+                                    <Accordion>
+                                        <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls="panel1-content"
+                                            id="panel1-header"
+                                        >
+                                            <div className="accrodion_title">
+                                                <h4>Size</h4>
+                                            </div>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <div className="accrodion_content">
+                                                <ul className="filter_size">
+                                                    {attributeSize.map(size => (
+                                                        <li key={size.id} className={filters.selectSize.includes(size.id) ? 'size selected' : 'size'}>
+                                                            <label htmlFor={`size-${size.id}`}>
+                                                                <input
+                                                                    type="checkbox"
+                                                                    id={`size-${size.id}`}
+                                                                    className="filter_checkbox"
+                                                                    checked={filters.selectSize.includes(size.id)}
+                                                                    onChange={() => handleSizeClick(size.id)}
+                                                                />
+                                                                <span>{size.name}</span>
+                                                            </label>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                </div>
+
+                                <div className="accordion_item">
+                                    <Accordion>
+                                        <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls="panel1-content"
+                                            id="panel1-header"
+                                        >
+                                            <div className="accrodion_title">
+                                                <h4>color</h4>
+                                            </div>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <div className="accrodion_content">
+                                                <div className="filter_color">
+                                                    <span className="color black"></span>
+                                                    <span className="color yellow"></span>
+                                                    <span className="color red"></span>
+                                                    <span className="color purple"></span>
+                                                    <span className="color darkgreen"></span>
+                                                    <span className="color blue"></span>
+                                                    <span className="color green"></span>
+                                                </div>
+                                            </div>
+                                        </AccordionDetails>
+                                    </Accordion>
+                                </div>
+
+                                <div className="accordion_item">
+
+                                    <Accordion>
+                                        <AccordionSummary
+                                            expandIcon={<ExpandMoreIcon />}
+                                            aria-controls="panel1-content"
+                                            id="panel1-header"
+                                        >
+                                            <div className="accrodion_title">
+                                                <h4>Collection</h4>
+                                            </div>
+                                        </AccordionSummary>
+                                        <AccordionDetails>
+                                            <div className="accrodion_content">
+                                                <div className="filter_collection">
+                                                    {productCatgory.map(category => (
+                                                        <div key={category.id} className="filter_collection_item">
+                                                            <input
+                                                                type="checkbox"
+                                                                id={category.slug}
+                                                                checked={filters.categoryId.includes(category.id)}
+                                                                onChange={() => handleCategoryChange(category.id)}
+                                                            />
+                                                            <label htmlFor={category.slug}>{category.name}</label>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </AccordionDetails>
+                                    </Accordion>
+
+
                                 </div>
 
                             </div>
