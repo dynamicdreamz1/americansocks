@@ -5,7 +5,7 @@ import { addToCart, addToCartProducts } from '../services/order';
 import TableHeader from './TableHead';
 import { Skeleton } from '@mui/material';
 
-const Table = ({loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
+const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
 
 
     const handleInputChange = (event, data, selectedSize, item) => {
@@ -188,15 +188,17 @@ const Table = ({loading, handleSort, setLoading, orderdata, setSelectedItems, se
                         })
                     ) : (
                         <>
-                            {Array.from({ length: 13 }, (_, index) => (
-                                <tr key={index}>
-                                    {Array.from({ length: 7 }, (_, index) => (
-                                        <td key={index} colSpan="1">
-                                            <Skeleton variant="rectangular" height={48} />
-                                        </td>
-                                    ))}
-                                </tr>
-                            ))}
+                            {loading &&
+                                Array.from({ length: 13 }, (_, index) => (
+                                    <tr key={index}>
+                                        {Array.from({ length: 7 }, (_, index) => (
+                                            <td key={index} colSpan="1">
+                                                <Skeleton variant="rectangular" height={48} />
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))
+                            }
                         </>
                     )}
                 </tbody>

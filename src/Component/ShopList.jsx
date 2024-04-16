@@ -3,7 +3,7 @@ import { CircularProgress } from '@mui/material';
 import { product11 } from "../assets/Images/index";
 import Skeleton from './Skeleton';
 
-export default function ShopList({loading, setRequestInProgress, product, setCurrentPage, requestInProgress }) {
+export default function ShopList({ loading, setRequestInProgress, product, setCurrentPage, requestInProgress }) {
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -34,14 +34,14 @@ export default function ShopList({loading, setRequestInProgress, product, setCur
         window.removeEventListener('scroll', debouncedHandleScroll);
       };
     }
-  }, [requestInProgress,product]);
+  }, [requestInProgress, product]);
 
 
   return (
     <section className="shop">
       <div className="container">
         <div className="shop_wrap">
-      
+
           {product.length > 0 ? (
             product.map((product, index) => (
               <div className="shop_box" key={index}>
@@ -57,15 +57,17 @@ export default function ShopList({loading, setRequestInProgress, product, setCur
               </div>
             ))
           ) : (
-           <Skeleton /> 
+            <>
+              {loading && <Skeleton />}
+            </>
           )}
         </div>
         <div className="loade_wrap">
           {requestInProgress && product.length > 0 && <CircularProgress />}
         </div>
-        
+
         <div className="loade_wrap">
-        { product.length === 0 && !loading &&  <h1>No products found. Please reset filters.</h1>}
+          {product.length === 0 && !loading && <h1>No products found. Please reset filters.</h1>}
         </div>
       </div>
     </section>
