@@ -82,9 +82,6 @@ const ShopComponent = () => {
         const fetchData = async () => {
             const resultAttribute = await getProductAttribute();
             setAttributeSize(resultAttribute.map(({ id, name, slug }) => ({ id, name, slug })));
-
-            const resultCategory = await getProductCategoryList();
-            setProductCatgory(resultCategory);
         };
 
         const fetchDataCategory = async () => {

@@ -39,7 +39,11 @@ export const productList = async (page, filters,cancelToken) => {
 // Define getProductAttribute function
 export const getProductAttribute = async () => {
   try {
-    const response = await api.get('/products/attributes/1/terms');
+    const response = await api.get('/products/attributes/1/terms', {
+      params: {
+        per_page: 100,
+      },
+    });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -51,7 +55,11 @@ export const getProductAttribute = async () => {
 
 export const getProductCategoryList = async () => {
   try {
-    const response = await api.get('/products/categories');
+    const response = await api.get('/products/categories', {
+      params: {
+        per_page: 100,
+      },
+    });
     return response.data;
   } catch (error) {
     console.error(error);
