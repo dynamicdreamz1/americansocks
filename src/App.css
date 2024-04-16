@@ -1017,6 +1017,12 @@ body {
   font-weight: 500;
   background: #191919;
   text-decoration: none;
+  border: 0px;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 24px;
+  cursor: pointer;
+
 }
 .search_btn:hover{
   color: #fff;
@@ -1026,7 +1032,7 @@ body {
 }
 .filter_box{
   position: absolute;
-  top: 50px;
+  top: 55px;
   visibility: visible;
   z-index: 9;
   background: #fff;
@@ -1041,9 +1047,9 @@ body {
 .filter_box_wrap h3{
   color: #191919;
   font-weight: 600;
-  font-size: 22px;
+  font-size: 24px;
   line-height: 28px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   margin: 0px;
   text-transform: uppercase;
 }
@@ -1057,7 +1063,7 @@ body {
 
 .accordion_item{
   border-bottom: 2px solid #191919;
-  padding: 20px 0px 20px 15px;
+  padding: 20px 5px 20px 15px;
 }
 
 .accordion_item:last-child{
@@ -1068,24 +1074,29 @@ body {
   line-height: 25px;
   color: #191919;
   font-weight: 600;
-  margin-bottom: 15px;
   text-transform: uppercase;
   position: relative;
-  margin-bottom: 15px;
   margin-top: 0px;
 }
-.accordion_item h4::after{
-  position: absolute;
-  content: "";
-  width: 20px;
-  height: 4px;
-  background:  #191919;
-  line-height: 20px;
-  font-family: "Oswald", sans-serif;
-  right: 0px;
-  top: 10px;
+.MuiSvgIcon-root{
+  fill: #191919 !important;
+  font-size: 30px !important;
+}
+.MuiAccordionDetails-root{
+  padding: 14px 0px 0px 0px!important;
+}
+.accordion_item .MuiPaper-root{
+  box-shadow: none;
+  border: 0px;
+}
+.accordion_item .MuiButtonBase-root{
+  padding: 0px;
+  min-height: auto !important;
 }
 
+.accordion_item  .MuiAccordionSummary-content{
+  margin:0px !important;
+}
 .filter_price input{
   width: 100%;
 }
@@ -1121,7 +1132,7 @@ body {
   font-size: 16px;
   font-weight: 400;
   line-height: 30px;
-  color: #2a2b2d;
+  color: #191919;
   padding: 3px 10px;
   text-align: center;
   cursor: pointer;
@@ -1201,7 +1212,8 @@ body {
   color: #2a2b2d;
 }
 .filter_price .MuiBox-root{
-  width: 380px;
+  width: 100%;
+  padding: 0px 10px;
 }
 .filter_collection{
   display: flex;
@@ -1590,6 +1602,7 @@ a:focus-visible{
 .filter_collection_item label{
   padding-left: 40px;
   line-height: 25px;
+  color: #191919;
 }
 
 .filter_collection_item input:checked+label:after {
@@ -1600,7 +1613,7 @@ a:focus-visible{
   height: 11px;
   left: 9px;
   position: absolute;
-  top: 4px;
+  top: 0px;
   transform: rotate(45deg);
   width: 5px;
 }
