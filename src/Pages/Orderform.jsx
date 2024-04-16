@@ -177,7 +177,7 @@ const Orderform = () => {
                     resetFilter={resetFilter}
                     // Pass the handleSort function to the Header component
                 />
-                <Table  handleSort={handleSort} setSelectedItems={setSelectedItems} selectedItems={selectedItems} setLoading={setLoading} orderdata={paginatedData} />
+                <Table loading={loading} handleSort={handleSort} setSelectedItems={setSelectedItems} selectedItems={selectedItems} setLoading={setLoading} orderdata={paginatedData} />
             </div>
         </>
     );

@@ -5,7 +5,7 @@ import { addToCart, addToCartProducts } from '../services/order';
 import TableHeader from './TableHead';
 import { Skeleton } from '@mui/material';
 
-const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
+const Table = ({loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
 
 
     const handleInputChange = (event, data, selectedSize, item) => {
@@ -201,6 +201,9 @@ const Table = ({ handleSort, setLoading, orderdata, setSelectedItems, selectedIt
                     )}
                 </tbody>
             </table>
+            <div className="loade_wrap">
+                {orderdata.length === 0 && !loading && <h1>No products found. Please reset filters.</h1>}
+            </div>
         </div>
     )
 }
