@@ -204,7 +204,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                 </tbody>
             </table>
             <div className="loade_wrap">
-                {orderdata.length === 0 && !loading && <h1>No products found. Please reset filters.</h1>}
+                {orderdata.length === 0 && !loading && <h5>No products found. Please reset filters.</h5>}
             </div>
         </div>
     )

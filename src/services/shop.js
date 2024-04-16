@@ -17,7 +17,7 @@ export const productList = async (page, filters,cancelToken) => {
     try {
     const response = await api.get('/products', {
       params: {
-        per_page: 20,
+        per_page: 18,
         page: page,
         attribute: 'pa_size' ,
         attribute_term: filters.selectSize ? filters.selectSize.join(',') : undefined,
