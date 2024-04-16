@@ -94,10 +94,10 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
 
                         <div onMouseLeave={() => handleSearchByHover(false)} className="filter_box" style={{ display: showFilterBox ? 'block' : 'none' }}>
                             <div className="filter_box_wrap">
-                                <h3 className="filter_title">FILTROS</h3>
+                                <h3 className="filter_title">filter</h3>
                                 <div className="accordion_item">
                                     <div className="accrodion_title">
-                                        <h4>PRECIOS</h4>
+                                        <h4>PRICE</h4>
                                     </div>
                                     <div className="accrodion_content">
                                         <div className="filter_price">
@@ -118,7 +118,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
 
                                 <div className="accordion_item">
                                     <div className="accrodion_title">
-                                        <h4>TALLA</h4>
+                                        <h4>Size</h4>
                                     </div>
                                     <div className="accrodion_content">
                                         <ul className="filter_size">
@@ -160,7 +160,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
 
                                 <div className="accordion_item">
                                     <div className="accrodion_title">
-                                        <h4>COLECCIÓN</h4>
+                                        <h4>Collection</h4>
                                     </div>
                                     <div className="accrodion_content">
                                         <div className="filter_collection">
