@@ -934,7 +934,8 @@ body {
 .shop_box a{
   text-decoration: none;
   height: 100%;
-  display: flex;
+  display: inline-grid;
+  display: -ms-inline-grid;
   flex-direction: column;
 }
 .shop_box .product_image {
@@ -951,17 +952,18 @@ body {
 }
 
 .product_text h3{
-  font-size: 20px;
+  font-size: 16px;
+  line-height: 20px;
   font-weight: 600;
   color: #191919;
   margin-bottom: 10px;
 }
-.product_text p h3{
-  font-size: 18px;
-  line-height: 25px;
-  color: #2a2b2d;
+.product_text p{
+  font-size: 16px;
+  line-height: 20px;
   font-weight: 600;
-  margin: 10px 0px 0px 0px;
+  color: #191919;
+  margin-bottom: 0px;
 }
 .product_text p ins{
   text-decoration: none;
@@ -1029,9 +1031,7 @@ body {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   left: 0px;
 }
-.filter_box *{
-  font-family: "Oswald", sans-serif;
-}
+
 .filter_box_wrap{
   padding: 20px;
 }
@@ -1042,6 +1042,7 @@ body {
   line-height: 28px;
   padding-bottom: 10px;
   margin: 0px;
+  text-transform: uppercase;
 }
 .shop_filter_left:hover .filter_box{
   visibility: visible;
@@ -1631,9 +1632,7 @@ a:focus-visible{
 
 .movie--isloading {
   height: auto;
-  border-radius: 4px;
   overflow: hidden;
-  margin-bottom: 15px;
   width:100%;
 }
 
@@ -1784,7 +1783,10 @@ a:focus-visible{
       width: 25%;
   }
   .shop_box .product_image{
-    min-height: 230px;
+    min-height: 200px;
+  }
+  .skeleton_item{
+    
   }
 
 }
@@ -1812,16 +1814,20 @@ a:focus-visible{
       margin-bottom: 40px;
   }
   .product_text h3{
-      font-size: 16px;
-      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 18px;
+      margin-bottom: 6px;
   }
   .product_text p{
-      font-size: 16px;
+      font-size: 14px;
+      line-height: 18px;
   }
   .shop_box .product_tag{
       left: 20px;
   }
-
+  .shop_box .product_text{
+    padding: 12px;
+  }
   /*------- product detail --------*/
   .product_detail_left,.product_detail_right{
     width: 100%;
@@ -1874,14 +1880,16 @@ a:focus-visible{
       line-height: 32px;
   }
   .shop_box{
-      margin-bottom: 40px;
+      margin-bottom: 30px;
   }
   .product_text h3{
-      font-size: 14px;
+    font-size: 13px;
+    line-height: 17px;
       margin-bottom: 8px;
   }
   .product_text p{
-      font-size: 14px;
+    font-size: 13px;
+    line-height: 17px;
   }
   /*----- shop filter ------*/
   .shop_wrap_filter{
@@ -1971,7 +1979,7 @@ a:focus-visible{
     right: -25px !important;
   }
   .shop_box .product_image {
-    min-height: auto;
+    min-height: 180px;
   }
   .skeleton_item{
     margin-bottom: 30px;
