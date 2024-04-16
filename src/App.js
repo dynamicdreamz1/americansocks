@@ -8,7 +8,7 @@ function App() {
   return (
     <Router basename="/wordpress/2024/americansocks">
       <Routes>
-        <Route path="/" element={<Orderform />} />
+        <Route path="/orderform" element={<Orderform />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="shopdetails" element={<Shopdetails />} />
 
