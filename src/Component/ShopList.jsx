@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';
 import { product11 } from "../assets/Images/index";
 import Skeleton from './Skeleton';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function ShopList({ loading, setRequestInProgress, product, setCurrentPage, requestInProgress }) {
+
+  const navigate = useNavigate();
 
   const handleScroll = () => {
     const scrollY = window.scrollY;
@@ -13,6 +17,11 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
       setCurrentPage(prevPage => prevPage + 1);
       setRequestInProgress(true)
     }
+  };
+
+  const redirectShopDetail = (product) => {
+    console.log("product", product);
+    navigate('/shopdetails', { state: { product: product } });
   };
 
   const debounce = (func, delay) => {
@@ -45,20 +54,23 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
           {product.length > 0 ? (
           product.map((product, index) => (
             <div className="shop_box" key={index}>
-              <a href={`/product/${product?.slug}`}>
-                <div className="product_image">
+                <div onClick={()=>redirectShopDetail(product)} className="product_image">
                   {product?.images && product.images.length > 0 && (
+                    // <img
+                    //   src={product.images[0]?.src?.replace('.jpg', '-300x300.jpg')} // Modify the URL here
+                    //   alt={product.images[0]?.alt}
+                    // />
                     <img
-                      src={product.images[0]?.src?.replace('.jpg', '-300x300.jpg')} // Modify the URL here
-                      alt={product.images[0]?.alt}
-                    />
+                    src={product.images[0]?.src} // Modify the URL here
+                    alt={product.images[0]?.alt}
+                  />
                   )}
                 </div>
                 <div className="product_text">
                   <h3>{product?.name}</h3>
                   <p dangerouslySetInnerHTML={{ __html: product?.price_html }}></p>
                 </div>
-              </a>
+            
             </div>
           ))
           ) : (

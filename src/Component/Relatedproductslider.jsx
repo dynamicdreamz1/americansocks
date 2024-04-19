@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {shirt1,shirt2,shirt3} from "../assets/Images/index"
 
-export default function Relatedproductslider() {
+export default function Relatedproductslider({product}) {
     var settings = {
         dots: false,
         infinite: true,
@@ -39,7 +39,6 @@ export default function Relatedproductslider() {
             <div className="related_product_slider">
               <Slider {...settings} >
 
-                {/* Item 1 */}
                 <div className="related_product_item">
                     <a href="/product/t-shirt">
                     <img src={shirt1}/>   
@@ -47,28 +46,24 @@ export default function Relatedproductslider() {
                 </div>
 
 
-                {/* Item 2 */}
                 <div className="related_product_item">
                     <a href="/product/t-shirt">
                       <img src={shirt2}/>   
                     </a>
                 </div>
 
-                {/* Item 3 */}
                 <div className="related_product_item">
                     <a href="/product/t-shirt">
                      <img src={shirt3}/>   
                     </a>
                 </div>
 
-                {/* Item 1 */}
                 <div className="related_product_item">
                     <a href="/product/t-shirt">
                     <img src={shirt1}/>   
                     </a>
                 </div>
 
-                {/* Item 2 */}
                 <div className="related_product_item">
                     <a href="/product/t-shirt">
                      <img src={shirt2}/>   
