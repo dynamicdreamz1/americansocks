@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { facebook, twitter, pinterest, linkedin, telegram } from "../assets/Images/index"
 import { calculateTotalQuantity } from "../Common/function";
+import { addToCart, addToCartProducts } from "../services/order";
+import { toast } from "react-toastify";
 
 
 export default function Productdeatils({ product, variationsList }) {
@@ -14,7 +16,7 @@ export default function Productdeatils({ product, variationsList }) {
   const totalQuantity = calculateTotalQuantity(selectedItems, product.id);
   const totalPrice = totalQuantity * parseFloat(product.price);
 
-  
+
 
   const categoryNames = product?.categories.map(category => category.name);
   const sizes = variationsList?.map(variation => variation.attributes.find(attr => attr.name === "Size").option);
@@ -55,40 +57,65 @@ export default function Productdeatils({ product, variationsList }) {
 
     const maxStockNumber = parseInt(stockNumber);
     if (intValue > maxStockNumber || isNaN(intValue)) {
-        intValue = 0; // Reset to 0 if value exceeds max stock or is not a number
+      intValue = 0; // Reset to 0 if value exceeds max stock or is not a number
     }
 
     // Check if the variation is already selected
     const isSelected = selectedItems.some(selectedItem => selectedItem.variation_id === data.id && selectedItem.selectedSize === selectedSize);
 
     if (intValue === 0) {
-        // If the quantity is 0, remove the object from selectedItems
-        const updatedSelectData = selectedItems.filter(selectedItem => !(selectedItem.variation_id === data.id && selectedItem.selectedSize === selectedSize));
-        setSelectedItems(updatedSelectData);
+      // If the quantity is 0, remove the object from selectedItems
+      const updatedSelectData = selectedItems.filter(selectedItem => !(selectedItem.variation_id === data.id && selectedItem.selectedSize === selectedSize));
+      setSelectedItems(updatedSelectData);
     } else {
-        if (isSelected) {
-            // If already selected, update the quantity
-            const updatedSelectData = selectedItems.map(selectedItem => {
-                if (selectedItem.variation_id === data.id && selectedItem.selectedSize === selectedSize) {
-                    return {
-                        ...selectedItem,
-                        quantity: intValue
-                    };
-                }
-                return selectedItem;
-            });
-            setSelectedItems(updatedSelectData);
-        } else {
-            // If not selected and quantity is greater than 0, add to selectedItems
-            if (intValue > 0) {
-                setSelectedItems(prevSelectData => [...prevSelectData, {
-                    variation_id: data.id,
-                    selectedSize: selectedSize,
-                    quantity: intValue,
-                    product_id: item.id
-                }]);
-            }
+      if (isSelected) {
+        // If already selected, update the quantity
+        const updatedSelectData = selectedItems.map(selectedItem => {
+          if (selectedItem.variation_id === data.id && selectedItem.selectedSize === selectedSize) {
+            return {
+              ...selectedItem,
+              quantity: intValue
+            };
+          }
+          return selectedItem;
+        });
+        setSelectedItems(updatedSelectData);
+      } else {
+        // If not selected and quantity is greater than 0, add to selectedItems
+        if (intValue > 0) {
+          setSelectedItems(prevSelectData => [...prevSelectData, {
+            variation_id: data.id,
+            selectedSize: selectedSize,
+            quantity: intValue,
+            product_id: item.id
+          }]);
         }
+      }
+    }
+  };
+
+  const handleSubmit = async (item) => {
+    try {
+        let result;
+        if (item) {
+            const object = {
+                quantity: 1,
+                action: 'wcpt_add_to_cart',
+                product_id: item.id
+            }
+            result = await addToCart(object);
+
+        } else {
+            result = await addToCartProducts(selectedItems.length > 0 && selectedItems);
+        }
+
+        if (result.cart_hash) {
+            toast.success("Product added to cart successfully!");
+        } else {
+            toast.error("Failed to add product to cart.");
+        }
+    } catch (error) {
+        toast.error("Error occurred while adding product to cart. Please select Quantity");
     }
 };
 
@@ -141,7 +168,7 @@ export default function Productdeatils({ product, variationsList }) {
                     <td>Unit</td>
                     {/* Render input boxes for each size */}
                     {variationsList.map((data, index) => {
-                     
+
                       return (
                         <td key={index}>
                           <div className={`price ${index % 2 === 0 ? 'green' : 'blue'}`}>
@@ -170,8 +197,8 @@ export default function Productdeatils({ product, variationsList }) {
 
           <div className="product_item_detail">
             <div className="product_item_left">
-              <p>items:    <span>{sizes.length  > 0 ?  totalQuantity : 1}</span></p>
-              <p>Total: <span>{sizes.length  > 0 ? totalPrice.toFixed(2) : product.price}€</span></p>
+              <p>items:    <span>{sizes.length > 0 ? totalQuantity : 1}</span></p>
+              <p>Total: <span>{sizes.length > 0 ? totalPrice.toFixed(2) : product.price}€</span></p>
               <div className="product_order">
                 <div className="product_order_item">
                   <div className="circle greeen"></div>
@@ -200,7 +227,7 @@ export default function Productdeatils({ product, variationsList }) {
               </div>
             </div>
             <div className="product_item_right">
-              <a href="" className="btn">add to cart</a>
+            <button className="btn" onClick={() => handleSubmit(variationsList.length > 0 ? "" : product)} href="#">add to cart</button>
             </div>
           </div>
 
