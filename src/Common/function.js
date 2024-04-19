@@ -16,3 +16,14 @@ export const getQueryStringParams = () => {
     return data;
 };
 
+
+
+export const  calculateTotalQuantity =(items, productId) => {
+    let totalQuantity = 0;
+    items.forEach(item => {
+        if (item.product_id === productId) {
+            totalQuantity += item.quantity;
+        }
+    });
+    return totalQuantity;
+}

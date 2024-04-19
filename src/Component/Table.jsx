@@ -152,6 +152,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                             })}
                                                         </tr>
                                                     )}
+                                                    
                                                     {variationData.length > 0 && (
                                                         <tr>
                                                             {variationData.map((data, index) => {

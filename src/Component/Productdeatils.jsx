@@ -4,14 +4,21 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { facebook, twitter, pinterest, linkedin, telegram } from "../assets/Images/index"
+import { calculateTotalQuantity } from "../Common/function";
 
 
 export default function Productdeatils({ product, variationsList }) {
 
-  const[productImage,setProductImages]=useState(product?.images[0]?.src)
+  const [productImage, setProductImages] = useState(product?.images[0]?.src)
+  const [selectedItems, setSelectedItems] = useState([]);
+  const totalQuantity = calculateTotalQuantity(selectedItems, product.id);
+  const totalPrice = totalQuantity * parseFloat(product.price);
+
+  
 
   const categoryNames = product?.categories.map(category => category.name);
   const sizes = variationsList?.map(variation => variation.attributes.find(attr => attr.name === "Size").option);
+
 
   var settings = {
     dots: false,
@@ -36,10 +43,56 @@ export default function Productdeatils({ product, variationsList }) {
     ]
   };
 
-  const handleProductImages = (imageUrl) =>{
+  const handleProductImages = (imageUrl) => {
     setProductImages(imageUrl)
 
   }
+
+  const handleInputChange = (event, data, selectedSize, item) => {
+    const { value } = event.target;
+    let intValue = parseInt(value);
+    const stockNumber = parseInt(data?.stock_quantity);
+
+    const maxStockNumber = parseInt(stockNumber);
+    if (intValue > maxStockNumber || isNaN(intValue)) {
+        intValue = 0; // Reset to 0 if value exceeds max stock or is not a number
+    }
+
+    // Check if the variation is already selected
+    const isSelected = selectedItems.some(selectedItem => selectedItem.variation_id === data.id && selectedItem.selectedSize === selectedSize);
+
+    if (intValue === 0) {
+        // If the quantity is 0, remove the object from selectedItems
+        const updatedSelectData = selectedItems.filter(selectedItem => !(selectedItem.variation_id === data.id && selectedItem.selectedSize === selectedSize));
+        setSelectedItems(updatedSelectData);
+    } else {
+        if (isSelected) {
+            // If already selected, update the quantity
+            const updatedSelectData = selectedItems.map(selectedItem => {
+                if (selectedItem.variation_id === data.id && selectedItem.selectedSize === selectedSize) {
+                    return {
+                        ...selectedItem,
+                        quantity: intValue
+                    };
+                }
+                return selectedItem;
+            });
+            setSelectedItems(updatedSelectData);
+        } else {
+            // If not selected and quantity is greater than 0, add to selectedItems
+            if (intValue > 0) {
+                setSelectedItems(prevSelectData => [...prevSelectData, {
+                    variation_id: data.id,
+                    selectedSize: selectedSize,
+                    quantity: intValue,
+                    product_id: item.id
+                }]);
+            }
+        }
+    }
+};
+
+
   return (
     <div className="container">
       <div className="product_detail_wrapper">
@@ -56,7 +109,7 @@ export default function Productdeatils({ product, variationsList }) {
 
               <Slider {...settings}>
                 {product.images.length > 0 && product.images.map((relatedProduct, index) => (
-                  <div className="product_slider_item" key={index} onClick={()=>handleProductImages(relatedProduct.src)}>
+                  <div className="product_slider_item" key={index} onClick={() => handleProductImages(relatedProduct.src)}>
                     <img src={relatedProduct.src} alt={relatedProduct.alt} />
                   </div>
                 ))}
@@ -87,13 +140,26 @@ export default function Productdeatils({ product, variationsList }) {
                   <tr className="price_table_price">
                     <td>Unit</td>
                     {/* Render input boxes for each size */}
-                    {sizes.map((size, index) => (
-                      <td key={index}>
-                        <div className={`price ${index % 2 === 0 ? 'green' : 'blue'}`}>
-                          <input type="number" name={`quantity_${index}`} id={`quantity_${index}`} className="txt" placeholder="0" />
-                        </div>
-                      </td>
-                    ))}
+                    {variationsList.map((data, index) => {
+                     
+                      return (
+                        <td key={index}>
+                          <div className={`price ${index % 2 === 0 ? 'green' : 'blue'}`}>
+                            <input
+                              type="number"
+                              name={`quantity_${index}`}
+                              id={`quantity_${index}`}
+                              max={parseInt(data.stock_quantity)}
+                              min={0}
+                              className="txt"
+                              placeholder="0"
+                              value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.id) || {}).quantity || 0}
+                              onChange={(e) => handleInputChange(e, data, data.attributes[0].option, product)}
+                            />
+                          </div>
+                        </td>
+                      )
+                    })}
                   </tr>
                 </tbody>
 
@@ -102,12 +168,10 @@ export default function Productdeatils({ product, variationsList }) {
 
           }
 
-
-          {/* Product Total */}
           <div className="product_item_detail">
             <div className="product_item_left">
-              <p>items: <span>0</span></p>
-              <p>Total: <span>0,00€</span></p>
+              <p>items:    <span>{sizes.length  > 0 ?  totalQuantity : 1}</span></p>
+              <p>Total: <span>{sizes.length  > 0 ? totalPrice.toFixed(2) : product.price}€</span></p>
               <div className="product_order">
                 <div className="product_order_item">
                   <div className="circle greeen"></div>
