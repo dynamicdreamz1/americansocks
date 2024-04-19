@@ -51,9 +51,10 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
         <div className="shop_wrap">
 
           {product.length > 0 ? (
-          product.map((product, index) => (
-            <div className="shop_box" key={index}>
-                <div onClick={()=>redirectShopDetail(product)} className="product_image">
+            product.map((product, index) => (
+              <div className="shop_box" key={index}>
+                <div className='shop_box_wrap'>
+                <div onClick={() => redirectShopDetail(product)} className="product_image">
                   {product?.images && product.images.length > 0 && (
                     // <img
                     //   src={product.images[0]?.src?.replace('.jpg', '-300x300.jpg')} // Modify the URL here
@@ -64,24 +65,24 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
                     // alt={product.images[0]?.alt}
 
 
-                    
+
                     // />
                     <Imgix
-                                    src={product.images[0]?.src}
-                                    width={255}
-                                    height={255}
-                                />
+                      src={product.images[0]?.src}
+                      width={255}
+                      height={255}
+                    />
 
-                  
+
                   )}
                 </div>
                 <div className="product_text">
                   <h3>{product?.name}</h3>
                   <p dangerouslySetInnerHTML={{ __html: product?.price_html }}></p>
                 </div>
-            
-            </div>
-          ))
+                </div>
+              </div>
+            ))
           ) : (
             <>
               {loading && <Skeleton />}

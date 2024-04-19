@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { facebook, twitter, pinterest, linkedin, telegram } from "../assets/Images/index"
 import { calculateTotalQuantity } from "../Common/function";
 import { addToCart, addToCartProducts } from "../services/order";
-import { toast } from "react-toastify";
+import { toast ,ToastContainer } from "react-toastify";
 
 
 export default function Productdeatils({ product, variationsList }) {
@@ -122,6 +122,8 @@ export default function Productdeatils({ product, variationsList }) {
 
   return (
     <div className="container">
+     <ToastContainer />
+
       <div className="product_detail_wrapper">
         <div className="product_detail_left">
           <div className="container">

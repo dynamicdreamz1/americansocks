@@ -30,8 +30,9 @@ function ShopDetailMain() {
 
   return (
     <>
-      <ProductdeatilSkeleton/>
-      {/* {singleProduct ? <Productdeatils product={singleProduct} variationsList={variationsList} /> : <ProductdeatilSkeleton/>}  */}
+      {/* <ProductdeatilSkeleton/> */}
+      
+      {singleProduct ? <Productdeatils product={singleProduct} variationsList={variationsList} /> : <ProductdeatilSkeleton/>} 
       <Relatedproductslider relatedProductList={relatedProductList} /> 
     </>
   )

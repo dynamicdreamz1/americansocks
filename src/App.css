@@ -930,6 +930,9 @@ body {
   min-height: 1px;
   margin-bottom: 40px;
   padding: 0px 15px;
+
+}
+.shop_box_wrap{
   display: inline-grid;
   display: -ms-inline-grid;
   flex-direction: column;
