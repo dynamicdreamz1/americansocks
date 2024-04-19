@@ -144,8 +144,8 @@ export default function Productdeatils({ product, variationsList }) {
 
               <Slider {...settings}>
                 {product.images.length > 0 && product.images.map((relatedProduct, index) => (
-                  <div className="product_slider_item" key={index} onClick={() => handleProductImages(relatedProduct.src)}>
-                    <img src={relatedProduct.src} alt={relatedProduct.alt} />
+                  <div className="product_slider_item" key={index} onClick={() => handleProductImages(relatedProduct.urls.woocommerce_single)}>
+                    <img src={relatedProduct.urls.woocommerce_thumbnail} alt={relatedProduct.alt} />
                   </div>
                 ))}
               </Slider>

@@ -44,7 +44,6 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
     }
   }, [requestInProgress, product]);
 
-
   return (
     <section className="shop">
       <div className="container">
@@ -56,19 +55,11 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
                 <div className='shop_box_wrap'>
                 {/* <Link to={`/product/${product.slug}`} className="product_image"> */}
                 <div onClick={() => redirectShopDetail(product)} className="product_image">
-                  {product?.images && product.images.length > 0 && (
-                    // <img
-                      //   src={product.images[0]?.src?.replace('.jpg', '-300x300.jpg')} // Modify the URL here
-                      //   alt={product.images[0]?.alt}
-                    // />
                     <img
-                    src={product.images[0]?.src}
+                    src={product.images[0]?.urls.woocommerce_thumbnail}
                     alt={product.images[0]?.alt}
                     />
-               
-
-
-                  )}
+              
                 </div>
                 {/* </Link> */}
                 <div className="product_text">
