@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';
-import { product11 } from "../assets/Images/index";
+import Imgix from "react-imgix";
 import Skeleton from './Skeleton';
 import { useNavigate } from 'react-router-dom';
 
@@ -60,10 +60,20 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
                     //   src={product.images[0]?.src?.replace('.jpg', '-300x300.jpg')} // Modify the URL here
                     //   alt={product.images[0]?.alt}
                     // />
-                    <img
-                    src={product.images[0]?.src} // Modify the URL here
-                    alt={product.images[0]?.alt}
-                  />
+                    // <img
+                    // src={product.images[0]?.src}
+                    // alt={product.images[0]?.alt}
+
+
+                    
+                    // />
+                    <Imgix
+                                    src={product.images[0]?.src}
+                                    width={255}
+                                    height={255}
+                                />
+
+                  
                   )}
                 </div>
                 <div className="product_text">
