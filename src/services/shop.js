@@ -66,3 +66,17 @@ export const getProductCategoryList = async () => {
     throw error;
   }
 };
+
+export const getProductVariationsList = async (id) => {
+  try {
+    const response = await api.get(`products/${id}/variations`, {
+      params: {
+        per_page: 100,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};

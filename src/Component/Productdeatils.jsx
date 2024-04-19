@@ -3,10 +3,14 @@ import React from "react";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { tshirt1, tshirt2, tshirt3, facebook, twitter, pinterest, linkedin, telegram } from "../assets/Images/index"
+import { facebook, twitter, pinterest, linkedin, telegram } from "../assets/Images/index"
 
 
-export default function Productdeatils({ product }) {
+export default function Productdeatils({ product, variationsList }) {
+
+
+  const categoryNames = product.categories.map(category => category.name);
+  const sizes = variationsList.map(variation => variation.attributes.find(attr => attr.name === "Size").option);
 
   var settings = {
     dots: false,
@@ -45,9 +49,9 @@ export default function Productdeatils({ product }) {
             <div className="product_thumb_slider">
 
               <Slider {...settings}>
-                {product.images.map((relatedProduct, index) => (
+                {product.images.length > 0 && product.images.map((relatedProduct, index) => (
                   <div className="product_slider_item" key={index}>
-                      <img src={relatedProduct.src} alt={relatedProduct.alt} />
+                    <img src={relatedProduct.src} alt={relatedProduct.alt} />
                   </div>
                 ))}
               </Slider>
@@ -59,61 +63,40 @@ export default function Productdeatils({ product }) {
           <h3 className="product_title">{product.name}</h3>
           <p className="product_price" dangerouslySetInnerHTML={{ __html: product?.price_html }} />
           <div className="product_dec">
-            <p>White Unisex T-Shirt</p>
-            <p>Heritage Fit</p>
-            <p>Front and Back Full Color Print</p>
-            <p>Sizes S, M, L, XL & XXL - Size Chart</p>
-            <p>Composition: 100% Cotton</p>
+            <p dangerouslySetInnerHTML={{ __html: product?.short_description }} />
           </div>
-          {/* Product Size and Price table */}
-          <div className="price_table">
-            <table>
-              <tbody>
-                <tr className="price_table_head">
-                  <th>Sizes</th>
-                  <th>S</th>
-                  <th>M</th>
-                  <th>L</th>
-                  <th>XL</th>
-                  <th>XXL</th>
-                </tr>
 
-                <tr className="price_table_price">
-                  <td>Price</td>
-                  <td>
-                    <div className="price blue">
-                      <input type="number" id="quantity" name="quantity" placeholder="0" />
-                    </div>
-                  </td>
+          {
+            variationsList.length > 0 &&
+            <div className="price_table">
+              <table>
+                <tbody>
+                  <tr className="price_table_head">
+                    <th>Sizes</th>
+                    {sizes.length > 0 && sizes.map((size, index) => (
+                      <th key={index}>{size}</th>
+                    ))}
+                  </tr>
 
-                  <td>
-                    <div className="price green">
-                      <input type="number" name="quantity" id="quantity" className="txt" placeholder="0" />
-                    </div>
-                  </td>
+                  <tr className="price_table_price">
+                    <td>Unit</td>
+                    {/* Render input boxes for each size */}
+                    {sizes.map((size, index) => (
+                      <td key={index}>
+                        <div className={`price ${index % 2 === 0 ? 'green' : 'blue'}`}>
+                          <input type="number" name={`quantity_${index}`} id={`quantity_${index}`} className="txt" placeholder="0" />
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
 
-                  <td>
-                    <div className="price orange">
-                      <input type="number" name="quantity" id="quantity" className="txt" placeholder="0" />
-                    </div>
-                  </td>
+              </table>
+            </div>
 
-                  <td>
-                    <div className="price green">
-                      <input type="number" name="quantity" id="quantity" className="txt" placeholder="0" />
-                    </div>
-                  </td>
+          }
 
-                  <td>
-                    <div className="price red">
-                      <input type="number" name="quantity" id="quantity" className="txt" placeholder="0" />
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
 
-            </table>
-          </div>
           {/* Product Total */}
           <div className="product_item_detail">
             <div className="product_item_left">
@@ -153,8 +136,8 @@ export default function Productdeatils({ product }) {
 
           {/* Product Sku */}
           <div className="product_item_sku">
-            <p><span>SKU</span>ASG104</p>
-            <p><span>Categories</span>Clothing, FW23</p>
+            <p><span>SKU</span>{product.sku}</p>
+            <p><span>Categories</span>{categoryNames.join(', ')}</p>
           </div>
 
           {/* Social Share */}
