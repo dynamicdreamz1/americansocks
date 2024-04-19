@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Productdeatils from "../Component/Productdeatils"
 import Relatedproductslider from "../Component/Relatedproductslider"
+import ProductdeatilSkeleton from "../Component/ProductdeatilSkeleton"
 import { useLocation } from 'react-router-dom';
 import { getProductVariationsList, relatedProductListApi } from '../services/shop';
 
@@ -29,7 +30,8 @@ function ShopDetailMain() {
 
   return (
     <>
-      {singleProduct ? <Productdeatils product={singleProduct} variationsList={variationsList} /> : 'shubham'} 
+      <ProductdeatilSkeleton/>
+      {/* {singleProduct ? <Productdeatils product={singleProduct} variationsList={variationsList} /> : <ProductdeatilSkeleton/>}  */}
       <Relatedproductslider relatedProductList={relatedProductList} /> 
     </>
   )
