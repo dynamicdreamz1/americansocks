@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { facebook, twitter, pinterest, linkedin, telegram } from "../assets/Images/index"
+import { facebook, twitter, pinterest, linkedin, telegram , arrowprev} from "../assets/Images/index"
 import { calculateTotalQuantity } from "../Common/function";
 import { addToCart, addToCartProducts } from "../services/order";
 import { toast ,ToastContainer } from "react-toastify";
@@ -128,6 +128,9 @@ export default function Productdeatils({ product, variationsList }) {
         <div className="product_detail_left">
           <div className="container">
             <div className="product_nav_main">
+              <div className="back_btn">
+                <img src={arrowprev} />
+              </div>
               <div className="product_item">
                 <a href="#">
                   <img src={productImage} alt={product?.images[0].alt} />

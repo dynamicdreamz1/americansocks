@@ -10,4 +10,5 @@ import productsliderimg2 from "./product-slider-img-2.png"
 import productsliderimg3 from "./product-slider-img-3.png"
 import productsliderimg4 from "./product-slider-img-4.png"
 
-export {facebook,twitter,pinterest,linkedin,telegram, productsliderimg1, productsliderimg2, productsliderimg3, productsliderimg4}
+import arrowprev from "./arrow-prev.png"
+export {facebook,twitter,pinterest,linkedin,telegram, productsliderimg1, productsliderimg2, productsliderimg3, productsliderimg4,arrowprev}
