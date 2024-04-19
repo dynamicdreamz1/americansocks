@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useState } from "react";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,6 +8,7 @@ import { facebook, twitter, pinterest, linkedin, telegram } from "../assets/Imag
 
 export default function Productdeatils({ product, variationsList }) {
 
+  const[productImage,setProductImages]=useState(product.images[0].src)
 
   const categoryNames = product.categories.map(category => category.name);
   const sizes = variationsList.map(variation => variation.attributes.find(attr => attr.name === "Size").option);
@@ -34,6 +35,11 @@ export default function Productdeatils({ product, variationsList }) {
       }
     ]
   };
+
+  const handleProductImages = (imageUrl) =>{
+    setProductImages(imageUrl)
+
+  }
   return (
     <div className="container">
       <div className="product_detail_wrapper">
@@ -42,7 +48,7 @@ export default function Productdeatils({ product, variationsList }) {
             <div className="product_nav_main">
               <div className="product_item">
                 <a href="#">
-                  <img src={product.images[0].src} alt={product.images[0].alt} />
+                  <img src={productImage} alt={product.images[0].alt} />
                 </a>
               </div>
             </div>
@@ -50,7 +56,7 @@ export default function Productdeatils({ product, variationsList }) {
 
               <Slider {...settings}>
                 {product.images.length > 0 && product.images.map((relatedProduct, index) => (
-                  <div className="product_slider_item" key={index}>
+                  <div className="product_slider_item" key={index} onClick={()=>handleProductImages(relatedProduct.src)}>
                     <img src={relatedProduct.src} alt={relatedProduct.alt} />
                   </div>
                 ))}
