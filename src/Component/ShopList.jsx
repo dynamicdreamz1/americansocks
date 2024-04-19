@@ -43,19 +43,24 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
         <div className="shop_wrap">
 
           {product.length > 0 ? (
-            product.map((product, index) => (
-              <div className="shop_box" key={index}>
-                <a href={`/product/${product?.slug}`}>
-                  <div className="product_image">
-                    <img src={product?.images[0]?.src || product11} alt={product?.images[0]?.alt} />
-                  </div>
-                  <div className="product_text">
-                    <h3>{product?.name}</h3>
-                    <p dangerouslySetInnerHTML={{ __html: product?.price_html }}></p>
-                  </div>
-                </a>
-              </div>
-            ))
+          product.map((product, index) => (
+            <div className="shop_box" key={index}>
+              <a href={`/product/${product?.slug}`}>
+                <div className="product_image">
+                  {product?.images && product.images.length > 0 && (
+                    <img
+                      src={product.images[0]?.src?.replace('.jpg', '-300x300.jpg')} // Modify the URL here
+                      alt={product.images[0]?.alt}
+                    />
+                  )}
+                </div>
+                <div className="product_text">
+                  <h3>{product?.name}</h3>
+                  <p dangerouslySetInnerHTML={{ __html: product?.price_html }}></p>
+                </div>
+              </a>
+            </div>
+          ))
           ) : (
             <>
               {loading && <Skeleton />}

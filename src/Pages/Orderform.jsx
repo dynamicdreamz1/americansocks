@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Header from "../Component/Header";
 import Table from "../Component/Table";
-import { addToCartProducts, fetchData } from '../services/order';
-import { ToastContainer, toast } from 'react-toastify';
+import { fetchData } from '../services/order';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Orderform = () => {
@@ -109,34 +109,6 @@ const Orderform = () => {
         setItemOffset(0);
     };
 
-    const addToCartProductsData = async () => {
-        try {
-            setLoading(true);
-            const result = await addToCartProducts(selectedItems);
-            if (result.cart_hash) {
-                setLoading(false);
-                toast.success("Products added to cart successfully!");
-            } else {
-                setLoading(false);
-                toast.error("Failed to add product to cart.");
-            }
-        } catch (error) {
-            setLoading(false);
-            console.error(error.message);
-        }
-    };
-
-    const Loader = () => (
-        loading && (
-            <div className="loader-overlay">
-                <div className="loader-container">
-                    <div className="loader"></div>
-                    <div className="loader-text">Loading...</div>
-                </div>
-            </div>
-        )
-    );
-
     const filteredData = sortedData().filter(item => {
         const nameMatch = item?.name.toLowerCase().includes(searchQuery.toLowerCase());
         const skuMatch = item?.sku.toLowerCase().includes(searchQuery.toLowerCase());
@@ -175,7 +147,6 @@ const Orderform = () => {
                     currentPage={currentPage}
                     setCurrentPage={setCurrentPage}
                     resetFilter={resetFilter}
-                    // Pass the handleSort function to the Header component
                 />
                 <Table loading={loading} handleSort={handleSort} setSelectedItems={setSelectedItems} selectedItems={selectedItems} setLoading={setLoading} orderdata={paginatedData} />
             </div>
