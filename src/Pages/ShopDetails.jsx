@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import Productdeatils from "../Component/Productdeatils"
 import Relatedproductslider from "../Component/Relatedproductslider"
 import ProductdeatilSkeleton from "../Component/ProductdeatilSkeleton"
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getProductVariationsList, relatedProductListApi } from '../services/shop';
 
 function ShopDetailMain() {
-  const location = useLocation();
+  // const location = useLocation();
   const [variationsList, setVariationsList] = useState([]);
-  const [singleProduct, setSingleProduct] = useState(location?.state?.product);
+  const [singleProduct, setSingleProduct] = useState();
   const { slug } = useParams();
 
   useEffect(() => {
@@ -23,11 +23,16 @@ function ShopDetailMain() {
   }, [slug]);
 
   useEffect(()=>{
+   
+
     const fetchVaariationList = async () => {
-      const variationList = await getProductVariationsList(singleProduct.id)
+      const variationList = await getProductVariationsList(singleProduct?.id)
       setVariationsList(variationList)
     };
+ 
+  if (singleProduct) {
     fetchVaariationList()
+  }
 
   },[singleProduct])
 
