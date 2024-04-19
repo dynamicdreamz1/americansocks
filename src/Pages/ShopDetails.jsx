@@ -29,7 +29,7 @@ function ShopDetailMain() {
 
   return (
     <>
-      {singleProduct && <Productdeatils product={singleProduct} variationsList={variationsList} />} 
+      {singleProduct ? <Productdeatils product={singleProduct} variationsList={variationsList} /> : 'shubham'} 
       <Relatedproductslider relatedProductList={relatedProductList} /> 
     </>
   )
