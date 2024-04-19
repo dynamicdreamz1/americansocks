@@ -9,6 +9,8 @@ function ShopDetailMain() {
   const product = location.state.product
   const [variationsList, setVariationsList] = useState([])
   const [relatedProductList, setRelatedProductList] = useState([])
+  const [singleProduct, setsingleProduct] = useState()
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,17 +28,26 @@ function ShopDetailMain() {
 
     fetchRelatedProduct();
 
+    const getSingleProduct = async () => {
+      const result = await relatedProductListApi(100, { include: [product.id] });
+      
+      setsingleProduct(result[0])
+    };
+
+    getSingleProduct();
+
   }, [product])
 
-  console.log("relatedProductList", relatedProductList);
-  console.log("product", product);
+
+  console.log("singleProduct",singleProduct);
 
 
 
   return (
     <>
-      <Productdeatils product={product} variationsList={variationsList} />
-      <Relatedproductslider relatedProductList={relatedProductList} />
+   {singleProduct ?   <Productdeatils product={singleProduct} variationsList={variationsList} /> : ""} 
+      <Relatedproductslider relatedProductList={relatedProductList} /> 
+      <></>
     </>
 
   )

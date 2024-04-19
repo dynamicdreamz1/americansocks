@@ -8,10 +8,10 @@ import { facebook, twitter, pinterest, linkedin, telegram } from "../assets/Imag
 
 export default function Productdeatils({ product, variationsList }) {
 
-  const[productImage,setProductImages]=useState(product.images[0].src)
+  const[productImage,setProductImages]=useState(product?.images[0]?.src)
 
-  const categoryNames = product.categories.map(category => category.name);
-  const sizes = variationsList.map(variation => variation.attributes.find(attr => attr.name === "Size").option);
+  const categoryNames = product?.categories.map(category => category.name);
+  const sizes = variationsList?.map(variation => variation.attributes.find(attr => attr.name === "Size").option);
 
   var settings = {
     dots: false,
@@ -48,7 +48,7 @@ export default function Productdeatils({ product, variationsList }) {
             <div className="product_nav_main">
               <div className="product_item">
                 <a href="#">
-                  <img src={productImage} alt={product.images[0].alt} />
+                  <img src={productImage} alt={product?.images[0].alt} />
                 </a>
               </div>
             </div>

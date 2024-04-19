@@ -42,6 +42,7 @@ export default function Relatedproductslider({ relatedProductList }) {
     console.log("product", product);
     navigate('/shopdetails', { state: { product: product } });
   };
+  
   return (
     <div className="container">
       <div className="related_product_slider">
