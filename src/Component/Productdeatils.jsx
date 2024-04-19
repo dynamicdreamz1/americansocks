@@ -7,6 +7,7 @@ import { facebook, twitter, pinterest, linkedin, telegram , arrowprev} from "../
 import { calculateTotalQuantity } from "../Common/function";
 import { addToCart, addToCartProducts } from "../services/order";
 import { toast ,ToastContainer } from "react-toastify";
+import { Link } from "react-router-dom";
 
 
 export default function Productdeatils({ product, variationsList }) {
@@ -128,9 +129,11 @@ export default function Productdeatils({ product, variationsList }) {
         <div className="product_detail_left">
           <div className="container">
             <div className="product_nav_main">
-              <div className="back_btn">
+              <Link to="/shop" >
+              <div className="back_btn" >
                 <img src={arrowprev} />
               </div>
+              </Link>
               <div className="product_item">
                 <a href="#">
                   <img src={productImage} alt={product?.images[0].alt} />

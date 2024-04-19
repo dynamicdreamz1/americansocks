@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';
 import Imgix from "react-imgix";
 import Skeleton from './Skeleton';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function ShopList({ loading, setRequestInProgress, product, setCurrentPage, requestInProgress }) {
@@ -20,7 +20,7 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
   };
 
   const redirectShopDetail = (product) => {
-    navigate('/shopdetails', { state: { product: product } });
+    navigate(`/product/${product.slug}`, { state: { product: product } });
   };
 
   const debounce = (func, delay) => {
@@ -54,28 +54,23 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
             product.map((product, index) => (
               <div className="shop_box" key={index}>
                 <div className='shop_box_wrap'>
+                {/* <Link to={`/product/${product.slug}`} className="product_image"> */}
                 <div onClick={() => redirectShopDetail(product)} className="product_image">
                   {product?.images && product.images.length > 0 && (
                     // <img
-                    //   src={product.images[0]?.src?.replace('.jpg', '-300x300.jpg')} // Modify the URL here
-                    //   alt={product.images[0]?.alt}
+                      //   src={product.images[0]?.src?.replace('.jpg', '-300x300.jpg')} // Modify the URL here
+                      //   alt={product.images[0]?.alt}
                     // />
-                    // <img
-                    // src={product.images[0]?.src}
-                    // alt={product.images[0]?.alt}
-
-
-
-                    // />
-                    <Imgix
-                      src={product.images[0]?.src}
-                      width={255}
-                      height={255}
+                    <img
+                    src={product.images[0]?.src}
+                    alt={product.images[0]?.alt}
                     />
+               
 
 
                   )}
                 </div>
+                {/* </Link> */}
                 <div className="product_text">
                   <h3>{product?.name}</h3>
                   <p dangerouslySetInnerHTML={{ __html: product?.price_html }}></p>

@@ -87,7 +87,7 @@ export const relatedProductListApi = async (page, filters, cancelToken) => {
     const response = await api.get('/products', {
       params: {
         per_page: page,
-        include: filters.include ? filters?.include?.join(',') : ''
+        slug: filters.slug ? filters.slug :''
       },
       cancelToken: cancelToken
     });
