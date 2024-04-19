@@ -15,8 +15,6 @@ export default function Productdeatils({ product, variationsList }) {
   const totalPrice = totalQuantity * parseFloat(product.price);
 
   
-console.log(product);
-
 
   const categoryNames = product?.categories.map(category => category.name);
   const sizes = variationsList?.map(variation => variation.attributes.find(attr => attr.name === "Size").option);
@@ -94,7 +92,6 @@ console.log(product);
     }
 };
 
-console.log("product",product);
 
   return (
     <div className="container">

@@ -20,7 +20,6 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
   };
 
   const redirectShopDetail = (product) => {
-    console.log("product", product);
     navigate('/shopdetails', { state: { product: product } });
   };
 

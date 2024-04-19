@@ -116,7 +116,6 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                     {orderdata.length > 0 ? (
                         orderdata.map((item, index) => {
                             const variationData = item?.variation_json && JSON.parse(item?.variation_json)
-                            console.log("variationData----",variationData);
                             return (
                                 <tr key={index}>
                                     <td data-label="SKU" dangerouslySetInnerHTML={{ __html: item.sku }} />

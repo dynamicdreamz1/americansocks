@@ -39,7 +39,6 @@ export default function Relatedproductslider({ relatedProductList }) {
 
 
   const redirectShopDetail = (product) => {
-    // console.log("product", product);
     // navigate('/shopdetails', { state: { product: product } });
   };
   
