@@ -14,16 +14,22 @@ function ShopDetailMain() {
   useEffect(() => {
     const fetchData = async () => {
       const result = await relatedProductListApi(100, { slug: slug })
-      const variationList = await getProductVariationsList(result[0].id)
-
       setSingleProduct(result[0])
-      setVariationsList(variationList)
     };
     if (!singleProduct) {
       fetchData()
     }
 
   }, [slug]);
+
+  useEffect(()=>{
+    const fetchVaariationList = async () => {
+      const variationList = await getProductVariationsList(singleProduct.id)
+      setVariationsList(variationList)
+    };
+    fetchVaariationList()
+
+  },[singleProduct])
 
 
 
