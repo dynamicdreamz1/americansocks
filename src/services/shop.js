@@ -13,19 +13,20 @@ const api = axios.create({
 });
 
 // Define your productList function
-export const productList = async (page, filters,cancelToken) => {
-    try {
+export const productList = async (page, filters, cancelToken) => {
+  try {
     const response = await api.get('/products', {
       params: {
         per_page: 18,
         page: page,
-        attribute: 'pa_size' ,
+        attribute: 'pa_size',
         attribute_term: filters.selectSize ? filters.selectSize.join(',') : undefined,
         orderby: filters.orderBy || 'date',
-        order : filters.order || "desc",
-        category : filters.selectSize ? filters.categoryId.join(',') : undefined,
-        min_price:filters.minPrice,
-        max_price :filters.maxPrice
+        order: filters.order || "desc",
+        category: filters.selectSize ? filters.categoryId.join(',') : undefined,
+        min_price: filters.minPrice,
+        max_price: filters.maxPrice,
+        include: filters.include ? filters?.include?.join(',') : ''
       },
       cancelToken: cancelToken
     });
@@ -80,3 +81,20 @@ export const getProductVariationsList = async (id) => {
     throw error;
   }
 };
+
+export const relatedProductListApi = async (page, filters, cancelToken) => {
+  try {
+    const response = await api.get('/products', {
+      params: {
+        per_page: page,
+        include: filters.include ? filters?.include?.join(',') : ''
+      },
+      cancelToken: cancelToken
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
