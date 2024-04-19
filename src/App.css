@@ -937,6 +937,7 @@ body {
   display: -ms-inline-grid;
   flex-direction: column;
   height: 100%;
+  cursor: pointer;
 }
 .shop_box a{
   text-decoration: none;
@@ -1357,9 +1358,7 @@ body {
 .product_order_item .circle.blue {
   background: #58adf6;
 }
-.product_order_item p{
-  font-family: "Oswald", sans-serif;
-}
+
 .price_table table{
   border-collapse: collapse;
   border-spacing: 0;
