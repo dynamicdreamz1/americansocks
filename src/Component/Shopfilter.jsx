@@ -96,7 +96,6 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
 
                         <div className="filter_box" style={{ display: showFilterBox ? 'block' : 'none' }}>
                             <div className="filter_box_wrap">
-                                <h3 className="filter_title">filter</h3>
                                 <div className="accordion_item">
                                     <Accordion>
                                         <AccordionSummary

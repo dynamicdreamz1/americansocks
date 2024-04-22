@@ -13,7 +13,7 @@ export default function Relatedproductslider({ relatedProductList }) {
     infinite: true,
     arrows: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 6,
     slidesToScroll: 1,
     responsive: [
       {
