@@ -928,7 +928,7 @@ body {
   width: 16.66%;
   position: relative;
   min-height: 1px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   padding: 0px 15px;
 
 }
@@ -949,7 +949,6 @@ body {
 .shop_box .product_image {
   text-align: center;
   width: 100%;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 5px;
   min-height: 270px;
 }  
@@ -978,8 +977,7 @@ body {
 }
 .shop_box .product_text{
   text-align: center;
-  padding: 15px;
-  background: #eeeeee;
+  padding: 10px;
   height: 100%;
 }
 
@@ -1002,22 +1000,21 @@ body {
 
 /*--------- Shop filter ------*/
 .shop_filter{
-  margin-top: 40px;
+  margin-top: 20px;
 }
 .shop_wrap_filter{
   display: flex;
   justify-content: space-between;
   margin-bottom: 60px;
-  padding: 0px 50px 0px 50px;
   border: 1px solid #191919;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  padding: 15px;
+  padding: 10px 15px;
   align-items: center
 }
 
 .search_btn{
   border-radius: 5px;
-  padding: 15px 25px;
+  padding: 11px 25px;
   text-transform: uppercase;
   display: inline-block;
   position: relative;
@@ -1026,11 +1023,10 @@ body {
   background: #191919;
   text-decoration: none;
   border: 0px;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 0;
-  line-height: 24px;
+  line-height: 20px;
   cursor: pointer;
-
 }
 .search_btn:hover{
   color: #fff;
@@ -1044,13 +1040,13 @@ body {
   visibility: visible;
   z-index: 9;
   background: #fff;
-  min-width: 450px;
+  min-width: 340px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   left: 0px;
 }
 
 .filter_box_wrap{
-  padding: 20px;
+  padding: 20px 15px;
 }
 .filter_box_wrap h3{
   color: #191919;
@@ -1071,7 +1067,7 @@ body {
 
 .accordion_item{
   border-bottom: 2px solid #191919;
-  padding: 20px 5px 20px 15px;
+  padding: 15px 5px 15px 15px;
 }
 
 .accordion_item:last-child{
@@ -1207,10 +1203,9 @@ body {
   color: #fff;
   border: 1px solid #000;
   font-size: 16px;
-  padding: 15px 25px;
+  padding: 11px 25px;
   min-width: 200px;
   border-radius: 5px;
-  font-weight: 600;
   text-transform: capitalize;
 }
 .filter_collection p{
@@ -1242,13 +1237,16 @@ body {
   padding-bottom: 50px;
 }
 .product_detail_left{
-  width: 40%;
+  width: 50%;
   padding-right: 15px;
   padding-left: 15px;
 }
-
+.product_detail_left .container{
+  padding-left: 0px;
+  padding-right: 0px;
+}
 .product_detail_right{
-  width: 60%; 
+  width: 50%; 
   padding-right: 15px;
   padding-left: 15px;
   margin-bottom: 50px;
@@ -1281,8 +1279,8 @@ body {
   margin-bottom: 10px;
 }
 .product_dec p ul,.product_dec p ul li,.product_dec p ul li a{
-  font-size: 20px;
-  line-height: 25px;
+  font-size: 18px;
+  line-height: 22px;
   color: #7f7f7f !important;
 }
 .product_dec p ul li{
@@ -1303,17 +1301,17 @@ body {
 
 .product_item_right .btn{
   background: #272727;
+  border: 0;
   border-radius: 10px;
   color: #fff;
   display: inline-block;
+  font-family: var(--font-roboto) !important;
+  font-size: 18px;
   margin-top: 15px;
-  padding: 15px 50px;
+  padding: 12px 50px;
   text-transform: uppercase;
   width: -webkit-max-content;
   width: max-content;
-  font-family: var(--font-roboto) !important;
-  font-size: 20px;
-  border: 0px;
 }
 
 .product_item_detail .product_item_left p{
@@ -1490,22 +1488,24 @@ body {
 .social_share_wrap{
   width: 87.5%;
 }
-
+.product_nav_main .product_item a{
+  height: 450px;
+  display: block;
+}
 .product_nav_main .product_item img{
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 .product_thumb_slider .product_slider_item{
-  height: 180px;
+  height: 240px;
 }
-
 
 .product_nav_main .product_item{
-  padding: 50px;
+  padding: 50px 0px;
 }
 .product_nav_main{
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 }
 .product_thumb_slider .product_slider_item a:focus-visible{
   outline: 0px;
@@ -1575,9 +1575,13 @@ a:focus-visible{
 .related_product_slider .slick-slide{
   padding: 0px 15px;
 }
+.related_product_item{
+  height: 350px;
+}
 .related_product_item img{
   height: 100%;
   width: 100%;
+  object-fit: contain;
 }
 
 .related_product_slider{
@@ -1614,11 +1618,11 @@ a:focus-visible{
   content: "";
   cursor: pointer;
   display: inline-block;
-  height: 22px;
+  height: 15px;
   margin-right: 12px;
   position: absolute;
   vertical-align: middle;
-  width: 22px;
+  width: 15px;
   flex-shrink: 0;
   left: 0px;
 }
@@ -1626,9 +1630,10 @@ a:focus-visible{
   margin-bottom: 10px;
 }
 .filter_collection_item label{
-  padding-left: 40px;
-  line-height: 25px;
+  padding-left: 24px;
+  line-height: 18px;
   color: #191919;
+  font-size: 15px;
 }
 
 .filter_collection_item input:checked+label:after {
@@ -1636,12 +1641,12 @@ a:focus-visible{
   border-width: 0 2px 2px 0;
   content: "";
   display: block;
-  height: 11px;
-  left: 9px;
+  height: 8px;
+  left: 6px;
   position: absolute;
-  top: 0px;
+  top: 2px;
   transform: rotate(45deg);
-  width: 5px;
+  width: 3px;
 }
 .filter_collection_item input:checked+label:before {
   background-color: #191919;
@@ -1679,7 +1684,7 @@ a:focus-visible{
 }
 
 .movie--isloading .loading-image {
-  height: 270px;
+  height: 250px;
   background-image: -webkit-linear-gradient(left, #ececec 0px, #f4f4f4 40px, #ececec 80px);
   background-image: -o-linear-gradient(left, #ececec 0px, #f4f4f4 40px, #ececec 80px);
   background-image: linear-gradient(90deg, #ececec 0px, #f4f4f4 40px, #ececec 80px);
@@ -1690,7 +1695,7 @@ a:focus-visible{
 
 .movie--isloading .loading-content {
   background: #f7f7f7;
-  padding: 30px 15px;
+  padding: 20px 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1726,7 +1731,9 @@ a:focus-visible{
   -webkit-animation: shine-loading-container-items 2s infinite ease-out;
           animation: shine-loading-container-items 2s infinite ease-out;
 }
-
+.shop_wrap .skeleton_wrap .skeleton_item .movie--isloading .loading-content .loading-sub-text{
+  margin-bottom: 0px;
+}
 .movie--isloading .loading-content .loading-sub-text {
   height: 10px;
   width: 50%;
@@ -1813,14 +1820,14 @@ a:focus-visible{
   margin: 0px -15px;
 }
 .prouctdetail_skeleton_item_left{
-  width: 40%;
+  width: 50%;
   position: relative;
   min-height: 1px;
   margin-bottom: 40px;
   padding: 0px 15px;
 }
 .prouctdetail_skeleton_item_right{
-  width: 60%;
+  width: 50%;
   position: relative;
   min-height: 1px;
   margin-bottom: 40px;
@@ -1870,11 +1877,11 @@ a:focus-visible{
   margin: 30px -15px 0px -15px;
 }
 .slider_skeleton_item .movie--isloading .loading-image {
-  height: 160px;
+  height: 220px;
 }
 
 .related_slider_skeleton .slider_skeleton_item .movie--isloading .loading-image {
-  height: 500px;
+  height: 400px;
 }
 .back_btn{
   height: 40px;
@@ -1942,14 +1949,12 @@ a:focus-visible{
       font-size: 16px;
   }
   .movie--isloading .loading-image {
-    height: 220px;
+    height: 210px;
   }
   /*----------- Product Deatil Skeleton -----------*/
-  .prouctdetail_skeleton_item_left .movie--isloading .loading-image,.prouctdetail_skeleton_item_right .movie--isloading .loading-content {
-    height: 500px;
-  }
+
   .slider_skeleton_item .movie--isloading .loading-image {
-    height: 100px;
+    height: 200px;
   }
   .related_slider_skeleton{
     margin: 0px -15px 0px -15px;
@@ -1957,13 +1962,22 @@ a:focus-visible{
   .related_slider_skeleton .slider_skeleton_item .movie--isloading .loading-image {
     height: 300px;
   }
+  .prouctdetail_skeleton_item_left .slider_skeleton_item:last-child{
+    display: none;
+  }
+  .prouctdetail_skeleton_item_left .slider_skeleton_item {
+    width: 50%;
+  }
+  .prouctdetail_skeleton_item_right .movie--isloading .loading-content{
+    height: 830px;
+  }
 }
 
 @media (max-width: 991px) {
   /*---------- shop ---------*/
   .shop_box,.skeleton_item{
       width: 33.33%;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
   }
   .product_text h3{
       font-size: 14px;
@@ -1977,8 +1991,11 @@ a:focus-visible{
   .shop_box .product_tag{
       left: 20px;
   }
-  .shop_box .product_text{
-    padding: 12px;
+  .shop_wrap_filter{
+    margin-bottom: 30px;
+  }
+  .filter_box{
+    top: 45px;
   }
   /*------- product detail --------*/
   .product_detail_left,.product_detail_right{
@@ -2008,10 +2025,10 @@ a:focus-visible{
       margin-top: 15px;
   }
   .shop_box .product_image{
-    min-height: 230px;
+    min-height: 220px;
   }
   .movie--isloading .loading-image {
-    height: 180px;
+    height: 200px;
   }
   /*----------- Product Deatil Skeleton -----------*/
   .prouctdetail_skeleton_item_left,.prouctdetail_skeleton_item_right {
@@ -2021,8 +2038,29 @@ a:focus-visible{
     padding: 30px 25px 30px 15px;
   }
   .related_slider_skeleton .slider_skeleton_item .movie--isloading .loading-image {
-    height: 200px;
-}
+    height: 300px;
+  }
+  .prouctdetail_skeleton_item_left .slider_skeleton_item:last-child{
+    display: none;
+  }
+  .prouctdetail_skeleton_item_left .slider_skeleton_item {
+    width: 50%;
+  }
+  .related_slider_skeleton .slider_skeleton_item {
+    width: 50%;
+  }
+  .related_slider_skeleton .slider_skeleton_item:last-child{
+    display: none;
+  }
+  .related_product_slider{
+    padding: 0px 50px;
+  }
+  .related_product_slider .slick-next{
+    right: -70px !important;
+  }
+  .related_product_slider .slick-prev{
+    left: -70px !important;
+  }
 }
 
 @media (max-width: 767px) {
@@ -2071,7 +2109,6 @@ a:focus-visible{
   .shop_wrap_filter .sorting select{
       min-width: 150px;
       font-size: 14px;
-      padding: 15px 15px;
       background-position: center right 15px;
   }
   .search_btn{
@@ -2081,7 +2118,7 @@ a:focus-visible{
 
   /*------- product detail --------*/
   .product_nav_main{
-    margin-bottom: 40px;
+    margin-bottom: 0px;
   }
   .product_title{
       font-size: 30px;
@@ -2132,6 +2169,7 @@ a:focus-visible{
   .product_detail_wrapper{
     margin-bottom: 50px;
     padding-bottom: 0px;
+    margin:0px
   }
   .related_product_slider .slick-prev{
     left: -25px !important;
@@ -2159,7 +2197,7 @@ a:focus-visible{
     height: 160px;
   }
   .slider_skeleton_item .movie--isloading .loading-image {
-    height: 120px;
+    height: 150px;
   }
   .prouctdetail_skeleton_item_left .slider_skeleton_item {
     width: 50%;
@@ -2179,6 +2217,12 @@ a:focus-visible{
   .prouctdetail_skeleton_item_right .movie--isloading .loading-content{
     height: 400px;
   }
+  .product_nav_main .product_item a{
+    height: auto;
+  }
+  .product_thumb_slider .product_slider_item {
+    height: 200px;
+}
 }
 
 @media (max-width: 320px) {
