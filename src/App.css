@@ -1085,6 +1085,11 @@ body {
   position: relative;
   margin-top: 0px;
 }
+.MuiAccordionSummary-expandIconWrapper{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
 .MuiSvgIcon-root{
   fill: #191919 !important;
   font-size: 30px !important;
@@ -1105,6 +1110,27 @@ body {
 
 .accordion_item  .MuiAccordionSummary-content{
   margin:0px !important;
+  flex-direction: column;
+}
+.MuiChip-filled{
+  font-size: 13px;
+  font-weight: 500;
+}
+.MuiChip-deleteIcon{
+  width: 18px !important;
+  height: 18px !important;
+}
+.MuiChip-deletable{
+  border-radius: 0px;
+}
+.MuiStack-root{
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.MuiChip-filled{
+  margin-right: 8px !important;
+  margin-left: 0px !important;
+  margin-bottom: 8px !important;
 }
 .filter_price input{
   width: 100%;
