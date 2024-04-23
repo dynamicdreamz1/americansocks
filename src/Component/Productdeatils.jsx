@@ -28,8 +28,9 @@ export default function Productdeatils({ product, variationsList }) {
     infinite: true,
     arrows: false,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
+    vertical: true,
     responsive: [
       {
         breakpoint: 1300,
@@ -124,41 +125,42 @@ export default function Productdeatils({ product, variationsList }) {
   return (
     <div className="container">
      <ToastContainer />
-
+     <Link to="/shop" >
+                  <div className="back_btn" >
+                    <img src={arrowprev} />
+                  </div>
+                  </Link>
       <div className="product_detail_wrapper">
         <div className="product_detail_left">
           <div className="container">
-            <div className="product_nav_main">
-              <Link to="/shop" >
-              <div className="back_btn" >
-                <img src={arrowprev} />
-              </div>
-              </Link>
-              <div className="product_item">
-                <a href="#">
-                  <img src={productImage} alt={product?.images[0].alt} />
-                </a>
-              </div>
-            </div>
-            <div className="product_thumb_slider">
-
-              <Slider {...settings}>
-                {product.images.length > 0 && product.images.map((relatedProduct, index) => (
-                  <div className="product_slider_item" key={index} onClick={() => handleProductImages(relatedProduct.urls.woocommerce_single)}>
-                    <img src={relatedProduct.urls.woocommerce_thumbnail} alt={relatedProduct.alt} />
+     
+              <div className="product_detail_slider">
+                <div className="product_nav_main">
+              
+                  <div className="product_item">
+                    <a href="#">
+                      <img src={productImage} alt={product?.images[0].alt} />
+                    </a>
                   </div>
-                ))}
-              </Slider>
+                </div>
+                <div className="product_thumb_slider">
 
-            </div>
+                  <Slider {...settings}>
+                    {product.images.length > 0 && product.images.map((relatedProduct, index) => (
+                      <div className="product_slider_item" key={index} onClick={() => handleProductImages(relatedProduct.urls.woocommerce_single)}>
+                        <img src={relatedProduct.urls.woocommerce_thumbnail} alt={relatedProduct.alt} />
+                      </div>
+                    ))}
+                  </Slider>
+
+                </div>
+              </div>
+          
           </div>
         </div>
         <div className="product_detail_right">
           <h3 className="product_title">{product.name}</h3>
-          <p className="product_price" dangerouslySetInnerHTML={{ __html: product?.price_html }} />
-          <div className="product_dec">
-            <p dangerouslySetInnerHTML={{ __html: product?.short_description }} />
-          </div>
+       
 
           {
             variationsList.length > 0 &&
@@ -196,6 +198,18 @@ export default function Productdeatils({ product, variationsList }) {
                       )
                     })}
                   </tr>
+
+                  <tr className="price_table_bottom_deatil">
+                    <div className="price_table_items">  
+                      <p>items:    <span>{sizes.length > 0 ? totalQuantity : 1}</span></p>
+                    </div>
+                    <div className="price_total">
+                      <p>Total:<span className="product_price" dangerouslySetInnerHTML={{ __html: product?.price_html }} /></p>
+                      <div className="product_item_right">
+                          <button className="btn" onClick={() => handleSubmit(variationsList.length > 0 ? "" : product)} href="#">add to cart</button>
+                      </div>
+                    </div>
+                  </tr>
                 </tbody>
 
               </table>
@@ -205,68 +219,46 @@ export default function Productdeatils({ product, variationsList }) {
 
           <div className="product_item_detail">
             <div className="product_item_left">
-              <p>items:    <span>{sizes.length > 0 ? totalQuantity : 1}</span></p>
-              <p>Total: <span>{sizes.length > 0 ? totalPrice.toFixed(2) : product.price}€</span></p>
+            
               <div className="product_order">
-                <div className="product_order_item">
-                  <div className="circle greeen"></div>
+                <div className="product_order_item green">
                   <p>Disponible</p>
                 </div>
 
-                <div className="product_order_item">
-                  <div className="circle  red"></div>
+                <div className="product_order_item red">
                   <p>No Disponible </p>
                 </div>
 
-                <div className="product_order_item">
-                  <div className="circle orange"></div>
+                <div className="product_order_item orange">
                   <p>Last Units</p>
                 </div>
 
-                <div className="product_order_item">
-                  <div className="circle yellow"></div>
+                <div className="product_order_item yellow" >
                   <p>Back-order</p>
                 </div>
 
-                <div className="product_order_item">
-                  <div className="circle blue"></div>
+                <div className="product_order_item blue">
+                
                   <p>Pre-order</p>
                 </div>
               </div>
             </div>
-            <div className="product_item_right">
-            <button className="btn" onClick={() => handleSubmit(variationsList.length > 0 ? "" : product)} href="#">add to cart</button>
-            </div>
+  
           </div>
 
           {/* Product Sku */}
           <div className="product_item_sku">
+            <h3><span>-</span>INFO</h3>
             <p><span>SKU</span>{product.sku}</p>
             <p><span>Categories</span>{categoryNames.join(', ')}</p>
           </div>
 
-          {/* Social Share */}
-          <div className="social_share">
-            <p>Share</p>
-            <div className="social_share_wrap">
-              <a href="">
-                <img src={facebook} />
-              </a>
-              <a href="">
-                <img src={twitter} />
-              </a>
-              <a href="">
-                <img src={pinterest} />
-              </a>
-              <a href="">
-                <img src={linkedin} />
-              </a>
-              <a href="">
-                <img src={telegram} />
-              </a>
-            </div>
-
+          <div className="product_dec">
+            <h3><span>-</span>Description</h3>
+            <p dangerouslySetInnerHTML={{ __html: product?.short_description }} />
           </div>
+
+
         </div>
       </div>
     </div>
