@@ -1097,7 +1097,7 @@ body {
   height: 25px !important;
 }
 .MuiAccordionDetails-root{
-  padding: 14px 0px 0px 0px!important;
+  padding: 10px 0px 0px 0px!important;
 }
 .accordion_item .MuiPaper-root{
   box-shadow: none;
@@ -1110,8 +1110,12 @@ body {
 
 .accordion_item  .MuiAccordionSummary-content{
   margin:0px !important;
+
+}
+.accordion_item .Mui-expanded.MuiAccordionSummary-content{
   flex-direction: column;
 }
+
 .MuiChip-filled{
   font-size: 13px;
   font-weight: 500;
@@ -1589,6 +1593,7 @@ margin-bottom: 10px;
 }
 .product_thumb_slider .slick-list{
   margin: 0px -15px;
+  padding: 0px !important
 }
 
 .product_slider{
@@ -1633,6 +1638,9 @@ a:focus-visible{
   top: 50%;
   transform: translateY(-50%);
 }
+.related_product_slider .slick-next:hover,.related_product_slider .slick-prev:hover{
+  background-size: contain;
+}
 .related_product_slider .slick-next{
   background-image: url('../src/assets/Images/arrow-next.png') !important;
   right: -60px !important;
@@ -1650,9 +1658,7 @@ a:focus-visible{
 .related_product_slider .slick-slide{
   padding: 0px 15px;
 }
-.related_product_item{
-  height: 200px;
-}
+
 .related_product_item img{
   height: 100%;
   width: 100%;
@@ -1758,10 +1764,10 @@ a:focus-visible{
   display: flex;
 }
 .product_nav_main{
-  width: 70%;
+  width: 80%;
 }
 .product_thumb_slider{
-  width: 30%;
+  width: 20%;
 }
 /* ------------ skeltone -------------- */
 
@@ -2161,7 +2167,7 @@ a:focus-visible{
       line-height: 32px;
   }
   .shop_box{
-      margin-bottom: 30px;
+      margin-bottom: 20px;
   }
   .product_text h3{
     font-size: 13px;
@@ -2180,7 +2186,7 @@ a:focus-visible{
     left: 0px;
     min-width: auto;
     margin: 0px 15px;
-    top: 12%;
+    top: 85px;
   }
   .shop_filter_left {
     position: unset;
@@ -2195,7 +2201,7 @@ a:focus-visible{
   }
   .search_btn{
       font-size: 14px;
-      padding: 15px;
+      padding: 11px 15px;
   }
 
   /*------- product detail --------*/

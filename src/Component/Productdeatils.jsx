@@ -27,6 +27,8 @@ export default function Productdeatils({ product, variationsList }) {
     slidesToShow: 5,
     slidesToScroll: 1,
     vertical: true,
+    verticalSwiping: true,
+    centerMode: true,
     responsive: [
       {
         breakpoint: 1300,
