@@ -27,3 +27,14 @@ export const  calculateTotalQuantity =(items, productId) => {
     });
     return totalQuantity;
 }
+
+export const  findDataById = (ids, data) => {
+    const result = [];
+    ids.forEach(id => {
+        const found = data.find(item => item.id === id);
+        if (found) {
+            result.push(found);
+        }
+    });
+    return result;
+}

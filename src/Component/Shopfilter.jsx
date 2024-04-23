@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Chip, Stack } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { findDataById } from '../Common/function';
 
 
 export default function Shopfilter({ productCatgory, updateQueryString, setFilters, attributeSize, filters }) {
+    const getAttribute = findDataById(filters.selectSize, attributeSize)
+    const getProductCategory = findDataById(filters.categoryId, productCatgory)
+
+    console.log("getProductCategory",getProductCategory);
+
     const [showFilterBox, setShowFilterBox] = useState(false);
 
     const handleSearchByHover = () => {
@@ -52,25 +58,6 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
     };
 
 
-    // const debounce = (func, delay) => {
-    //     let timeoutId;
-    //     return function (...args) {
-    //         clearTimeout(timeoutId);
-    //         timeoutId = setTimeout(() => {
-    //             func.apply(this, args);
-    //         }, delay);
-    //     };
-    // };
-
-    // Debounced version of handleChange
-    // const debouncedHandleChange = debounce((event, newValue) => {
-    //     setFilters(prevFilters => ({
-    //         ...prevFilters,
-    //         minPrice: newValue[0],
-    //         maxPrice: newValue[1]
-    //     }));
-    //     // Call your API here
-    // }, 500);
 
     const handleChange = (event, newValue) => {
         // debouncedHandleChange(event, newValue);
@@ -137,6 +124,15 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                                             <div className="accrodion_title">
                                                 <h4>Size</h4>
                                             </div>
+                                            <Stack direction="row" spacing={1}>
+                                                {getAttribute.map(item => (
+                                                    <Chip
+                                                        key={item.id}
+                                                        label={item.name}
+                                                        onDelete={()=>handleSizeClick(item.id)}
+                                                    />
+                                                ))}
+                                            </Stack>
                                         </AccordionSummary>
                                         <AccordionDetails>
                                             <div className="accrodion_content">
@@ -199,6 +195,15 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                                             <div className="accrodion_title">
                                                 <h4>Collection</h4>
                                             </div>
+                                            <Stack direction="row" spacing={1}>
+                                                {getProductCategory.map(item => (
+                                                    <Chip
+                                                        key={item.id}
+                                                        label={item.name}
+                                                        onDelete={()=>handleCategoryChange(item.id)}
+                                                    />
+                                                ))}
+                                            </Stack>
                                         </AccordionSummary>
                                         <AccordionDetails>
                                             <div className="accrodion_content">

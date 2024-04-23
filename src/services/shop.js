@@ -43,6 +43,7 @@ export const getProductAttribute = async () => {
     const response = await api.get('/products/attributes/1/terms', {
       params: {
         per_page: 100,
+        order: "asc",
       },
     });
     return response.data;
@@ -59,6 +60,7 @@ export const getProductCategoryList = async () => {
     const response = await api.get('/products/categories', {
       params: {
         per_page: 100,
+        order: "asc",
       },
     });
     return response.data;
