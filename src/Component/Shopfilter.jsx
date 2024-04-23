@@ -10,8 +10,6 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
     const getAttribute = findDataById(filters.selectSize, attributeSize)
     const getProductCategory = findDataById(filters.categoryId, productCatgory)
 
-    console.log("getProductCategory",getProductCategory);
-
     const [showFilterBox, setShowFilterBox] = useState(false);
 
     const handleSearchByHover = () => {

@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { CircularProgress } from '@mui/material';
-import Imgix from "react-imgix";
 import Skeleton from './Skeleton';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function ShopList({ loading, setRequestInProgress, product, setCurrentPage, requestInProgress }) {
 
   const navigate = useNavigate();
+  const [hoveredProduct, setHoveredProduct] = useState(null);
 
+  
   const handleScroll = () => {
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
@@ -44,28 +45,40 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
     }
   }, [requestInProgress, product]);
 
+
+
+  const handleMouseEnter = (productId) => {
+    setHoveredProduct(productId);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredProduct(null);
+  };
+
   return (
     <section className="shop">
       <div className="container">
         <div className="shop_wrap">
 
           {product.length > 0 ? (
-            product.map((product, index) => (
+            product.map((item, index) => (
               <div className="shop_box" key={index}>
-                <div className='shop_box_wrap'>
-                {/* <Link to={`/product/${product.slug}`} className="product_image"> */}
-                <div onClick={() => redirectShopDetail(product)} className="product_image">
+                <div
+                  onClick={() => redirectShopDetail(item)}
+                  className='shop_box_wrap'
+                  onMouseEnter={() => handleMouseEnter(item.id)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <div className="product_image">
                     <img
-                    src={product.images[0]?.urls.woocommerce_thumbnail}
-                    alt={product.images[0]?.alt}
+                      src={hoveredProduct === item.id && item.images[1]?.urls ? item.images[1].urls.woocommerce_thumbnail : item.images[0]?.urls.woocommerce_thumbnail}
+                      alt={hoveredProduct === item.id && item.images[1]?.alt ? item.images[1]?.alt : item.images[0]?.alt}
                     />
-              
-                </div>
-                {/* </Link> */}
-                <div className="product_text">
-                  <h3>{product?.name}</h3>
-                  <p dangerouslySetInnerHTML={{ __html: product?.price_html }}></p>
-                </div>
+                  </div>
+                  <div className="product_text">
+                    <h3>{item?.name}</h3>
+                    <p dangerouslySetInnerHTML={{ __html: item?.price_html }}></p>
+                  </div>
                 </div>
               </div>
             ))
