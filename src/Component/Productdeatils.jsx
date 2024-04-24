@@ -17,10 +17,8 @@ export default function Productdeatils({ product, variationsList }) {
 
   const categoryNames = product?.categories.map(category => category.name);
   const sizes = variationsList?.map(variation => variation.attributes?.pa_size);
-  const totalPrice =(variationsList && variationsList?.length === 0) ? product?.price : totalQuantity * parseFloat(product.price);
+  const totalPrice = (variationsList && variationsList?.length === 0) ? product?.price : totalQuantity * parseFloat(product.price);
 
-
-  console.log("variationsList",variationsList);
 
   var settings = {
     dots: false,
