@@ -11,7 +11,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
     const handleInputChange = (event, data, selectedSize, item) => {
         const { value } = event.target;
         let intValue = parseInt(value);
-        const stockNumber = parseInt(data?.availability_html.match(/\d+/)[0]);
+        const stockNumber = parseInt(data?.availability_html?.match(/\d+/)[0]);
 
         const maxStockNumber = parseInt(stockNumber);
         if (intValue > maxStockNumber || isNaN(intValue)) {
