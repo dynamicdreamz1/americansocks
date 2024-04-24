@@ -215,7 +215,7 @@ export default function Productdeatils({ product, variationsList }) {
             </table>
           </div>
 
-}
+
 
           <div className="product_item_detail">
             <div className="product_item_left">
