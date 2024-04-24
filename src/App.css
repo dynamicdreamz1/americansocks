@@ -9,7 +9,12 @@ body{
   height: 40vmin;
   pointer-events: none;
 }
-
+#root{
+  min-height: 800px;
+}
+html, body, #app, #app>div {
+  height: 100%
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
