@@ -36,13 +36,13 @@ export default function Productdeatils({ product, variationsList }) {
       {
         breakpoint: 1300,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 5,
         }
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
         }
       }
     ]
