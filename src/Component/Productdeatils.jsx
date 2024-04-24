@@ -17,7 +17,7 @@ export default function Productdeatils({ product, variationsList }) {
 
   const categoryNames = product?.categories.map(category => category.name);
   const sizes = variationsList?.map(variation => variation.attributes?.pa_size);
-  const totalPrice = (variationsList && variationsList?.length === 0) ? product?.price : totalQuantity * parseFloat(product.price);
+  const totalPrice = (variationsList && variationsList?.length === 0) ? parseFloat(product.price) : totalQuantity * parseFloat(product.price);
 
 
   var settings = {
@@ -56,11 +56,9 @@ export default function Productdeatils({ product, variationsList }) {
     let intValue = parseInt(value);
     const stockNumber = parseInt(data?.stock_quantity);
 
-    const maxStockNumber = parseInt(stockNumber);
-    if (intValue > maxStockNumber || isNaN(intValue)) {
-      intValue = 0; // Reset to 0 if value exceeds max stock or is not a number
+    if (intValue > stockNumber && item.backordered === false) {
+        intValue = 0;
     }
-
     // Check if the variation is already selected
     const isSelected = selectedItems.some(selectedItem => selectedItem.variation_id === data.id && selectedItem.selectedSize === selectedSize);
 
@@ -185,7 +183,7 @@ export default function Productdeatils({ product, variationsList }) {
                                 type="number"
                                 name={`quantity_${index}`}
                                 id={`quantity_${index}`}
-                                max={parseInt(data.stock_quantity)}
+                                // max={parseInt(data.stock_quantity)}
                                 min={0}
                                 className="txt"
                                 placeholder="0"
@@ -203,7 +201,7 @@ export default function Productdeatils({ product, variationsList }) {
                     <p>items:    <span>{sizes.length > 0 ? totalQuantity : 1}</span></p>
                   </div>
                   <div className="price_total">
-                    <p>Total: <span className="product_price">{totalPrice} €</span></p>
+                    <p>Total: <span className="product_price">{totalPrice.toFixed(2)} €</span></p>
                     <div className="product_item_right">
                       <button className="btn" onClick={() => handleSubmit(variationsList.length > 0 ? "" : product)} href="#">add to cart</button>
                     </div>
