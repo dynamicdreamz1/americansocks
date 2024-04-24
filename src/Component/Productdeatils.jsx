@@ -56,11 +56,9 @@ export default function Productdeatils({ product, variationsList }) {
     let intValue = parseInt(value);
     const stockNumber = parseInt(data?.stock_quantity);
 
-    const maxStockNumber = parseInt(stockNumber);
-    if (intValue > maxStockNumber || isNaN(intValue)) {
-      intValue = 0; // Reset to 0 if value exceeds max stock or is not a number
+    if (intValue > stockNumber && data?.backorders_allowed === false) {
+        intValue = 0;
     }
-
     // Check if the variation is already selected
     const isSelected = selectedItems.some(selectedItem => selectedItem.variation_id === data.id && selectedItem.selectedSize === selectedSize);
 
@@ -185,7 +183,7 @@ export default function Productdeatils({ product, variationsList }) {
                                 type="number"
                                 name={`quantity_${index}`}
                                 id={`quantity_${index}`}
-                                max={parseInt(data.stock_quantity)}
+                                // max={parseInt(data.stock_quantity)}
                                 min={0}
                                 className="txt"
                                 placeholder="0"

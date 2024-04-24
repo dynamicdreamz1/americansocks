@@ -7,18 +7,15 @@ import { Skeleton } from '@mui/material';
 
 const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
 
+    // console.log("orderdata",orderdata);
 
     const handleInputChange = (event, data, selectedSize, item) => {
         const { value } = event.target;
         let intValue = parseInt(value);
-        const stockNumber = parseInt(data?.availability_html?.match(/\d+/)[0]);
-
-        const maxStockNumber = parseInt(stockNumber);
-        if (intValue > maxStockNumber || isNaN(intValue)) {
-            intValue = 0; // Reset to 0 if value exceeds max stock or is not a number
+        const maxStockNumber = data.max_qty
+        if (intValue > maxStockNumber && data?.backorders_allowed === false) {
+            intValue = 0;
         }
-
-        // Check if the variation is already selected
         const isSelected = selectedItems.some(selectedItem => selectedItem.variation_id === data.variation_id && selectedItem.selectedSize === selectedSize);
 
         if (intValue === 0) {
@@ -132,8 +129,6 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                     {variationData.length > 0 && (
                                                         <tr>
                                                             {variationData.map((data, index) => {
-                                                                const stockNumberMatch = data?.availability_html?.match(/\d+/);
-                                                                const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
                                                                 return (
                                                                     <>
                                                                         <td>
@@ -141,7 +136,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                                                 type="number"
                                                                                 name={`quantity-${data.variation_id}`}
                                                                                 className='countsize'
-                                                                                max={parseInt(stockNumber)}
+                                                                                // max={parseInt(stockNumber)}
                                                                                 min={0}
                                                                                 value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
                                                                                 onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item)}
