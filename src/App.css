@@ -1625,7 +1625,6 @@ a:focus-visible{
 .related_product_slider .slick-prev, .related_product_slider .slick-next {
   background: transparent;
   background-repeat: no-repeat !important;
-  background-position: 50% !important;
   background-size: contain;
   bottom: 0;
   cursor: pointer;
@@ -2121,7 +2120,7 @@ a:focus-visible{
       font-size: 16px;
   }
   .movie--isloading .loading-image {
-    height: 210px;
+    height: 240px;
   }
   /*----------- Product Deatil Skeleton -----------*/
 
@@ -2143,12 +2142,12 @@ a:focus-visible{
   .prouctdetail_skeleton_item_right .movie--isloading .loading-content{
     height: 830px;
   }
-  .product_detail_left {
+  /* .product_detail_left {
     width: 50%;
   }
   .product_detail_right {
     width: 50%;
-  }
+  } */
   .product_nav_main .product_item a {
     height: 700px;
   }
@@ -2161,6 +2160,12 @@ a:focus-visible{
   }
   .price_table_bottom_deatil{
     padding: 5px 20px 20px 30px;
+  }
+  .product_order_item{
+    margin-bottom: 15px;
+  }
+  .product_dec p ul li{
+    margin-left: 5px;
   }
 }
 
@@ -2268,8 +2273,8 @@ a:focus-visible{
       font-size: 14px;
       line-height: 32px;
   }
-  .shop_box{
-      margin-bottom: 20px;
+  .shop_box,.skeleton_item{
+      margin-bottom: 10px;
   }
   .product_text h3{
     font-size: 13px;
@@ -2282,7 +2287,7 @@ a:focus-visible{
   }
   /*----- shop filter ------*/
   .shop_wrap_filter{
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   .filter_box{
     left: 0px;
@@ -2344,7 +2349,7 @@ a:focus-visible{
   /*---- related product slider ----*/
   .related_product_slider {
     padding: 0px 25px;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
   }
   .related_product_slider .slick-prev, .related_product_slider .slick-next{
     height: 40px !important;
@@ -2364,14 +2369,12 @@ a:focus-visible{
   .shop_box .product_image {
     min-height: 180px;
   }
-  .skeleton_item{
-    margin-bottom: 30px;
-  }
+
   .filter_collection_item {
     width: 100%;
   }
   .movie--isloading .loading-image {
-    height: 150px;
+    height: 190px;
   }
   /*----------- Product Deatil Skeleton -----------*/
   .prouctdetail_skeleton_item_left .movie--isloading .loading-image {
