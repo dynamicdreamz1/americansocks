@@ -14,12 +14,13 @@ export default function Productdeatils({ product, variationsList }) {
   const [productImage, setProductImages] = useState(product?.images[0]?.src)
   const [selectedItems, setSelectedItems] = useState([]);
   const totalQuantity = calculateTotalQuantity(selectedItems, product.id);
-  const totalPrice = totalQuantity * parseFloat(product.price);
 
   const categoryNames = product?.categories.map(category => category.name);
   const sizes = variationsList?.map(variation => variation.attributes?.pa_size);
+  const totalPrice =(variationsList && variationsList?.length === 0) ? product?.price : totalQuantity * parseFloat(product.price);
 
 
+  console.log("variationsList",variationsList);
 
   var settings = {
     dots: false,
@@ -162,9 +163,9 @@ export default function Productdeatils({ product, variationsList }) {
           <h3 className="product_title">{product.name}</h3>
           <div className="price_table">
             <table>
-              <tbody className={sizes.length === 0 ? "size_blank" : ""}>
+              <tbody className={variationsList?.length === 0 ? "size_blank" : ""}>
                 {
-                  variationsList.length > 0 &&
+                  variationsList?.length > 0 &&
                   <>
                     <tr className="price_table_head">
                       <th>Sizes</th>
