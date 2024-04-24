@@ -201,7 +201,7 @@ export default function Productdeatils({ product, variationsList }) {
                     <p>items:    <span>{sizes.length > 0 ? totalQuantity : 1}</span></p>
                   </div>
                   <div className="price_total">
-                    <p>Total: <span className="product_price">{totalPrice} €</span></p>
+                    <p>Total: <span className="product_price">{totalPrice.toFixed(2)} €</span></p>
                     <div className="product_item_right">
                       <button className="btn" onClick={() => handleSubmit(variationsList.length > 0 ? "" : product)} href="#">add to cart</button>
                     </div>
