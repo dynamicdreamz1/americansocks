@@ -260,6 +260,9 @@ table tr th:last-child , table tr td:last-child {
 	letter-spacing: 1px;
 	margin: 0px 10px;
 }
+/* .add-cart-btn a{
+  color: #fff !important;
+} */
 .caret-icon {
 	display: inline;
 }
@@ -954,7 +957,9 @@ body {
   width: 100%;
   padding: 5px;
   min-height: 270px;
+  transition: all 1s ease-in-out;
 }  
+
 .shop_box .product_image img{
   height: 100%;
   width: 100%;
@@ -2203,14 +2208,9 @@ a:focus-visible{
       margin-bottom: 20px;
   }
   .product_text h3{
-      font-size: 14px;
-      line-height: 18px;
       margin-bottom: 6px;
   }
-  .product_text p,.product_text p ins{
-      font-size: 14px;
-      line-height: 18px;
-  }
+
   .shop_box .product_tag{
       left: 20px;
   }
@@ -2336,14 +2336,9 @@ a:focus-visible{
       margin-bottom: 10px;
   }
   .product_text h3{
-    font-size: 13px;
-    line-height: 17px;
       margin-bottom: 8px;
   }
-  .product_text p,.product_text p ins{
-    font-size: 13px;
-    line-height: 17px;
-  }
+
   /*----- shop filter ------*/
   .shop_wrap_filter{
     margin-bottom: 20px;
