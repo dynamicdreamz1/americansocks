@@ -19,7 +19,6 @@ export default function Productdeatils({ product, variationsList }) {
   const sizes = variationsList?.map(variation => variation.attributes?.pa_size);
   const totalPrice = (variationsList && variationsList?.length === 0) ? parseFloat(product.price) : totalQuantity * parseFloat(product.price);
 
-  console.log("product",product);
 
   var settings = {
     dots: false,
@@ -57,7 +56,7 @@ export default function Productdeatils({ product, variationsList }) {
     let intValue = parseInt(value);
     const stockNumber = parseInt(data?.stock_quantity);
 
-    if (intValue > stockNumber && data?.backorders_allowed === false) {
+    if (intValue > stockNumber && item.backordered === false) {
         intValue = 0;
     }
     // Check if the variation is already selected
