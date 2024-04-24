@@ -9,7 +9,7 @@ import { findDataById } from '../Common/function';
 export default function Shopfilter({ productCatgory, updateQueryString, setFilters, attributeSize, filters }) {
     const getAttribute = findDataById(filters.selectSize, attributeSize)
     const getProductCategory = findDataById(filters.categoryId, productCatgory)
-
+    
     const [showFilterBox, setShowFilterBox] = useState(false);
 
     const handleSearchByHover = () => {

@@ -44,6 +44,7 @@ export const getProductAttribute = async () => {
       params: {
         per_page: 100,
         order: "asc",
+        order_by:"menu_order"
       },
     });
     return response.data;

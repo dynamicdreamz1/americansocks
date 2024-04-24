@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { arrowprev} from "../assets/Images/index"
+import { arrowprev } from "../assets/Images/index"
 import { calculateTotalQuantity } from "../Common/function";
 import { addToCart, addToCartProducts } from "../services/order";
-import { toast ,ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 
 
@@ -99,128 +99,127 @@ export default function Productdeatils({ product, variationsList }) {
 
   const handleSubmit = async (item) => {
     try {
-        let result;
-        if (item) {
-            const object = {
-                quantity: 1,
-                action: 'wcpt_add_to_cart',
-                product_id: item.id
-            }
-            result = await addToCart(object);
-
-        } else {
-            result = await addToCartProducts(selectedItems.length > 0 && selectedItems);
+      let result;
+      if (item) {
+        const object = {
+          quantity: 1,
+          action: 'wcpt_add_to_cart',
+          product_id: item.id
         }
+        result = await addToCart(object);
 
-        if (result.cart_hash) {
-            toast.success("Product added to cart successfully!");
-        } else {
-            toast.error("Failed to add product to cart.");
-        }
+      } else {
+        result = await addToCartProducts(selectedItems.length > 0 && selectedItems);
+      }
+
+      if (result.cart_hash) {
+        toast.success("Product added to cart successfully!");
+      } else {
+        toast.error("Failed to add product to cart.");
+      }
     } catch (error) {
-        toast.error("Error occurred while adding product to cart. Please select Quantity");
+      toast.error("Error occurred while adding product to cart. Please select Quantity");
     }
-};
+  };
 
 
   return (
     <div className="container">
-     <ToastContainer />
-     <Link to="/shop" >
-                  <div className="back_btn" >
-                    <img src={arrowprev} />
-                  </div>
-                  </Link>
+      <ToastContainer />
+      <Link to="/shop" >
+        <div className="back_btn" >
+          <img src={arrowprev} />
+        </div>
+      </Link>
       <div className="product_detail_wrapper">
         <div className="product_detail_left">
           <div className="container">
-     
-              <div className="product_detail_slider">
-                <div className="product_nav_main">
-              
-                  <div className="product_item">
-                    <a href="#">
-                      <img src={productImage} alt={product?.images[0].alt} />
-                    </a>
-                  </div>
-                </div>
-                <div className="product_thumb_slider">
 
-                  <Slider {...settings}>
-                    {product.images.length > 0 && product.images.map((relatedProduct, index) => (
-                      <div className="product_slider_item" key={index} onClick={() => handleProductImages(relatedProduct.urls.woocommerce_single)}>
-                        <img src={relatedProduct.urls.woocommerce_thumbnail} alt={relatedProduct.alt} />
-                      </div>
-                    ))}
-                  </Slider>
+            <div className="product_detail_slider">
+              <div className="product_nav_main">
 
+                <div className="product_item">
+                  <a href="#">
+                    <img src={productImage} alt={product?.images[0].alt} />
+                  </a>
                 </div>
               </div>
-          
+              <div className="product_thumb_slider">
+
+                <Slider {...settings}>
+                  {product.images.length > 0 && product.images.map((relatedProduct, index) => (
+                    <div className="product_slider_item" key={index} onClick={() => handleProductImages(relatedProduct.urls.woocommerce_single)}>
+                      <img src={relatedProduct.urls.woocommerce_thumbnail} alt={relatedProduct.alt} />
+                    </div>
+                  ))}
+                </Slider>
+
+              </div>
+            </div>
+
           </div>
         </div>
         <div className="product_detail_right">
           <h3 className="product_title">{product.name}</h3>
-       
 
-          {
-            variationsList.length > 0 &&
-            <div className="price_table">
-              <table>
-                <tbody>
-                  <tr className="price_table_head">
-                    <th>Sizes</th>
-                    {sizes.length > 0 && sizes.map((size, index) => (
-                      <th key={index}>{size}</th>
-                    ))}
-                  </tr>
 
-                  <tr className="price_table_price">
-                    <td>Unit</td>
-                    {/* Render input boxes for each size */}
-                    {variationsList.map((data, index) => {
 
-                      return (
-                        <td key={index}>
-                          <div className={`price ${index % 2 === 0 ? 'green' : 'blue'}`}>
-                            <input
-                              type="number"
-                              name={`quantity_${index}`}
-                              id={`quantity_${index}`}
-                              max={parseInt(data.stock_quantity)}
-                              min={0}
-                              className="txt"
-                              placeholder="0"
-                              value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.id) || {}).quantity || 0}
-                              onChange={(e) => handleInputChange(e, data, data.attributes[0].option, product)}
-                            />
-                          </div>
-                        </td>
-                      )
-                    })}
-                  </tr>
-
-                  <tr className="price_table_bottom_deatil">
-                    <div className="price_table_items">  
-                      <p>items:    <span>{sizes.length > 0 ? totalQuantity : 1}</span></p>
+          <div className="price_table">
+            <table>
+              <tbody>
+                {
+                  variationsList.length > 0 &&
+                  <>
+                    <tr className="price_table_head">
+                      <th>Sizes</th>
+                      {sizes.length > 0 && sizes.map((size, index) => (
+                        <th key={index}>{size}</th>
+                      ))}
+                    </tr><tr className="price_table_price">
+                      <td>Unit</td>
+                      {/* Render input boxes for each size */}
+                      {variationsList.map((data, index) => {
+                        return (
+                          <td key={index}>
+                            <div className={`price ${index % 2 === 0 ? 'green' : 'blue'}`}>
+                              <input
+                                type="number"
+                                name={`quantity_${index}`}
+                                id={`quantity_${index}`}
+                                max={parseInt(data.stock_quantity)}
+                                min={0}
+                                className="txt"
+                                placeholder="0"
+                                value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.id) || {}).quantity || 0}
+                                onChange={(e) => handleInputChange(e, data, data.attributes[0].option, product)} />
+                            </div>
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  </>
+                }
+                <tr className="price_table_bottom_deatil">
+                  <div className="price_table_items">
+                    <p>items:    <span>{sizes.length > 0 ? totalQuantity : 1}</span></p>
+                  </div>
+                  <div className="price_total">
+                    <p>Total: <span className="product_price">{totalPrice} €</span></p>
+                    <div className="product_item_right">
+                      <button className="btn" onClick={() => handleSubmit(variationsList.length > 0 ? "" : product)} href="#">add to cart</button>
                     </div>
-                    <div className="price_total">
-                      <p>Total: <span className="product_price">{totalPrice} €</span></p>
-                      <div className="product_item_right">
-                          <button className="btn" onClick={() => handleSubmit(variationsList.length > 0 ? "" : product)} href="#">add to cart</button>
-                      </div>
-                    </div>
-                  </tr>
-                </tbody>
+                  </div>
+                </tr>
+              </tbody>
 
-              </table>
-            </div>
+            </table>
+          </div>
 
-          }
+}
 
           <div className="product_item_detail">
             <div className="product_item_left">
-            
+
               <div className="product_order">
                 <div className="product_order_item green">
                   <p>Disponible</p>
@@ -239,12 +238,12 @@ export default function Productdeatils({ product, variationsList }) {
                 </div>
 
                 <div className="product_order_item blue">
-                
+
                   <p>Pre-order</p>
                 </div>
               </div>
             </div>
-  
+
           </div>
 
           {/* Product Sku */}
