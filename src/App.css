@@ -1540,16 +1540,14 @@ margin-bottom: 10px;
 .price_table_items p{
   font-size: 16px;
   font-weight: 500;
+  margin-bottom: 0px;
 }
 
 .price_total p{
   font-size: 16px;
   font-weight: 500;
+  margin-bottom: 0px;
 }
-
-
-
-
 
 .social_share{
   display: flex;
