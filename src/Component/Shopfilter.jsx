@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { Accordion, AccordionDetails, AccordionSummary, Chip, Stack } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { findDataById } from '../Common/function';
+import { convertToHierarchy, findDataById } from '../Common/function';
 
 
 export default function Shopfilter({ productCatgory, updateQueryString, setFilters, attributeSize, filters }) {
@@ -11,7 +11,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
     const getProductCategory = findDataById(filters.categoryId, productCatgory)
     const [isOpen, setIsOpen] = useState(false);
 
-    
+
     const [showFilterBox, setShowFilterBox] = useState(false);
 
     const handleSearchByHover = () => {
@@ -24,7 +24,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
 
 
     const handleAccordionChange = (panel) => (event, isExpanded) => {
-      setIsOpen(isExpanded ? panel : false);
+        setIsOpen(isExpanded ? panel : false);
     };
 
 
@@ -73,6 +73,46 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
         }));
         updateQueryString("price", newValue)
     };
+
+  
+      
+      
+
+    const hierarchicalData = convertToHierarchy(productCatgory);
+
+    function renderCategories(categories) {
+        return (
+            <>
+                {categories.map(category => (
+                    <div key={category.id} className="filter_collection_item">
+                        <input
+                            type="checkbox"
+                            id={category.slug}
+                            checked={filters.categoryId.includes(category.id)}
+                            onChange={() => handleCategoryChange(category.id)}
+                        />
+                        <label htmlFor={category.slug}>{category.name}</label>
+                        {category?.children?.length > 0 && (
+                            <div>
+                                {category.children.map(childCategory => (
+                                    <div key={childCategory.id} className="filter_collection_item child-category">
+                                        <input
+                                            type="checkbox"
+                                            id={childCategory.slug}
+                                            checked={filters.categoryId.includes(childCategory.id)}
+                                            onChange={() => handleCategoryChange(childCategory.id)}
+                                        />
+                                        <label htmlFor={childCategory.slug}>{childCategory.name}</label>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                ))}
+            </>
+        );
+    }
+
 
 
 
@@ -129,16 +169,16 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                                             <div className="accrodion_title">
                                                 <h4>Size</h4>
                                             </div>
-                                            { isOpen === 'panel1'&&
-                                            <Stack direction="row" spacing={1}>
-                                                {getAttribute.map(item => (
-                                                    <Chip
-                                                        key={item.id}
-                                                        label={item.name}
-                                                        onDelete={()=>handleSizeClick(item.id)}
-                                                    />
-                                                ))}
-                                            </Stack>
+                                            {isOpen === 'panel1' &&
+                                                <Stack direction="row" spacing={1}>
+                                                    {getAttribute.map(item => (
+                                                        <Chip
+                                                            key={item.id}
+                                                            label={item.name}
+                                                            onDelete={() => handleSizeClick(item.id)}
+                                                        />
+                                                    ))}
+                                                </Stack>
                                             }
                                         </AccordionSummary>
                                         <AccordionDetails>
@@ -202,32 +242,22 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                                             <div className="accrodion_title">
                                                 <h4>Collection</h4>
                                             </div>
-                                            { isOpen === 'panel2'&&
-                                            <Stack direction="row" spacing={1}>
-                                                {getProductCategory.map(item => (
-                                                    <Chip
-                                                        key={item.id}
-                                                        label={item.name}
-                                                        onDelete={()=>handleCategoryChange(item.id)}
-                                                    />
-                                                ))}
-                                            </Stack>
-                                                }
+                                            {isOpen === 'panel2' &&
+                                                <Stack direction="row" spacing={1}>
+                                                    {getProductCategory.map(item => (
+                                                        <Chip
+                                                            key={item.id}
+                                                            label={item.name}
+                                                            onDelete={() => handleCategoryChange(item.id)}
+                                                        />
+                                                    ))}
+                                                </Stack>
+                                            }
                                         </AccordionSummary>
                                         <AccordionDetails>
                                             <div className="accrodion_content">
                                                 <div className="filter_collection">
-                                                    {productCatgory.map(category => (
-                                                        <div key={category.id} className="filter_collection_item">
-                                                            <input
-                                                                type="checkbox"
-                                                                id={category.slug}
-                                                                checked={filters.categoryId.includes(category.id)}
-                                                                onChange={() => handleCategoryChange(category.id)}
-                                                            />
-                                                            <label htmlFor={category.slug}>{category.name}</label>
-                                                        </div>
-                                                    ))}
+                                                {renderCategories(hierarchicalData)}
                                                 </div>
                                             </div>
                                         </AccordionDetails>

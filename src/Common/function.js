@@ -38,3 +38,27 @@ export const  findDataById = (ids, data) => {
     });
     return result;
 }
+
+export const  convertToHierarchy = (data) => {
+    const map = new Map();
+    const result = [];
+
+    // Create a map of id to object
+    data.forEach(obj => {
+        map.set(obj.id, { ...obj, children: [] });
+    });
+
+    // Iterate over the data to add children to their respective parents
+    map.forEach(childObj => {
+        if (childObj.parent !== 0) {
+            const parentObj = map.get(childObj.parent);
+            if (parentObj) {
+                parentObj.children.push(childObj);
+            }
+        } else {
+            result.push(childObj);
+        }
+    });
+
+    return result;
+}
