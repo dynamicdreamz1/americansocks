@@ -18,13 +18,13 @@ export default function Productslider() {
         {
           breakpoint: 1024,
           settings: {
-           slidesToShow: 3,
+           slidesToShow: 5,
           }
         },
         {
           breakpoint: 600,
           settings: {
-           slidesToShow: 1,
+           slidesToShow: 5,
           }
          }
       ]
