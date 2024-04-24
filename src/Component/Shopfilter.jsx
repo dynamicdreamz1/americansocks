@@ -9,6 +9,8 @@ import { findDataById } from '../Common/function';
 export default function Shopfilter({ productCatgory, updateQueryString, setFilters, attributeSize, filters }) {
     const getAttribute = findDataById(filters.selectSize, attributeSize)
     const getProductCategory = findDataById(filters.categoryId, productCatgory)
+    const [isOpen, setIsOpen] = useState(false);
+
     
     const [showFilterBox, setShowFilterBox] = useState(false);
 
@@ -18,6 +20,11 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
 
     const valuetext = (value) => {
         return `${value} USD`;
+    };
+
+
+    const handleAccordionChange = (panel) => (event, isExpanded) => {
+      setIsOpen(isExpanded ? panel : false);
     };
 
 
@@ -113,7 +120,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                                 </div>
 
                                 <div className="accordion_item">
-                                    <Accordion>
+                                    <Accordion expanded={isOpen === 'panel1'} onChange={handleAccordionChange('panel1')}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel1-content"
@@ -122,6 +129,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                                             <div className="accrodion_title">
                                                 <h4>Size</h4>
                                             </div>
+                                            { isOpen === 'panel1'&&
                                             <Stack direction="row" spacing={1}>
                                                 {getAttribute.map(item => (
                                                     <Chip
@@ -131,6 +139,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                                                     />
                                                 ))}
                                             </Stack>
+                                            }
                                         </AccordionSummary>
                                         <AccordionDetails>
                                             <div className="accrodion_content">
@@ -184,7 +193,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
 
                                 <div className="accordion_item">
 
-                                    <Accordion>
+                                    <Accordion expanded={isOpen === 'panel2'} onChange={handleAccordionChange('panel2')}>
                                         <AccordionSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel1-content"
@@ -193,6 +202,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                                             <div className="accrodion_title">
                                                 <h4>Collection</h4>
                                             </div>
+                                            { isOpen === 'panel2'&&
                                             <Stack direction="row" spacing={1}>
                                                 {getProductCategory.map(item => (
                                                     <Chip
@@ -202,6 +212,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                                                     />
                                                 ))}
                                             </Stack>
+                                                }
                                         </AccordionSummary>
                                         <AccordionDetails>
                                             <div className="accrodion_content">
