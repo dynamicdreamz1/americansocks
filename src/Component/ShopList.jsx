@@ -78,9 +78,9 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
                         alt={hoveredProduct === item.id && item.images[1]?.alt ? item.images[1]?.alt : item.images[0]?.alt}
                       /> */}
                       {hoveredProduct === item.id && item.images[1]?.urls ?
-                        <div dangerouslySetInnerHTML={{ __html: item.images[1].urls.woocommerce_thumbnail }} />
+                        <div dangerouslySetInnerHTML={{ __html: item?.images[1]?.urls?.woocommerce_thumbnail }} />
                         :
-                        <div dangerouslySetInnerHTML={{ __html: item.images[0].urls.woocommerce_thumbnail }} />
+                        <div dangerouslySetInnerHTML={{ __html: item?.images[0]?.urls?.woocommerce_thumbnail }} />
                       }
 
                     </div>
