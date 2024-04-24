@@ -16,10 +16,9 @@ export default function Productdeatils({ product, variationsList }) {
   const totalQuantity = calculateTotalQuantity(selectedItems, product.id);
   const totalPrice = totalQuantity * parseFloat(product.price);
 
-
-
   const categoryNames = product?.categories.map(category => category.name);
-  const sizes = variationsList?.map(variation => variation.attributes.find(attr => attr.name === "Size").option);
+  const sizes = variationsList?.map(variation => variation.attributes?.pa_size);
+
 
 
   var settings = {
@@ -161,12 +160,9 @@ export default function Productdeatils({ product, variationsList }) {
         </div>
         <div className="product_detail_right">
           <h3 className="product_title">{product.name}</h3>
-
-
-
           <div className="price_table">
             <table>
-              <tbody>
+              <tbody className={sizes.length === 0 ? "size_blank" : ""}>
                 {
                   variationsList.length > 0 &&
                   <>
@@ -191,7 +187,7 @@ export default function Productdeatils({ product, variationsList }) {
                                 className="txt"
                                 placeholder="0"
                                 value={(selectedItems.find(selectedItem => selectedItem.variation_id === data.id) || {}).quantity || 0}
-                                onChange={(e) => handleInputChange(e, data, data.attributes[0].option, product)} />
+                                onChange={(e) => handleInputChange(e, data, data.attributes.pa_size, product)} />
                             </div>
                           </td>
                         );

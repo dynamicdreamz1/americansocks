@@ -37,12 +37,12 @@ function ShopDetailMain() {
   },[singleProduct])
 
 
-
+  
   return (
     <>
       {singleProduct ?
         <>
-           <Productdeatils product={singleProduct} variationsList={variationsList} /> 
+           <Productdeatils product={singleProduct} variationsList={singleProduct.variations_data} /> 
           <Relatedproductslider relatedProductList={singleProduct} /> 
         </>
         : <ProductdeatilSkeleton />}
