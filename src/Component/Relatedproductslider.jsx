@@ -48,7 +48,10 @@ export default function Relatedproductslider({ relatedProductList }) {
 
           {relatedProductList?.related_products.map(product => (
             <div onClick={()=>redirectShopDetail(product)}  className="related_product_item" key={product.id}>
-              <img src={product?.image} alt={product?.name} />
+              {/* <img src={product?.image} alt={product?.name} /> */}
+              <div dangerouslySetInnerHTML={{ __html: product?.image }} />
+
+              
             </div>
           ))}
         </Slider>

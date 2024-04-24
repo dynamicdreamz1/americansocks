@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 export default function Productdeatils({ product, variationsList }) {
 
-  const [productImage, setProductImages] = useState(product?.images[0]?.src)
+  const [productImage, setProductImages] = useState(product?.images[0]?.urls.woocommerce_single)
   const [selectedItems, setSelectedItems] = useState([]);
   const totalQuantity = calculateTotalQuantity(selectedItems, product.id);
 
@@ -138,7 +138,9 @@ export default function Productdeatils({ product, variationsList }) {
 
                 <div className="product_item">
                   <a href="#">
-                    <img src={productImage} alt={product?.images[0].alt} />
+                    {/* <img src={productImage} alt={product?.images[0].alt} /> */}
+                    <div dangerouslySetInnerHTML={{ __html: productImage }} />
+
                   </a>
                 </div>
               </div>
@@ -147,7 +149,9 @@ export default function Productdeatils({ product, variationsList }) {
                 <Slider {...settings}>
                   {product.images.length > 0 && product.images.map((relatedProduct, index) => (
                     <div className="product_slider_item" key={index} onClick={() => handleProductImages(relatedProduct.urls.woocommerce_single)}>
-                      <img src={relatedProduct.urls.woocommerce_thumbnail} alt={relatedProduct.alt} />
+                      {/* <img src={relatedProduct.urls.woocommerce_thumbnail} alt={relatedProduct.alt} /> */}
+                      <div dangerouslySetInnerHTML={{ __html: relatedProduct.urls.woocommerce_thumbnail }} />
+
                     </div>
                   ))}
                 </Slider>
