@@ -1257,9 +1257,16 @@ body {
   flex-wrap: wrap;
 }
 .filter_collection_item{
-  width: 50%;
+  width: 100%;
 }
-
+.child-category{
+  margin-left: 20px;
+}
+.child_category_wrap{
+  margin-top: 10px;
+  border-top: 1px solid #000;
+  padding-top: 10px;
+}
 /*----- Product Details -----*/
 .product_detail_wrapper{
   display: flex;

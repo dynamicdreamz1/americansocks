@@ -93,7 +93,7 @@ export default function Shopfilter({ productCatgory, updateQueryString, setFilte
                         />
                         <label htmlFor={category.slug}>{category.name}</label>
                         {category?.children?.length > 0 && (
-                            <div>
+                            <div className="child_category_wrap">
                                 {category.children.map(childCategory => (
                                     <div key={childCategory.id} className="filter_collection_item child-category">
                                         <input
