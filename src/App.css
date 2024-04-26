@@ -2118,10 +2118,24 @@ a:focus-visible{
   margin-bottom: 10px;
 }
 
+.price_table_items .price_quantity{
+  border: 0px;
+  padding: 10px;
+  width: 40%;
+  border-radius: 0px;
+  font-size: 14px;
+  text-align: center;
+}
 
-
-
-
+.price_table_items .price_quantity[type=number]::-webkit-inner-spin-button, 
+.price_table_items .price_quantity[type=number]::-webkit-outer-spin-button
+ {
+  opacity: 1;
+  -webkit-appearance: inner-spin-button;
+}
+.price_table_items .price_quantity:focus{
+  outline: none;
+}
 
 /*------------- Responsive css ----------*/
 @media (min-width: 2000px) {

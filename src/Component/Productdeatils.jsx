@@ -213,7 +213,7 @@ export default function Productdeatils({ product, variationsList }) {
                   <div className="price_table_items">
                     <p>Items:    <span>{sizes.length > 0 ? totalQuantity :
 
-                      <input
+                      <input className="price_quantity"
                         type="number"
                         value={singleTotalQuantity}
                         onChange={handleInputChangeSingleValue}
