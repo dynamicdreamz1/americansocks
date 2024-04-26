@@ -133,8 +133,8 @@ export default function Productdeatils({ product, variationsList }) {
       <ToastContainer />
       <Link to="/shop" >
         <div className="back_btn">
-          <img src="" alt="back_logo" />
-          <span>Back</span>
+          <img src="https://dddemo.net/wordpress/2024/americansocks/wp-content/uploads/2024/04/arrow-prev.png" alt="back_logo" />
+
         </div>
       </Link>
       <div className="product_detail_wrapper">
