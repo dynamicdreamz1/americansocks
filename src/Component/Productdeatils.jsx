@@ -211,15 +211,18 @@ export default function Productdeatils({ product, variationsList }) {
                       })}
                       
                     </tr>
-                    <tr className="price_table_price">
-                    <td>Available Unit</td>
+                    <tr className="price_table_price price_table_available">
+                    <div className="available_unit_title">Available Unit</div>
+                      <div className="available_unit_text">
                       {variationsList.map((data, index) => {
-                        return (
-                          <td key={index}>
-                            <p>{data?.stock_quantity}</p>
-                          </td>
-                        );
-                      })}
+                          return (
+                            <div key={index} className="available_unit_num">
+                              <p>{data?.stock_quantity}</p>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      
                     </tr>
                     
                   </>

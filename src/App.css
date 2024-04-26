@@ -1475,7 +1475,7 @@ margin-bottom: 10px;
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  padding: 5px 20px 20px 40px;
+  padding: 5px 20px 15px 40px;
 }
 .price_table .price_table_head th{
   width: 16.66%;
@@ -1487,7 +1487,7 @@ margin-bottom: 10px;
 }
 .price_table  .price_table_price td{
   width: 16.66%;
-  padding: 10px 5px;
+  padding: 15px 5px;
   border: 0px;
 }
 .price_table  .price_table_price td:first-child{
@@ -2140,6 +2140,24 @@ a:focus-visible{
 .price_table_items .price_quantity:focus{
   outline: none;
 }
+.price_table_available{
+  padding: 15px 40px 0px 40px;
+}
+.available_unit_text{
+  display: flex;
+}
+.available_unit_title{
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  margin-right: 20px;
+}
+.available_unit_num{
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  margin-right: 20px;
+}
 
 /*------------- Responsive css ----------*/
 @media (min-width: 2000px) {
@@ -2222,9 +2240,12 @@ a:focus-visible{
     text-align: center;
   }
   .price_table_bottom_deatil{
-    padding: 5px 20px 20px 20px;
+    padding: 5px 20px 15px 20px;
     align-items: flex-start;
     flex-direction: column;
+  }
+  .price_table_available {
+    padding: 15px 20px 5px 20px;
   }
   .product_order_item{
     margin-bottom: 15px;
@@ -2258,7 +2279,12 @@ a:focus-visible{
   .prouctdetail_skeleton_item_right .movie--isloading .loading-content{
     height: 665px;
   }
-
+  .product_detail_right {
+    width: 45%;
+  }
+  .product_detail_left {
+    width: 55%;
+  }
 }
 
 @media (max-width: 991px) {
@@ -2526,7 +2552,10 @@ a:focus-visible{
   .price_table_bottom_deatil{
     flex-direction: column;
     align-items: flex-start;
-    padding: 5px 20px 20px 30px;
+    padding: 5px 20px 15px 20px;
+  }
+  .price_table_available {
+    padding: 15px 20px 10px 20px;
   }
   .product_item_right .btn{
     padding: 10px 20px;
