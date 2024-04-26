@@ -17,6 +17,8 @@ export default function Productdeatils({ product, variationsList }) {
   const [selectedItems, setSelectedItems] = useState([]);
   const totalQuantity = calculateTotalQuantity(selectedItems, product.id);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [singleTotalQuantity, setSingleTotalQuantity] = useState(1);
+
 
 
   const categoryNames = product?.categories.map(category => category.name);
@@ -103,7 +105,7 @@ export default function Productdeatils({ product, variationsList }) {
       let result;
       if (item) {
         const object = {
-          quantity: 1,
+          quantity: singleTotalQuantity,
           action: 'wcpt_add_to_cart',
           product_id: item.id
         }
@@ -125,6 +127,13 @@ export default function Productdeatils({ product, variationsList }) {
 
   const toggleZoom = () => {
     setIsZoomed(!isZoomed);
+  };
+
+  const handleInputChangeSingleValue = (e) => {
+    const quantity = parseInt(e.target.value);
+    if (!isNaN(quantity)) {
+      setSingleTotalQuantity(quantity);
+    }
   };
 
 
@@ -202,7 +211,14 @@ export default function Productdeatils({ product, variationsList }) {
                 }
                 <tr className="price_table_bottom_deatil">
                   <div className="price_table_items">
-                    <p>Items:    <span>{sizes.length > 0 ? totalQuantity : 1}</span></p>
+                    <p>Items:    <span>{sizes.length > 0 ? totalQuantity :
+
+                      <input
+                        type="number"
+                        value={singleTotalQuantity}
+                        onChange={handleInputChangeSingleValue}
+                      />
+                    }</span></p>
                   </div>
                   <div className="price_table_items">
                     <p>Price:    <span dangerouslySetInnerHTML={{ __html: product?.price_html }} /></p>
@@ -261,23 +277,23 @@ export default function Productdeatils({ product, variationsList }) {
             <h3><span>-</span>Description</h3>
             <p dangerouslySetInnerHTML={{ __html: product?.short_description }} />
           </div> */}
+          {product?.short_description &&
+            <div className="product_dec">
+              <Accordion>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1-content"
+                  id="panel1-header"
+                >
+                  <h3>Description</h3>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <p dangerouslySetInnerHTML={{ __html: product?.short_description }} />
+                </AccordionDetails>
+              </Accordion>
+            </div>
 
-          <div className="product_dec">
-            <Accordion>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1-content"
-                id="panel1-header"
-              >
-                <h3>Description</h3>
-              </AccordionSummary>
-              <AccordionDetails>
-                <p dangerouslySetInnerHTML={{ __html: product?.short_description }} />
-              </AccordionDetails>
-            </Accordion>
-          </div>
-
-
+          }
         </div>
       </div>
     </div>
