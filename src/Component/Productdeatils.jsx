@@ -137,7 +137,7 @@ export default function Productdeatils({ product, variationsList }) {
     setSingleTotalQuantity(quantity);
   };
 
-  
+
   return (
     <div className="container">
       <ToastContainer />
@@ -186,7 +186,8 @@ export default function Productdeatils({ product, variationsList }) {
                       {sizes.length > 0 && sizes.map((size, index) => (
                         <th key={index}>{size.toUpperCase()}</th>
                       ))}
-                    </tr><tr className="price_table_price">
+                    </tr>
+                    <tr className="price_table_price">
                       <td>Unit</td>
                       {/* Render input boxes for each size */}
                       {variationsList.map((data, index) => {
@@ -205,9 +206,22 @@ export default function Productdeatils({ product, variationsList }) {
                                 onChange={(e) => handleInputChange(e, data, data.attributes.pa_size, product)} />
                             </div>
                           </td>
+
+                        );
+                      })}
+                      
+                    </tr>
+                    <tr className="price_table_price">
+                    <td>Available Unit</td>
+                      {variationsList.map((data, index) => {
+                        return (
+                          <td key={index}>
+                            <p>{data?.stock_quantity}</p>
+                          </td>
                         );
                       })}
                     </tr>
+                    
                   </>
                 }
                 <tr className="price_table_bottom_deatil">

@@ -77,10 +77,10 @@ export const getStatusClass = (status) => {
     }
   };
 
-  export const getStatusText = (status, stockQuantity) => {
+  export const getStatusText = (status) => {
     switch (status) {
       case 'instock':
-        return `In Stock (${stockQuantity} units)`;
+        return `In Stock units`;
       case 'outofstock':
         return 'Out of Stock';
       case 'onbackorder':
