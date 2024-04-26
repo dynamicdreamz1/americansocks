@@ -1532,7 +1532,9 @@ margin-bottom: 10px;
 .price_table_price .price.red{
   border-bottom: 5px solid #f54f51;
 }
-
+.price_table_price .price.yellow{
+  border-bottom: 5px solid #efc543;
+}
 .price_table_price .price input{
   width: 50px;
   border: 0px;

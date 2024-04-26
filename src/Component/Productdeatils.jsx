@@ -62,8 +62,8 @@ export default function Productdeatils({ product, variationsList }) {
     const { value } = event.target;
     let intValue = parseInt(value);
     const stockNumber = parseInt(data?.stock_quantity);
-
-    if (intValue > stockNumber && item.backordered === false) {
+    
+    if (intValue > stockNumber && data.backorders_allowed === false) {
       intValue = 0;
     }
     // Check if the variation is already selected

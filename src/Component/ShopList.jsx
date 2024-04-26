@@ -74,30 +74,11 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
                   {!isMobile ?
                   <div className="product_image" style={{ position: 'relative' }}>
                     {hoveredProduct === item.id && item.images[1]?.urls ? (
-                      <div
-                        style={{
-                          top: 0,
-                          left: 0,
-                          opacity: 0,
-                          transition: 'opacity 0.20s ease',
-                          opacity: 1
-                        }}
-                        dangerouslySetInnerHTML={{ __html: item?.images[1]?.urls?.woocommerce_thumbnail }}
-                      />
+                      <div   dangerouslySetInnerHTML={{ __html: item?.images[1]?.urls?.woocommerce_thumbnail }}/>
                     ) : (
-                      <div
-                        style={{
-                          top: 0,
-                          left: 0,
-                          opacity: 0,
-                          transition: 'opacity 0.20s ease',
-                          opacity: 1
-                        }}
-                        dangerouslySetInnerHTML={{ __html: item?.images[0]?.urls?.woocommerce_thumbnail }}
-                      />
+                      <div dangerouslySetInnerHTML={{ __html: item?.images[0]?.urls?.woocommerce_thumbnail }}/>
                     )}
                   </div>
-
                   :
                   <ShopBox images={item.images} />
                   }

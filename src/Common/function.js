@@ -65,7 +65,7 @@ export const  convertToHierarchy = (data) => {
 
 
 export const getStatusClass = (status) => {
-    switch (status) {
+      switch (status) {
       case 'instock':
         return 'green';
       case 'outofstock':
