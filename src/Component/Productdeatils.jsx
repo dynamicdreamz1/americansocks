@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { arrowprev ,backPrev } from "../assets/Images/index"
+import { arrowprev } from "../assets/Images/index"
+
+
 import { calculateTotalQuantity } from "../Common/function";
 import { addToCart, addToCartProducts } from "../services/order";
 import { toast, ToastContainer } from "react-toastify";
@@ -19,7 +21,7 @@ export default function Productdeatils({ product, variationsList }) {
   const sizes = variationsList?.map(variation => variation.attributes?.pa_size);
   const totalPrice = (variationsList && variationsList?.length === 0) ? parseFloat(product.price) : totalQuantity * parseFloat(product.price);
 
-  
+
   var settings = {
     dots: false,
     infinite: true,
@@ -57,7 +59,7 @@ export default function Productdeatils({ product, variationsList }) {
     const stockNumber = parseInt(data?.stock_quantity);
 
     if (intValue > stockNumber && item.backordered === false) {
-        intValue = 0;
+      intValue = 0;
     }
     // Check if the variation is already selected
     const isSelected = selectedItems.some(selectedItem => selectedItem.variation_id === data.id && selectedItem.selectedSize === selectedSize);
@@ -123,8 +125,8 @@ export default function Productdeatils({ product, variationsList }) {
     <div className="container">
       <ToastContainer />
       <Link to="/shop" >
-        <div className="back_btn" >
-          <img src={backPrev} />
+        <div className="back_btn">
+          <img src="https://w7.pngwing.com/pngs/666/148/png-transparent-app-application-arrow-back-button-design-direction-dot-element-flat-thumbnail.png" alt="back_logo" />
         </div>
       </Link>
       <div className="product_detail_wrapper">
@@ -148,7 +150,7 @@ export default function Productdeatils({ product, variationsList }) {
                   {product.images.length > 0 && product.images.map((relatedProduct, index) => (
                     <div key={index} onClick={() => handleProductImages(relatedProduct.urls.woocommerce_thumbnail)}>
                       {/* <img src={relatedProduct.urls.woocommerce_thumbnail} alt={relatedProduct.alt} /> */}
-                      <div  className="product_slider_item"  dangerouslySetInnerHTML={{ __html: relatedProduct.urls.woocommerce_thumbnail }} />
+                      <div className="product_slider_item" dangerouslySetInnerHTML={{ __html: relatedProduct.urls.woocommerce_thumbnail }} />
 
                     </div>
                   ))}
