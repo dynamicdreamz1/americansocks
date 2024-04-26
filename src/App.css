@@ -71,6 +71,7 @@ table td:first-child, table th:first-child {
 
 .stoke_buy_data {
   width: 36%;
+  vertical-align: middle;
   /* width: 40%; */
 }
 
@@ -257,13 +258,22 @@ table tr th:last-child , table tr td:last-child {
 	text-align: right;
 }
 .add-cart-btn {
-	background-color: #000;
-	color: #fff !important;
-	padding: 5px 20px;
-	text-decoration: none;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	margin: 0px 10px;
+  background-color: #191919;
+  color: #fff !important;
+  padding: 10px 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0px 10px;
+  outline: none;
+  border: 0px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.3s;
+  line-height: 20px;
+}
+.add-cart-btn:hover{
+  background: #01426a;
 }
 /* .add-cart-btn a{
   color: #fff !important;
@@ -435,6 +445,7 @@ table tr th:last-child , table tr td:last-child {
 .table-sub th {
 	font-weight:600;
 	color:#303133;
+  text-transform: uppercase;
 }
 
 .table-sub td , .table-sub td a , .table-sub td span {
@@ -569,7 +580,8 @@ table tr th:last-child , table tr td:last-child {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: space-between;
+  column-gap: 10px;
 }
 
 /* .add-to-cart-btndiv table  {
@@ -1389,21 +1401,25 @@ margin-bottom: 10px;
   margin-right: 5px;
 }
 .product_item_right .btn{
-  background: #272727;
+  background: #191919;
   border: 0;
-  border-radius: 10px;
+  border-radius: 4px;
   color: #fff;
   display: inline-block;
   font-family: var(--font-roboto) !important;
   font-size: 15px;
   line-height: 20px;
-  padding: 10px 40px;
+  padding: 10px 30px;
   text-transform: uppercase;
   width: max-content;
   margin-left: 30px;
   cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
-
+.product_item_right .btn:hover{
+  background: #01426a;
+}
 .product_item_detail .product_item_left p{
   font-size: 14px;
   line-height: 18px;
@@ -1699,11 +1715,15 @@ a:focus-visible{
   background-image: url('../src/assets/Images/arrow-prev.png') !important;
   left: -60px !important;
 }
+
 .related_product_slider .slick-list{
   margin: 0px -10px;
 }
 .slick-prev:before, .slick-next:before{
   font-size: 0px !important;
+}
+.slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus{
+  background-size: contain !important;
 }
 .related_product_slider .slick-slide{
   padding: 0px 10px;
