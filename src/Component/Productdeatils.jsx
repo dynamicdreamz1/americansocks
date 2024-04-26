@@ -126,7 +126,8 @@ export default function Productdeatils({ product, variationsList }) {
       <ToastContainer />
       <Link to="/shop" >
         <div className="back_btn">
-          <img src="https://w7.pngwing.com/pngs/666/148/png-transparent-app-application-arrow-back-button-design-direction-dot-element-flat-thumbnail.png" alt="back_logo" />
+          <img src="" alt="back_logo" />
+          <span>Back</span>
         </div>
       </Link>
       <div className="product_detail_wrapper">
