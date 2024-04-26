@@ -220,10 +220,11 @@ export default function Productdeatils({ product, variationsList }) {
                       />
                     }</span></p>
                   </div>
-                  <div className="price_table_items">
-                    <p>Price:    <span dangerouslySetInnerHTML={{ __html: product?.price_html }} /></p>
-                  </div>
+                 
                   <div className="price_total">
+                    <div className="price_table_items">
+                      <p>Price:    <span dangerouslySetInnerHTML={{ __html: product?.price_html }} /></p>
+                    </div>
                     <p>Total: <span className="product_price">{totalPrice.toFixed(2)} €</span></p>
                     <div className="product_item_right">
                       <button className="btn" onClick={() => handleSubmit(variationsList.length > 0 ? "" : product)} href="#">add to cart</button>
@@ -269,7 +270,7 @@ export default function Productdeatils({ product, variationsList }) {
           {/* Product Sku */}
           <div className="product_item_sku">
             <h3><span>-</span>INFO</h3>
-            <p><span>Retail Price</span><span dangerouslySetInnerHTML={{ __html: product?.price_html }} ></span></p>
+            <p><span className="retail_price">Retail Price</span>{product.price}€</p>
 
             <p><span>SKU</span>{product.sku}</p>
             <p><span>Categories</span>{categoryNames.join(', ')}</p>
