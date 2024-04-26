@@ -136,7 +136,7 @@ export default function Productdeatils({ product, variationsList }) {
     setSingleTotalQuantity(quantity);
   };
 
-
+  
   return (
     <div className="container">
       <ToastContainer />
@@ -269,6 +269,8 @@ export default function Productdeatils({ product, variationsList }) {
           {/* Product Sku */}
           <div className="product_item_sku">
             <h3><span>-</span>INFO</h3>
+            <p><span>Retail Price</span><span dangerouslySetInnerHTML={{ __html: product?.price_html }} ></span></p>
+
             <p><span>SKU</span>{product.sku}</p>
             <p><span>Categories</span>{categoryNames.join(', ')}</p>
           </div>
