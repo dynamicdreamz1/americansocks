@@ -269,7 +269,7 @@ export default function Productdeatils({ product, variationsList }) {
                 aria-controls="panel1-content"
                 id="panel1-header"
               >
-                <h3><span>-</span>Description</h3>
+                <h3>Description</h3>
               </AccordionSummary>
               <AccordionDetails>
                 <p dangerouslySetInnerHTML={{ __html: product?.short_description }} />

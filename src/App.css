@@ -1327,7 +1327,6 @@ body {
   font-size: 17px;
   line-height: 27px;
   color: #7f7f7f;
-  margin-left: 6px;
 }
 .product_dec p br{
 margin-bottom: 10px;
@@ -1340,7 +1339,7 @@ margin-bottom: 10px;
 .product_dec p ul li{
   margin-bottom: 10px !important;
   list-style: none;
-  margin-left: 12px;
+  margin-left: 0px;
   color: #7f7f7f;
 }
 .product_dec p:last-child{
@@ -1361,6 +1360,29 @@ margin-bottom: 10px;
   font-size: 16px;
   line-height: 20px;
 }
+.product_dec h3{
+  margin-bottom: 0px;
+}
+.product_dec .MuiAccordionSummary-expandIconWrapper{
+  top: auto;
+}
+.product_dec .MuiPaper-elevation{
+  box-shadow: none;
+  border-top: 1px solid #272727;
+  border-bottom: 1px solid #272727;
+  border-radius: 0px !important;
+}
+.product_dec .MuiAccordionSummary-root{
+  padding: 0px;
+  min-height: 0px !important;
+}
+.product_dec .MuiAccordionSummary-content{
+  margin: 13px 0px !important;
+}
+.product_dec .MuiAccordionDetails-root{
+  padding: 0px 0px 10px 0px !important;
+}
+
 .product_item_sku h3 span,.product_dec h3 span{
   font-size: 20px;
   line-height: 16px;
@@ -1558,7 +1580,9 @@ margin-bottom: 10px;
   font-weight: 500;
   margin-bottom: 0px;
 }
-
+.price_table_items p ins{
+  text-decoration: none;
+}
 .social_share{
   display: flex;
   align-items: center;
@@ -2020,9 +2044,10 @@ a:focus-visible{
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border: 2px solid #272727; */
   border-radius: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  z-index: 99;
+  position: relative;
 }
 .back_btn img{
   height: 20px;
@@ -2092,6 +2117,12 @@ a:focus-visible{
   height: 10px;
   margin-bottom: 10px;
 }
+
+
+
+
+
+
 /*------------- Responsive css ----------*/
 @media (min-width: 2000px) {
   /*------ Product slider-----*/
@@ -2178,9 +2209,7 @@ a:focus-visible{
   .product_order_item{
     margin-bottom: 15px;
   }
-  .product_dec p ul li{
-    margin-left: 5px;
-  }
+
   .prouctdetail_skeleton_item_left{
     padding: 0px 15px 0px 15px;
   }
@@ -2285,9 +2314,7 @@ a:focus-visible{
     left: -70px !important;
   }
 
-  .product_dec p ul li{
-    margin-left: 7px;
-  }
+
   .product_dec p{
     margin-left: 5px;
   }
