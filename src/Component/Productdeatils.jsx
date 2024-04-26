@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { arrowprev } from "../assets/Images/index"
-
-
+// import { arrowprev } from "../assets/Images/index"
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { calculateTotalQuantity } from "../Common/function";
 import { addToCart, addToCartProducts } from "../services/order";
 import { toast, ToastContainer } from "react-toastify";
@@ -23,7 +23,7 @@ export default function Productdeatils({ product, variationsList }) {
   const sizes = variationsList?.map(variation => variation.attributes?.pa_size);
   const totalPrice = (variationsList && variationsList?.length === 0) ? parseFloat(product.price) : totalQuantity * parseFloat(product.price);
 
-  console.log("productImage",product);
+  console.log("productImage", product?.short_description);
 
   var settings = {
     dots: false,
@@ -144,8 +144,8 @@ export default function Productdeatils({ product, variationsList }) {
             <div className="product_detail_slider">
               <div className="product_nav_main">
 
-              <div className={`product_item ${isZoomed ? "zoomed" : ""}`} onClick={toggleZoom}>
-                    <div className="product_item_image" dangerouslySetInnerHTML={{ __html: productImage }} />
+                <div className={`product_item ${isZoomed ? "zoomed" : ""}`} onClick={toggleZoom}>
+                  <div className="product_item_image" dangerouslySetInnerHTML={{ __html: productImage }} />
                 </div>
               </div>
               <div className="product_thumb_slider">
@@ -257,9 +257,24 @@ export default function Productdeatils({ product, variationsList }) {
             <p><span>Categories</span>{categoryNames.join(', ')}</p>
           </div>
 
-          <div className="product_dec">
+          {/* <div className="product_dec">
             <h3><span>-</span>Description</h3>
             <p dangerouslySetInnerHTML={{ __html: product?.short_description }} />
+          </div> */}
+
+          <div className="product_dec">
+            <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                <h3><span>-</span>Description</h3>
+              </AccordionSummary>
+              <AccordionDetails>
+                <p dangerouslySetInnerHTML={{ __html: product?.short_description }} />
+              </AccordionDetails>
+            </Accordion>
           </div>
 
 
