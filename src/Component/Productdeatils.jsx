@@ -242,11 +242,11 @@ export default function Productdeatils({ product, variationsList }) {
 
               <div className="product_order">
                 <div className="product_order_item green">
-                  <p>Disponible</p>
+                  <p>In Stock</p>
                 </div>
 
                 <div className="product_order_item red">
-                  <p>No Disponible </p>
+                  <p>Out of Stock </p>
                 </div>
 
                 <div className="product_order_item orange">
