@@ -222,7 +222,7 @@ export default function Productdeatils({ product, variationsList }) {
                   </div>
                  
                   <div className="price_total">
-                    <div className="price_table_items">
+                    <div className="price_table_items table_price">
                       <p>Price:    <span dangerouslySetInnerHTML={{ __html: product?.price_html }} /></p>
                     </div>
                     <p>Total: <span className="product_price">{totalPrice.toFixed(2)} €</span></p>

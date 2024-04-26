@@ -1584,6 +1584,9 @@ margin-bottom: 10px;
 .price_table_items p ins{
   text-decoration: none;
 }
+.table_price{
+  margin-right: 20px;
+}
 .social_share{
   display: flex;
   align-items: center;
@@ -2215,14 +2218,22 @@ a:focus-visible{
     padding: 12px;
   }
   .price_table_price .price input{
-    width: auto;
+    width: inherit;
     text-align: center;
   }
   .price_table_bottom_deatil{
-    padding: 5px 20px 20px 30px;
+    padding: 5px 20px 20px 20px;
+    align-items: flex-start;
+    flex-direction: column;
   }
   .product_order_item{
     margin-bottom: 15px;
+  }
+  .price_table .price_table_head th {
+    width: 25%;
+  }
+  .price_table .price_table_price td {
+    width: 25%;
   }
 
   .prouctdetail_skeleton_item_left{
@@ -2564,7 +2575,7 @@ a:focus-visible{
     font-size: 14px;
   }
   .price_table_price .price input{
-    width: auto;
+    width: inherit;
     border: 0px;
     font-size: 14px;
     text-align: center;
