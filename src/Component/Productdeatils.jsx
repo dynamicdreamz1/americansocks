@@ -17,7 +17,7 @@ export default function Productdeatils({ product, variationsList }) {
   const [selectedItems, setSelectedItems] = useState([]);
   const totalQuantity = calculateTotalQuantity(selectedItems, product.id);
   const [isZoomed, setIsZoomed] = useState(false);
-  const [singleTotalQuantity, setSingleTotalQuantity] = useState(1);
+  const [singleTotalQuantity, setSingleTotalQuantity] = useState();
 
 
 
@@ -25,7 +25,6 @@ export default function Productdeatils({ product, variationsList }) {
   const sizes = variationsList?.map(variation => variation.attributes?.pa_size);
   const totalPrice = (variationsList && variationsList?.length === 0) ? parseFloat(product.price) : totalQuantity * parseFloat(product.price);
 
-  console.log("productImage", product?.short_description);
 
   var settings = {
     dots: false,
@@ -103,7 +102,7 @@ export default function Productdeatils({ product, variationsList }) {
   const handleSubmit = async (item) => {
     try {
       let result;
-      if (item) {
+      if (item && singleTotalQuantity) {
         const object = {
           quantity: singleTotalQuantity,
           action: 'wcpt_add_to_cart',
@@ -130,13 +129,14 @@ export default function Productdeatils({ product, variationsList }) {
   };
 
   const handleInputChangeSingleValue = (e) => {
-    const quantity = parseInt(e.target.value);
-    if (!isNaN(quantity)) {
-      setSingleTotalQuantity(quantity);
+    let quantity = parseInt(e.target.value);
+    if (isNaN(quantity) || quantity < 1) {
+      quantity = "";
     }
+    setSingleTotalQuantity(quantity);
   };
 
-
+  
   return (
     <div className="container">
       <ToastContainer />
@@ -242,11 +242,11 @@ export default function Productdeatils({ product, variationsList }) {
 
               <div className="product_order">
                 <div className="product_order_item green">
-                  <p>Disponible</p>
+                  <p>In Stock</p>
                 </div>
 
                 <div className="product_order_item red">
-                  <p>No Disponible </p>
+                  <p>Out of Stock </p>
                 </div>
 
                 <div className="product_order_item orange">
@@ -269,14 +269,11 @@ export default function Productdeatils({ product, variationsList }) {
           {/* Product Sku */}
           <div className="product_item_sku">
             <h3><span>-</span>INFO</h3>
+            <p><span>Retail Price</span><span dangerouslySetInnerHTML={{ __html: product?.price_html }} ></span></p>
+
             <p><span>SKU</span>{product.sku}</p>
             <p><span>Categories</span>{categoryNames.join(', ')}</p>
           </div>
-
-          {/* <div className="product_dec">
-            <h3><span>-</span>Description</h3>
-            <p dangerouslySetInnerHTML={{ __html: product?.short_description }} />
-          </div> */}
           {product?.short_description &&
             <div className="product_dec">
               <Accordion>

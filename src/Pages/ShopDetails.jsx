@@ -36,7 +36,7 @@ function ShopDetailMain() {
 
   },[singleProduct])
 
-
+  
     
   return (
     <>
