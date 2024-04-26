@@ -5,7 +5,7 @@ const  TableHeader = ({ variationData }) =>{
     <thead>
       <tr>
         {variationData.length > 0 &&  variationData.map((size, index) => (
-          <th key={index}>{size.attributes.attribute_pa_size}</th>
+          <th key={index}>{size.attributes.attribute_pa_size.toUpperCase()}</th>
         ))}
       </tr>
     </thead>
