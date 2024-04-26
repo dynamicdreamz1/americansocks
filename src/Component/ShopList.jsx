@@ -73,10 +73,6 @@ export default function ShopList({ loading, setRequestInProgress, product, setCu
                 >
                   {!isMobile ?
                     <div className="product_image">
-                      {/* <img
-                        src={hoveredProduct === item.id && item.images[1]?.urls ? item.images[1].urls.woocommerce_thumbnail : item.images[0]?.urls.woocommerce_thumbnail}
-                        alt={hoveredProduct === item.id && item.images[1]?.alt ? item.images[1]?.alt : item.images[0]?.alt}
-                      /> */}
                       {hoveredProduct === item.id && item.images[1]?.urls ?
                         <div dangerouslySetInnerHTML={{ __html: item?.images[1]?.urls?.woocommerce_thumbnail }} />
                         :
