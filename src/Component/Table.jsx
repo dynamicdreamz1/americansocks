@@ -7,8 +7,6 @@ import { Skeleton } from '@mui/material';
 
 const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
 
-    // console.log("orderdata",orderdata);
-
     const handleInputChange = (event, data, selectedSize, item) => {
         const { value } = event.target;
         let intValue = parseInt(value);
