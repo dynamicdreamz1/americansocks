@@ -62,3 +62,30 @@ export const  convertToHierarchy = (data) => {
 
     return result;
 }
+
+
+export const getStatusClass = (status) => {
+    switch (status) {
+      case 'instock':
+        return 'green';
+      case 'outofstock':
+        return 'red';
+      case 'onbackorder':
+        return 'yellow';
+      default:
+        return 'blue';
+    }
+  };
+
+  export const getStatusText = (status, stockQuantity) => {
+    switch (status) {
+      case 'instock':
+        return `In Stock (${stockQuantity} units)`;
+      case 'outofstock':
+        return 'Out of Stock';
+      case 'onbackorder':
+        return 'Back-order';
+      default:
+        return 'Pre-order';
+    }
+  };

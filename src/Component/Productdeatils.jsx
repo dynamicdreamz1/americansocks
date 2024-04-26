@@ -5,10 +5,11 @@ import "slick-carousel/slick/slick-theme.css";
 // import { arrowprev } from "../assets/Images/index"
 import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { calculateTotalQuantity } from "../Common/function";
+import { calculateTotalQuantity, getStatusClass } from "../Common/function";
 import { addToCart, addToCartProducts } from "../services/order";
 import { toast, ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
+import VariationList from "./VariationList";
 
 
 export default function Productdeatils({ product, variationsList }) {
@@ -191,7 +192,7 @@ export default function Productdeatils({ product, variationsList }) {
                       {variationsList.map((data, index) => {
                         return (
                           <td key={index}>
-                            <div className={`price ${index % 2 === 0 ? 'green' : 'blue'}`}>
+                            <div className={`price ${getStatusClass(data.stock_status)}`}>
                               <input
                                 type="number"
                                 name={`quantity_${index}`}
@@ -220,10 +221,10 @@ export default function Productdeatils({ product, variationsList }) {
                       />
                     }</span></p>
                   </div>
-                 
+
                   <div className="price_total">
                     <div className="price_table_items table_price">
-                      <p>Price:    <span/>{product.price}</p>
+                      <p>Price:    <span />{product.price}</p>
                     </div>
                     <p>Total: <span className="product_price">{totalPrice.toFixed(2)} €</span></p>
                     <div className="product_item_right">
@@ -238,34 +239,7 @@ export default function Productdeatils({ product, variationsList }) {
 
 
 
-          <div className="product_item_detail">
-            <div className="product_item_left">
-
-              <div className="product_order">
-                <div className="product_order_item green">
-                  <p>In Stock</p>
-                </div>
-
-                <div className="product_order_item red">
-                  <p>Out of Stock </p>
-                </div>
-
-                <div className="product_order_item orange">
-                  <p>Last Units</p>
-                </div>
-
-                <div className="product_order_item yellow" >
-                  <p>Back-order</p>
-                </div>
-
-                <div className="product_order_item blue">
-
-                  <p>Pre-order</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
+          <VariationList product={product} />
 
           {/* Product Sku */}
           <div className="product_item_sku">
