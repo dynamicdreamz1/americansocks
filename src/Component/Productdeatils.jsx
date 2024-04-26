@@ -13,14 +13,17 @@ import { Link } from "react-router-dom";
 
 export default function Productdeatils({ product, variationsList }) {
 
-  const [productImage, setProductImages] = useState(product?.images[0]?.urls.woocommerce_thumbnail)
+  const [productImage, setProductImages] = useState(product?.images[0]?.urls.woocommerce_single)
   const [selectedItems, setSelectedItems] = useState([]);
   const totalQuantity = calculateTotalQuantity(selectedItems, product.id);
+  const [isZoomed, setIsZoomed] = useState(false);
+
 
   const categoryNames = product?.categories.map(category => category.name);
   const sizes = variationsList?.map(variation => variation.attributes?.pa_size);
   const totalPrice = (variationsList && variationsList?.length === 0) ? parseFloat(product.price) : totalQuantity * parseFloat(product.price);
 
+  console.log("productImage",product);
 
   var settings = {
     dots: false,
@@ -120,6 +123,10 @@ export default function Productdeatils({ product, variationsList }) {
     }
   };
 
+  const toggleZoom = () => {
+    setIsZoomed(!isZoomed);
+  };
+
 
   return (
     <div className="container">
@@ -137,22 +144,16 @@ export default function Productdeatils({ product, variationsList }) {
             <div className="product_detail_slider">
               <div className="product_nav_main">
 
-                <div className="product_item">
-                  <a href="#">
-                    {/* <img src={productImage} alt={product?.images[0].alt} /> */}
+              <div className={`product_item ${isZoomed ? "zoomed" : ""}`} onClick={toggleZoom}>
                     <div className="product_item_image" dangerouslySetInnerHTML={{ __html: productImage }} />
-
-                  </a>
                 </div>
               </div>
               <div className="product_thumb_slider">
 
                 <Slider {...settings}>
                   {product.images.length > 0 && product.images.map((relatedProduct, index) => (
-                    <div key={index} onClick={() => handleProductImages(relatedProduct.urls.woocommerce_thumbnail)}>
-                      {/* <img src={relatedProduct.urls.woocommerce_thumbnail} alt={relatedProduct.alt} /> */}
+                    <div key={index} onClick={() => handleProductImages(relatedProduct.urls.woocommerce_single)}>
                       <div className="product_slider_item" dangerouslySetInnerHTML={{ __html: relatedProduct.urls.woocommerce_thumbnail }} />
-
                     </div>
                   ))}
                 </Slider>

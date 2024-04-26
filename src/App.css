@@ -2575,3 +2575,11 @@ a:focus-visible{
 }
 
 
+.product_item_image {
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.product_item.zoomed .product_item_image {
+  transform: scale(2);
+}
