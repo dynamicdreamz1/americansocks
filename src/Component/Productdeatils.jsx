@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { arrowprev } from "../assets/Images/index"
+import { arrowprev ,backPrev } from "../assets/Images/index"
 import { calculateTotalQuantity } from "../Common/function";
 import { addToCart, addToCartProducts } from "../services/order";
 import { toast, ToastContainer } from "react-toastify";
@@ -124,7 +124,7 @@ export default function Productdeatils({ product, variationsList }) {
       <ToastContainer />
       <Link to="/shop" >
         <div className="back_btn" >
-          <img src={arrowprev} />
+          <img src={backPrev} />
         </div>
       </Link>
       <div className="product_detail_wrapper">
@@ -198,7 +198,7 @@ export default function Productdeatils({ product, variationsList }) {
                 }
                 <tr className="price_table_bottom_deatil">
                   <div className="price_table_items">
-                    <p>items:    <span>{sizes.length > 0 ? totalQuantity : 1}</span></p>
+                    <p>Items:    <span>{sizes.length > 0 ? totalQuantity : 1}</span></p>
                   </div>
                   <div className="price_table_items">
                     <p>Price:    <span dangerouslySetInnerHTML={{ __html: product?.price_html }} /></p>

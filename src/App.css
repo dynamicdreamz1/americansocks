@@ -2020,7 +2020,7 @@ a:focus-visible{
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #272727;
+  /* border: 2px solid #272727; */
   border-radius: 5px;
   margin-bottom: 30px;
 }
