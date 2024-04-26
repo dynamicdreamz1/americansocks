@@ -19,7 +19,7 @@ export default function Productdeatils({ product, variationsList }) {
   const sizes = variationsList?.map(variation => variation.attributes?.pa_size);
   const totalPrice = (variationsList && variationsList?.length === 0) ? parseFloat(product.price) : totalQuantity * parseFloat(product.price);
 
-
+  
   var settings = {
     dots: false,
     infinite: true,
@@ -170,7 +170,7 @@ export default function Productdeatils({ product, variationsList }) {
                     <tr className="price_table_head">
                       <th>Sizes</th>
                       {sizes.length > 0 && sizes.map((size, index) => (
-                        <th key={index}>{size}</th>
+                        <th key={index}>{size.toUpperCase()}</th>
                       ))}
                     </tr><tr className="price_table_price">
                       <td>Unit</td>
@@ -199,6 +199,9 @@ export default function Productdeatils({ product, variationsList }) {
                 <tr className="price_table_bottom_deatil">
                   <div className="price_table_items">
                     <p>items:    <span>{sizes.length > 0 ? totalQuantity : 1}</span></p>
+                  </div>
+                  <div className="price_table_items">
+                    <p>Price:    <span dangerouslySetInnerHTML={{ __html: product?.price_html }} /></p>
                   </div>
                   <div className="price_total">
                     <p>Total: <span className="product_price">{totalPrice.toFixed(2)} €</span></p>
