@@ -2502,6 +2502,7 @@ a:focus-visible{
 
   .product_order_item{
       margin-bottom: 10px;
+      margin-right: 10px;
   }
   .product_item_sku p span{
       width: 40%;
@@ -2597,7 +2598,7 @@ a:focus-visible{
     line-height: 18px;
   }
   .product_item_detail .product_item_left p {
-    font-size: 13px;
+    font-size: 11px;
   }
   .product_item_sku h3, .product_dec h3{
     font-size: 15px;
@@ -2675,6 +2676,9 @@ a:focus-visible{
   }
   .filter_size li {
     width: 50%;
+  }
+  .product_order_item{
+    margin-right: 6px;
   }
 }
 
