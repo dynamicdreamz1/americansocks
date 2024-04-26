@@ -2583,6 +2583,7 @@ a:focus-visible{
   .product_item_right .btn{
     padding: 10px 20px;
     font-size: 14px;
+    margin-left: 20px;
   }
   .size_blank .price_table_bottom_deatil {
     padding: 15px;
@@ -2659,6 +2660,9 @@ a:focus-visible{
   .prouctdetail_skeleton_item_right .movie--isloading .loading-content .product_desc_sku .loading-main-text:last-child{
     width: 40%;
   }
+  .table_price {
+    margin-right: 10px;
+}
 }
 
 @media (max-width: 320px) {
