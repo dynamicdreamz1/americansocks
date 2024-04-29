@@ -2674,6 +2674,32 @@ a:focus-visible{
       line-height: 32px;
       left: 35px;
   }
+  .shop_wrap_filter{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .search_btn,.shop_filter_left{
+    width: 100%;
+  }
+  .sorting{
+    width: 100%;
+    margin-top: 10px;
+  }
+  .filter_box{
+    width: 100%;
+  }
+
+  .shop_wrap_filter .sorting select{
+    min-width: 100%;
+    text-align: center;
+
+  }
+  .shop_box .product_image {
+    min-height: 120px;
+  }
+  .shop_box .product_text{
+    padding: 0px;
+  }
   /*------ shop filter --------*/
   .filter_box{
     min-width: 290px;
