@@ -37,7 +37,7 @@ const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount,
           <h6>per page</h6>
         </div>
         <div className="search-box">
-          <h6>search</h6>
+          <h6>Search</h6>
           {/* <input type="search" name=""></input> */}
           <input
             type="search"
