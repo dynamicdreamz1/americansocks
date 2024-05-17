@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance for fetching data
 export const fetchDataInstance = axios.create({
-  baseURL: 'https://pro.americansocks.com/wp-admin/admin-ajax.php',
+  baseURL: 'https://dddemo.net/wordpress/2024/americansocks/wp-admin/admin-ajax.php',
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
   }
@@ -13,7 +13,7 @@ export const fetchDataInstance = axios.create({
 // Function to fetch data
 export const fetchData = async () => {
   try {
-    const response = await fetchDataInstance.post('', "length=300&table_id=wcpt_a3c0f79a43ed08c5_1&action=orderform_fetch_products&dev=15");
+    const response = await fetchDataInstance.post('', "length=300&table_id=wcpt_18e254f318f6543c_1&action=orderform_fetch_products&dev=15");
     return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
