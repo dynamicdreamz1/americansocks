@@ -13,7 +13,7 @@ export const fetchDataInstance = axios.create({
 // Function to fetch data
 export const fetchData = async () => {
   try {
-    const response = await fetchDataInstance.post('', "length=300&table_id=wcpt_18e254f318f6543c_1&action=orderform_fetch_products&dev=15");
+    const response = await fetchDataInstance.post('', "length=300&table_id=wcpt_18e254f318f6543c_1&action=orderform_fetch_products&dev=16");
     return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);

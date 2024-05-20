@@ -22,28 +22,28 @@ function ShopDetailMain() {
 
   }, [slug]);
 
-  useEffect(()=>{
-   
+  useEffect(() => {
+
 
     const fetchVaariationList = async () => {
       const variationList = await getProductVariationsList(singleProduct?.id)
       setVariationsList(variationList)
     };
- 
-  if (singleProduct) {
-    fetchVaariationList()
-  }
 
-  },[singleProduct])
+    if (singleProduct) {
+      fetchVaariationList()
+    }
 
-  
-    
+  }, [singleProduct])
+
+
+
   return (
     <>
       {singleProduct ?
         <>
-           <Productdeatils product={singleProduct} variationsList={singleProduct?.variations_data ? singleProduct?.variations_data : []} /> 
-          <Relatedproductslider relatedProductList={singleProduct} /> 
+          <Productdeatils product={singleProduct} variationsList={singleProduct?.variations_data ? singleProduct?.variations_data : []} />
+          <Relatedproductslider relatedProductList={singleProduct} />
         </>
         : <ProductdeatilSkeleton />}
     </>

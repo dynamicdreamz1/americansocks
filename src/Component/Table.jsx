@@ -110,7 +110,19 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                 <tbody>
                     {orderdata.length > 0 ? (
                         orderdata.map((item, index) => {
-                            const variationData = item?.variation_json && JSON.parse(item?.variation_json)
+                        
+                            const correctedVariationJson = item?.variation_json?.replace(/&quot;/g, '"')
+                                               .replace(/&lt;/g, '<')
+                                               .replace(/&gt;/g, '>')
+                                               .replace(/&amp;/g, '&');
+                            let variationData;
+
+                            variationData = correctedVariationJson ? JSON.parse(correctedVariationJson) : [];
+                            
+                            console.log("item?.variation_json",variationData );
+
+
+
                             return (
                                 <tr key={index}>
                                     <td data-label="SKU" dangerouslySetInnerHTML={{ __html: item.sku }} />
@@ -154,9 +166,9 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
 
                                                                 // Define the CSS class based on availability
                                                                 let availabilityClass = '';
-                                                                if (data.availability_html.includes('Out of stock')) {
+                                                                if (data?.availability_html?.includes('Out of stock')) {
                                                                     availabilityClass = 'text-red';
-                                                                } else if (data.availability_html.includes('Available on backorder')) {
+                                                                } else if (data?.availability_html?.includes('Available on backorder')) {
                                                                     availabilityClass = 'text-blue';
                                                                 } else if (stockNumber > 0) {
                                                                     availabilityClass = 'text-green';

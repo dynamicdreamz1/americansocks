@@ -1,11 +1,11 @@
 import React from 'react';
 
 const  TableHeader = ({ variationData }) =>{
-  return (
+    return (
     <thead>
       <tr>
         {variationData.length > 0 &&  variationData.map((size, index) => (
-          <th key={index}>{size.attributes.attribute_pa_size.toUpperCase()}</th>
+          <th key={index}>{size?.attributes?.attribute_pa_size?.toUpperCase()}</th>
         ))}
       </tr>
     </thead>
