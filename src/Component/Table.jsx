@@ -118,9 +118,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                             let variationData;
 
                             variationData = correctedVariationJson ? JSON.parse(correctedVariationJson) : [];
-                            
-                            console.log("item?.variation_json",variationData );
-
+                        
 
 
                             return (
