@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import {toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {addToCart, addToCartProducts} from "../services/order";
 import TableHeader from "./TableHead";
 import {Skeleton} from "@mui/material";
 
-const Table = ({setAddtoCartbBtnLoading, addtoCartbBtnLoading, loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems}) => {
-  const handleInputChange = (event, data, selectedSize, item) => {
+const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems}) => {
+    const [loadingButtonIndex, setLoadingButtonIndex] = useState(null);
+
+  const handleInputChange = (event, data, selectedSize, item,index) => {
     const {value} = event.target;
     let intValue = parseInt(value);
     const maxStockNumber = data.max_qty;
@@ -49,11 +51,12 @@ const Table = ({setAddtoCartbBtnLoading, addtoCartbBtnLoading, loading, handleSo
     }
   };
 
-  const handleSubmit = async (item) => {
+  const handleSubmit = async (item,index) => {
+    
     try {
       let result;
       setLoading(true);
-      setAddtoCartbBtnLoading(true);
+      setLoadingButtonIndex(index);
       if (item) {
         const object = {
           quantity: 1,
@@ -65,8 +68,7 @@ const Table = ({setAddtoCartbBtnLoading, addtoCartbBtnLoading, loading, handleSo
         result = await addToCartProducts(selectedItems.length > 0 && selectedItems);
       }
       setLoading(false);
-      setAddtoCartbBtnLoading(false);
-
+      setLoadingButtonIndex(null);
       if (result.cart_hash) {
         //toast.success("Product added to cart successfully!");
       } else {
@@ -74,7 +76,8 @@ const Table = ({setAddtoCartbBtnLoading, addtoCartbBtnLoading, loading, handleSo
       }
     } catch (error) {
       setLoading(false);
-      setAddtoCartbBtnLoading(false);
+      setLoadingButtonIndex(null);
+
       toast.error("Error occurred while adding product to cart. Please select Quantity");
     }
   };
@@ -141,7 +144,7 @@ const Table = ({setAddtoCartbBtnLoading, addtoCartbBtnLoading, loading, handleSo
                         <tbody>
                           {variationData.length > 0 && (
                             <tr>
-                              {variationData.map((data, index) => {
+                              {variationData.map((data) => {
                                 return (
                                   <>
                                     <td>
@@ -152,7 +155,7 @@ const Table = ({setAddtoCartbBtnLoading, addtoCartbBtnLoading, loading, handleSo
                                         // max={parseInt(stockNumber)}
                                         min={0}
                                         value={(selectedItems.find((selectedItem) => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
-                                        onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item)}
+                                        onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item,index)}
                                       />
                                     </td>
                                   </>
@@ -183,8 +186,8 @@ const Table = ({setAddtoCartbBtnLoading, addtoCartbBtnLoading, loading, handleSo
                           )}
                         </tbody>
                       </table>
-                      <button className={`add-cart-btn ${addtoCartbBtnLoading ? "show_loader" : ""}`}>
-                        <a onClick={() => handleSubmit(variationData.length > 0 ? "" : item)} href="#">
+                      <button disabled={loadingButtonIndex === index ? true : false} className={`add-cart-btn ${loadingButtonIndex === index ? "show_loader" : ""}`}>
+                        <a onClick={() => handleSubmit(variationData.length > 0 ? "" : item,index)} href="#">
                           add to cart
                         </a>
                       </button>

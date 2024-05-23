@@ -17,7 +17,6 @@ const Orderform = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [sortConfig, setSortConfig] = useState({key: null, direction: "asc"});
-  const [addtoCartbBtnLoading, setAddtoCartbBtnLoading] = useState(false);
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -148,8 +147,6 @@ const Orderform = () => {
           resetFilter={resetFilter}
         />
         <Table
-          setAddtoCartbBtnLoading={setAddtoCartbBtnLoading}
-          addtoCartbBtnLoading={addtoCartbBtnLoading}
           loading={loading}
           handleSort={handleSort}
           setSelectedItems={setSelectedItems}

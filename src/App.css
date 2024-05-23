@@ -290,7 +290,7 @@ button.add-cart-btn.show_loader {
 }
 button.add-cart-btn.show_loader:before {
   content: "";
-  background-image: url(http://localhost:3000/static/media/addtocart-loader.e4315c40f10d1e2852f9.svg) !important;
+  background-image: url(./assets//Images//addtocart-loader.svg) !important;
   background-color: transparent;
   background-size: 100%;
   display: inline-block;
