@@ -12,8 +12,6 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/product/:slug" element={<Shopdetails />} />
 
-
-
       </Routes>
     </Router>
   );
