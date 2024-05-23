@@ -196,10 +196,16 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                     )}
                                                 </tbody>
                                             </table>
-                                            <button onClick={() => handleSubmit(variationData.length > 0 ? "" : item, index, item.product_id)}
+                                            <button  onClick={() => handleSubmit(variationData.length > 0 ? "" : item, index, item.product_id)}
                                                 disabled={selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? false : true}
-                                                className={`add-cart-btn ${loadingButtonIndex === index ? "show_loader" : ""}`}>
-                                                <a href="#">
+                                                className={`add-cart-btn ${loadingButtonIndex === index ? "show_loader" : ""}`}
+                                                style={{
+                                                    cursor: selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? "pointer" : "not-allowed"
+                                                }}
+                                                >
+                                                <a href="#" style={{
+                                                    cursor: selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? "pointer" : "not-allowed"
+                                                }}>
                                                     add to cart
                                                 </a>
                                             </button>

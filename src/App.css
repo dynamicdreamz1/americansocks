@@ -307,9 +307,7 @@ button.add-cart-btn.show_loader:before {
     transform: rotate(360deg);
   }
 }
-/* .add-cart-btn a{
-  color: #fff !important;
-} */
+
 .caret-icon {
   display: inline;
 }
