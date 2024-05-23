@@ -68,6 +68,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
             setLoading(false);
 
             if (result.cart_hash) {
+                document.body.dispatchEvent(new Event('added_to_orderform_cart'));
                 toast.success("Product added to cart successfully!");
             } else {
                 toast.error("Failed to add product to cart.");
