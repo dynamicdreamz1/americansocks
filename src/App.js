@@ -6,7 +6,7 @@ import Shopdetails from "./Pages/ShopDetails";
 
 function App() {
   return (
-    <Router basename="/proamericansocks/pro">
+    <Router basename="/">
       <Routes>
         <Route path="/orderform" element={<Orderform />} />
         <Route path="/shop" element={<Shop />} />
