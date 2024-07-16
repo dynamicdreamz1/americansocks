@@ -76,7 +76,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                 document.body.dispatchEvent(new Event('added_to_orderform_cart'));
                 //toast.success("Product added to cart successfully!");
             } else {
-                toast.error("Failed to add product to cart.");
+                toast.error("Sorry, it's not possible to mix Regular Products and Pre-Order Products in the same cart.");
             }
         } catch (error) {
             setLoading(false);
