@@ -129,9 +129,6 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                             let variationData;
 
                             variationData = correctedVariationJson ? JSON.parse(correctedVariationJson) : [];
-
-                            console.log("selectedItems.some(order => order.product_id === item.product_id)", selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0);
-
                             return (
                                 <tr key={index}>
                                     <td data-label="SKU" dangerouslySetInnerHTML={{ __html: item.sku }} />

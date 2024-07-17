@@ -1,5 +1,24 @@
 import React, { useEffect } from 'react'
 import ReactPaginate from 'react-paginate'
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import ListItemText from '@mui/material/ListItemText';
+import Select from '@mui/material/Select';
+import Checkbox from '@mui/material/Checkbox';
+
+const ITEM_HEIGHT = 40;
+const ITEM_PADDING_TOP = 4;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
 
 const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount, handlePageClick, searchQuery, handleSearch, pageSize, handlePageSizeChange, filteredData, handleCategoryChange, selectedCategory }) => {
 
@@ -8,18 +27,33 @@ const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount,
 
   }, [currentPage])
 
-  
+
   return (
     <div className="pannel-top-data">
       <div className="pannel-top-left-data">
-        <select value={selectedCategory} onChange={handleCategoryChange}>
-          {orderCategory && Object.keys(orderCategory).map((key) => (
-            <option key={key} value={orderCategory[key]}>{orderCategory[key]}</option>
-          ))}
-        </select>
-        <h6 onClick={() => resetFilter()} style={{ cursor: 'pointer' }}>
+        <FormControl sx={{ m: 1, width: 200  }}>
+          <InputLabel id="demo-multiple-checkbox-label">Categories</InputLabel>
+          <Select
+            labelId="demo-multiple-checkbox-label"
+            id="demo-multiple-checkbox"
+            className='catagaries-select-box'
+            multiple
+            value={selectedCategory}
+            onChange={handleCategoryChange}
+            input={<OutlinedInput label="Categories" />}
+            renderValue={(selected) =>selected && selected?.join(', ')}
+            MenuProps={MenuProps}
+          >
+            {orderCategory && Object.keys(orderCategory).map((key) => (
+              <MenuItem key={key} value={key}>
+                <Checkbox checked={selectedCategory.includes(key)} />
+                <ListItemText primary={orderCategory[key]} />
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
 
-          {/* <img style={{width:"20px", position:"relative" ,top:"5px"}} src={icon} alt='resetIcon' />  */}
+        <h6 onClick={() => resetFilter()} style={{ cursor: 'pointer' }}>
           <i className="fas fa-sync-alt" style={{ width: "31px", position: "relative", top: "2px" }} onClick={resetFilter} />
 
           Reset</h6>
@@ -38,7 +72,6 @@ const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount,
         </div>
         <div className="select-search-box">
           <h6>search</h6>
-          {/* <input type="search" name=""></input> */}
           <input
             type="search"
             name=""

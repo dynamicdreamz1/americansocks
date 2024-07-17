@@ -11,8 +11,10 @@ const Orderform = () => {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [pageSize, setPageSize] = useState(10); // Default page size
-  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  // const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [itemOffset, setItemOffset] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState([]);
+
   const [selectedItems, setSelectedItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -111,9 +113,11 @@ const Orderform = () => {
   const filteredData = sortedData().filter((item) => {
     const nameMatch = item?.name.toLowerCase().includes(searchQuery.toLowerCase());
     const skuMatch = item?.sku.toLowerCase().includes(searchQuery.toLowerCase());
-    const categoryMatch = selectedCategory === "All Categories" || item?.categories.toLowerCase().includes(selectedCategory.toLowerCase());
+    const categoryMatch = selectedCategory.length === 0 || selectedCategory.some(cat => item?.categories.toLowerCase().includes(cat.toLowerCase()));
     return (nameMatch || skuMatch) && categoryMatch;
   });
+
+
 
   const pageCount = Math.ceil(filteredData.length / pageSize);
 

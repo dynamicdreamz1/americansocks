@@ -693,20 +693,21 @@ table tr td:last-child {
 .text-blue p {
   color: #5a84c8;
 }
-/* table.stoke_info_table td {
-  font-size: 14px;
-} */
 
-/* @media (max-width: 1350px) {
-  .add-to-cart-btndiv button {
-    position: unset;
-    transform: unset;
-    margin-top: 10px !important;
-   }
-   table tr td:last-child {
-    text-align: right;
-   }
-} */
+
+.catagaries-select-box .MuiSelect-select {
+  padding: 5px 7px !important;
+}
+
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+  top: -10px !important;
+}
+
+.pannel-top-left-data {
+  display: flex;
+  align-items: center;
+}
+
 
 @media (max-width: 1250px) {
   .add-to-cart-btndiv {
@@ -830,23 +831,12 @@ table tr td:last-child {
     display: block;
   }
 
-  /*.table-sub tbody td:last-child input,
-  .table-sub tbody td:last-child select {
-    margin: 5px;
-  }*/
-
   .add-to-cart-btndiv button {
     position: unset;
     transform: unset;
     margin-top: 10px !important;
   }
-  /* table tr td:last-child {
-    text-align: right;
-   } */
 
-  /* .add-to-cart-btndiv {
-    display: block;
-   } */
   .add-to-cart-btndiv table {
     width: 100%;
   }
@@ -855,13 +845,7 @@ table tr td:last-child {
     width: 100%;
   }
 
-  /* .stoke_info_table tbody {
-    display: block;
-    column-count: unset;
-   } */
-  /* .stoke_info_table tbody tr {
-    border: 0px !important;
-   } */
+
 
   .add-to-cart-btndiv {
     display: block;
@@ -877,9 +861,6 @@ table tr td:last-child {
     width: 45%;
   }
 
-  /* .stoke_info_table tbody tr:first-child, .stoke_info_table tbody tr:nth-child(3) {
-    border-right: 1px solid #DDDDDD;;
-   } */
 
   .stoke_info_table tbody tr:nth-child(odd) {
     border-right: 1px solid #dddddd;
@@ -911,10 +892,6 @@ table tr td:last-child {
     font-size: 12px;
   }
 
-  /* .select-search-box h6 {
-    padding-bottom: 20px;
-    padding-left: 0px;
-  }*/
 
   .add-to-cart-btndiv table {
     width: 100%;
@@ -925,7 +902,6 @@ table tr td:last-child {
   }
 
   .stoke_info_table tbody {
-    /* display: block; */
     column-count: unset;
   }
   .stoke_info_table tbody tr:first-child,
