@@ -699,7 +699,7 @@ table tr td:last-child {
   padding: 5px 7px !important;
 }
 
-.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+.pannel-top-left-data .MuiFormLabel-root {
   top: -10px !important;
 }
 
@@ -708,16 +708,16 @@ table tr td:last-child {
   align-items: center;
 }
 
-.css-6hp17o-MuiList-root-MuiMenu-list li {
+.MuiPaper-root li  {
   padding: 5px !important;
 }
 
-.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+.MuiPaper-root {
   width: 230px !important;
   left: 30px !important;
 }
 
-.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root {
+ .MuiPaper-root .MuiCheckbox-root {
   padding: 5px !important;
   padding-left: 0px !important;
 }
