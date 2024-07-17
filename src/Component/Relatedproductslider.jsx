@@ -2,10 +2,10 @@ import React from 'react'
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 export default function Relatedproductslider({ relatedProductList }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   var settings = {
     dots: false,
