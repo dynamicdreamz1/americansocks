@@ -105,7 +105,7 @@ const Orderform = () => {
   const resetFilter = () => {
     setPageSize(10);
     setSearchQuery("");
-    setSelectedCategory("All Categories");
+    setSelectedCategory([]);
     setCurrentPage(0);
     setItemOffset(0);
   };
