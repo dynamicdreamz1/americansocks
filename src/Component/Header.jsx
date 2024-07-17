@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
 
-const ITEM_HEIGHT = 40;
+const ITEM_HEIGHT = 80;
 const ITEM_PADDING_TOP = 4;
 const MenuProps = {
   PaperProps: {
