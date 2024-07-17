@@ -7,7 +7,6 @@ import { Skeleton } from "@mui/material";
 
 const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
     const [loadingButtonIndex, setLoadingButtonIndex] = useState(null);
-    const [productID, setProductID] = useState();
 
 
     const handleInputChange = (event, data, selectedSize, item, index) => {
@@ -86,12 +85,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
         }
     };
 
-    useEffect(() => {
-        const order = selectedItems.some(order => order.product_id === 76997)
-        setProductID(order)
-    }, [selectedItems])
-
-    console.log("productID", productID);
+    
 
     return (
         <div className="table-sub">
