@@ -1,17 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
 import Orderform from './Pages/Orderform';
-import Shop from "./Pages/Shop";
-import Shopdetails from "./Pages/ShopDetails";
 
 function App() {
   return (
     <Router basename="/">
       <Routes>
         <Route path="/orderform" element={<Orderform />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/product/:slug" element={<Shopdetails />} />
-
       </Routes>
     </Router>
   );

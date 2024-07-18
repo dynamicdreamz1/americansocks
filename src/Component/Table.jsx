@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { addToCart, addToCartProducts } from "../services/order";
 import TableHeader from "./TableHead";
 import { Skeleton } from "@mui/material";
+import ImageThumbnail from "./ImageThumbnail";
 
 const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
     const [loadingButtonIndex, setLoadingButtonIndex] = useState(null);
@@ -85,7 +86,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
         }
     };
 
-    
+
 
     return (
         <div className="table-sub">
@@ -129,10 +130,15 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                             let variationData;
 
                             variationData = correctedVariationJson ? JSON.parse(correctedVariationJson) : [];
+
+
+                            console.log("item", item);
                             return (
                                 <tr key={index}>
                                     <td data-label="SKU" dangerouslySetInnerHTML={{ __html: item.sku }} />
-                                    <td data-label="Image" dangerouslySetInnerHTML={{ __html: item.image }} />
+                                    <td>
+                                        <ImageThumbnail imageHtml={item.image} />
+                                    </td>
                                     <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.name }}></td>
                                     <td data-label="Categories" dangerouslySetInnerHTML={{ __html: item.categories }}></td>
                                     <td data-label="Price" dangerouslySetInnerHTML={{ __html: item.price }}></td>
@@ -172,6 +178,8 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                                 const stockNumberMatch = data?.availability_html?.match(/\d+/);
                                                                 const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
 
+                                                                console.log("stockNumberMatch", stockNumberMatch);
+
                                                                 // Define the CSS class based on availability
                                                                 let availabilityClass = "";
                                                                 if (data?.availability_html?.includes("Out of stock")) {
@@ -188,13 +196,13 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                     )}
                                                 </tbody>
                                             </table>
-                                            <button  onClick={() => handleSubmit(variationData.length > 0 ? "" : item, index, item.product_id)}
+                                            <button onClick={() => handleSubmit(variationData.length > 0 ? "" : item, index, item.product_id)}
                                                 disabled={selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? false : true}
                                                 className={`add-cart-btn ${loadingButtonIndex === index ? "show_loader" : ""}`}
                                                 style={{
                                                     cursor: selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? "pointer" : "not-allowed"
                                                 }}
-                                                >
+                                            >
                                                 <a href="#" style={{
                                                     cursor: selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? "pointer" : "not-allowed"
                                                 }}>
