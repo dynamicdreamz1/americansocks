@@ -131,8 +131,6 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
 
                             variationData = correctedVariationJson ? JSON.parse(correctedVariationJson) : [];
 
-
-                            console.log("item", item);
                             return (
                                 <tr key={index}>
                                     <td data-label="SKU" dangerouslySetInnerHTML={{ __html: item.sku }} />
@@ -175,25 +173,35 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                     {variationData.length > 0 && (
                                                         <tr>
                                                             {variationData.map((data, index) => {
-                                                                const stockNumberMatch = data?.availability_html?.match(/\d+/);
-                                                                const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
+                                                                // Check if availability_html is present
+                                                                if (!data.availability_html) {
+                                                                    return null;
+                                                                }
 
-                                                                console.log("stockNumberMatch", stockNumberMatch);
+                                                                const stockNumberMatch = data.availability_html.match(/\d+/);
+                                                                const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
 
                                                                 // Define the CSS class based on availability
                                                                 let availabilityClass = "";
-                                                                if (data?.availability_html?.includes("Out of stock")) {
+                                                                if (data.availability_html.includes("Out of stock")) {
                                                                     availabilityClass = "text-red";
-                                                                } else if (data?.availability_html?.includes("Available on backorder")) {
+                                                                } else if (data.availability_html.includes("Available on backorder")) {
                                                                     availabilityClass = "text-blue";
                                                                 } else if (stockNumber > 0) {
                                                                     availabilityClass = "text-green";
                                                                 }
 
-                                                                return <td className={availabilityClass} key={index} dangerouslySetInnerHTML={{ __html: data.availability_html }} />;
+                                                                return (
+                                                                    <td
+                                                                        className={availabilityClass}
+                                                                        key={index}
+                                                                        dangerouslySetInnerHTML={{ __html: data.availability_html }}
+                                                                    />
+                                                                );
                                                             })}
                                                         </tr>
                                                     )}
+
                                                 </tbody>
                                             </table>
                                             <button onClick={() => handleSubmit(variationData.length > 0 ? "" : item, index, item.product_id)}
