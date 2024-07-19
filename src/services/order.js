@@ -4,17 +4,17 @@ import axios from 'axios';
 export const fetchDataInstance = axios.create({
   // baseURL: 'https://dddemo.net/wordpress/2024/americansocks/wp-admin/admin-ajax.php',
   // baseURL: 'https://daylightband.com/proamericansocks/pro/wp-admin/admin-ajax.php',
-  baseURL: 'https://pro.americansocks.com/wp-admin/admin-ajax.php',
-
+  
+  baseURL: process.env.REACT_APP_BASE_URL,
+  
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
   }
 });
 
-
-
 // Function to fetch data
 export const fetchData = async () => {
+
   try {
     const response = await fetchDataInstance.post('', "length=300&table_id=wcpt_18e254f318f6543c_1&action=orderform_fetch_products&dev=17");
     return response.data;
