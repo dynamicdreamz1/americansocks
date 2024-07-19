@@ -7,7 +7,7 @@ const TableHeader = ({ variationData }) => {
         {variationData.length > 0 && variationData.map((size, index) => (
           <th key={index}>
             {size?.attributes?.attribute_pa_size?.toUpperCase()}
-            {size?.is_pre_order === "yes" && (
+            {/* {size?.is_pre_order === "yes" && (
               <div style={{
                 display: 'inline-block',
                 backgroundColor: '#01426a',
@@ -19,7 +19,7 @@ const TableHeader = ({ variationData }) => {
               }}>
                 Pre-Order
               </div>
-            )}
+            )} */}
           </th>
         ))}
       </tr>

@@ -122,11 +122,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                 <tbody>
                     {orderdata.length > 0 ? (
                         orderdata.map((item, index) => {
-                            const correctedVariationJson = item?.variation_json
-                                ?.replace(/&quot;/g, '"')
-                                .replace(/&lt;/g, "<")
-                                .replace(/&gt;/g, ">")
-                                .replace(/&amp;/g, "&");
+                            const correctedVariationJson = item?.variation_json?.replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
                             let variationData;
 
                             variationData = correctedVariationJson ? JSON.parse(correctedVariationJson) : [];
@@ -135,7 +131,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                 <tr key={index}>
                                     <td data-label="SKU" dangerouslySetInnerHTML={{ __html: item.sku }} />
                                     <td>
-                                        <ImageThumbnail imageHtml={item.image} />
+                                        <ImageThumbnail imageHtml={item.image} variationData={variationData} />
                                     </td>
                                     <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.name }}></td>
                                     <td data-label="Categories" dangerouslySetInnerHTML={{ __html: item.categories }}></td>
@@ -148,52 +144,49 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                             <table className="stoke_info_table_test">
                                                 <TableHeader variationData={variationData} />
                                                 <tbody>
-                                                    {variationData.length > 0 && (
-                                                        <tr>
-                                                            {variationData.map((data) => {
-                                                                return (
-                                                                    <>
-                                                                        <td>
-                                                                            <input
-                                                                                type="number"
-                                                                                name={`quantity-${data.variation_id}`}
-                                                                                className="countsize"
-                                                                                // max={parseInt(stockNumber)}
-                                                                                min={0}
-                                                                                value={(selectedItems.find((selectedItem) => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
-                                                                                onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item, index)}
-                                                                            />
-                                                                        </td>
-                                                                    </>
-                                                                );
-                                                            })}
-                                                        </tr>
-                                                    )}
+                                                    {variationData.map((data) => {
+                                                        const stockNumberMatch = data.availability_html.match(/\d+/);
+                                                        const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
+
+                                                        let availabilityColor = "";
+                                                        if (data.is_pre_order === "yes" && data.is_in_stock === true) {
+                                                            availabilityColor = "#5a84c8"; // Blue
+                                                        } else if (data.is_in_stock === true && stockNumber <= 20) {
+                                                            availabilityColor = "#ff992c"; // Orange
+                                                        } else if (data.backorders_allowed === true) {
+                                                            availabilityColor = "#f6c94a"; // Yellow
+                                                        } else if (data.is_in_stock === false) {
+                                                            availabilityColor = "red"; // Red
+                                                        } else if (data.is_in_stock === true) {
+                                                            availabilityColor = "#0f834d"; // Green
+                                                        }
+
+                                                        return (
+                                                            <td key={data.variation_id} className="">
+                                                                <input
+                                                                    type="number"
+                                                                    name={`quantity-${data.variation_id}`}
+                                                                    className="countsize"
+                                                                    min={0}
+                                                                    value={(selectedItems.find((selectedItem) => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
+                                                                    onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item, index)}
+                                                                    style={{borderBottom: `4px solid ${availabilityColor}`}}
+                                                                />
+                                                            </td>
+                                                        );
+                                                    })}
+
+
 
                                                     {variationData.length > 0 && (
                                                         <tr>
                                                             {variationData.map((data, index) => {
-                                                                // Check if availability_html is present
                                                                 if (!data.availability_html) {
                                                                     return null;
                                                                 }
 
-                                                                const stockNumberMatch = data.availability_html.match(/\d+/);
-                                                                const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
-
-                                                                // Define the CSS class based on availability
-                                                                let availabilityClass = "";
-                                                                if (data.availability_html.includes("Out of stock")) {
-                                                                    availabilityClass = "text-red";
-                                                                } else if (data.availability_html.includes("Available on backorder")) {
-                                                                    availabilityClass = "text-blue";
-                                                                } else if (stockNumber > 0) {
-                                                                    availabilityClass = "text-green";
-                                                                }
-
                                                                 return (
                                                                     <td
-                                                                        className={availabilityClass}
                                                                         key={index}
                                                                         dangerouslySetInnerHTML={{ __html: data.availability_html }}
                                                                     />

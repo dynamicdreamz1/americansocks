@@ -683,15 +683,22 @@ table tr td:last-child {
 }
 
 .text-green p {
-  color: #0f834d;
+  color: #0f834d !important;
+}
+
+.text-yellow{
+  color: #f6c94a !important;
 }
 
 .text-red p {
-  color: red;
+  color: red !important;
 }
 
 .text-blue p {
-  color: #5a84c8;
+  color: #5a84c8 !important;
+}
+.text-orange p {
+  color: #ff992c !important;
 }
 
 
