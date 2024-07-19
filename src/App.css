@@ -744,6 +744,20 @@ table tr td:last-child {
   padding-left: 0px !important;
 }
 
+.stoct-list-data .stock  {
+  display: inline-block;
+  background-color: rgb(1, 66, 106);
+  color: white !important;
+  font-size: smaller;
+  padding: 2px 5px;
+  margin-left: 5px !important;
+  border-radius: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+
+
 @media (max-width: 1250px) {
   .add-to-cart-btndiv {
     display: block;

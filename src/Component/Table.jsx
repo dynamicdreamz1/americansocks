@@ -139,7 +139,26 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                     <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.name }}></td>
                                     <td data-label="Categories" dangerouslySetInnerHTML={{ __html: item.categories }}></td>
                                     <td data-label="Price" dangerouslySetInnerHTML={{ __html: item.price }}></td>
-                                    <td data-label="Stock" dangerouslySetInnerHTML={{ __html: item.stock }}></td>
+                                    {showPreoOrder ?
+                                        <td>
+                                            <div style={{
+                                                display: 'inline-block',
+                                                backgroundColor: '#01426a',
+                                                color: 'white',
+                                                fontSize: 'smaller',
+                                                padding: '2px 5px',
+                                                marginLeft: '5px',
+                                                borderRadius: '3px',
+                                                fontWeight: 600,
+                                                textTransform: "uppercase"
+
+                                            }}>
+                                                Pre-Order
+                                            </div>
+                                        </td>
+                                        :
+                                        <td data-label="Stock" className="stoct-list-data" dangerouslySetInnerHTML={{ __html: item.stock }}></td>
+                                    }
                                     <td className={`stoke_buy_data  variation-${variationData.length}`} data-label="Buy">
                                         <div className={`add-to-cart-btndiv ${variationData.length > 0 ? "" : "add-to-cart-btndiv-two"}`}>
                                             <table className="stoke_info_table_test">
