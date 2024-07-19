@@ -60,6 +60,15 @@ body,
   margin-right: 10px;
 }
 
+/* .countsize {
+  display: inline-block;
+  height: 28px;
+  padding: 3px;
+  width: 50px;
+  border: 1px solid #bdc4c9;
+  margin-left: 5px;
+} */
+
 .countsize {
   display: inline-block;
   height: 28px;
@@ -67,7 +76,13 @@ body,
   width: 50px;
   border: 1px solid #bdc4c9;
   margin-left: 5px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
 }
+
+
 table td:first-child,
 table th:first-child {
   border-left-width: 1px;

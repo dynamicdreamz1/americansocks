@@ -126,6 +126,9 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                             let variationData;
 
                             variationData = correctedVariationJson ? JSON.parse(correctedVariationJson) : [];
+                            const size = variationData.length > 0 && variationData[0]
+
+                            const showPreoOrder = size.is_pre_order === "yes" && (size.is_in_stock === true || size.availability_html.includes("Available on backorder"))
 
                             return (
                                 <tr key={index}>
@@ -138,8 +141,6 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                     <td data-label="Price" dangerouslySetInnerHTML={{ __html: item.price }}></td>
                                     <td data-label="Stock" dangerouslySetInnerHTML={{ __html: item.stock }}></td>
                                     <td className={`stoke_buy_data  variation-${variationData.length}`} data-label="Buy">
-                                        {" "}
-                                        {/* Assuming item has a 'quantity' property */}
                                         <div className={`add-to-cart-btndiv ${variationData.length > 0 ? "" : "add-to-cart-btndiv-two"}`}>
                                             <table className="stoke_info_table_test">
                                                 <TableHeader variationData={variationData} />
@@ -170,13 +171,11 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                                     min={0}
                                                                     value={(selectedItems.find((selectedItem) => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
                                                                     onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item, index)}
-                                                                    style={{borderBottom: `4px solid ${availabilityColor}`}}
+                                                                    style={{ borderBottom: `4px solid ${availabilityColor}` }}
                                                                 />
                                                             </td>
                                                         );
                                                     })}
-
-
 
                                                     {variationData.length > 0 && (
                                                         <tr>
