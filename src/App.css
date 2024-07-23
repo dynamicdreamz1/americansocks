@@ -902,6 +902,10 @@ table tr td:last-child {
   }
   .add-to-cart-btndiv table td {
     text-align: right !important;
+    
+  }
+  .add-to-cart-btndiv table td.variation-type {
+    text-align: center !important;
   }
   .add-to-cart-btndiv table.stoke_info_table_test tr:last-child td {
     text-align: center !important;

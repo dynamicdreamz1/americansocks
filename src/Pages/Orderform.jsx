@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Component/Header";
 import Table from "../Component/Table";
-import {fetchData} from "../services/order";
-import {ToastContainer} from "react-toastify";
+import { fetchData } from "../services/order";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Orderform = () => {
@@ -18,7 +18,7 @@ const Orderform = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [sortConfig, setSortConfig] = useState({key: null, direction: "asc"});
+  const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -41,7 +41,7 @@ const Orderform = () => {
     if (sortConfig.key === key && sortConfig.direction === "asc") {
       direction = "desc";
     }
-    setSortConfig({key, direction});
+    setSortConfig({ key, direction });
   };
 
   const sortedData = () => {

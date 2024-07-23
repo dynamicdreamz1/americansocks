@@ -9,7 +9,7 @@ import ImageThumbnail from "./ImageThumbnail";
 const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
     const [loadingButtonIndex, setLoadingButtonIndex] = useState(null);
 
-
+    
     const handleInputChange = (event, data, selectedSize, item, index) => {
         const { value } = event.target;
         let intValue = parseInt(value);
@@ -165,7 +165,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                 <TableHeader variationData={variationData} />
                                                 <tbody>
                                                     {variationData.map((data) => {
-                                                        const stockNumberMatch = data.availability_html.match(/\d+/);
+                                                        const stockNumberMatch = data?.availability_html?.match(/\d+/);
                                                         const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
 
                                                         let availabilityColor = "";
@@ -195,6 +195,57 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                             </td>
                                                         );
                                                     })}
+
+                                                    {variationData.length > 0 && (
+                                                        <tr>
+                                                            {variationData.map((data, index) => {
+                                                                const stockNumberMatch = data?.availability_html?.match(/\d+/);
+                                                                const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
+                                                                let availabilityColor = "";
+                                                                if (data.is_pre_order === "yes" && data.is_in_stock === true) {
+                                                                    availabilityColor = "#5a84c8"; // Blue
+                                                                } else if (data.is_in_stock === true && stockNumber <= 20) {
+                                                                    availabilityColor = "#ff992c"; // Orange
+                                                                } else if (data.backorders_allowed === true) {
+                                                                    availabilityColor = "#f6c94a"; // Yellow
+                                                                } else if (data.is_in_stock === false) {
+                                                                    availabilityColor = "red"; // Red
+                                                                } else if (data.is_in_stock === true) {
+                                                                    availabilityColor = "#0f834d"; // Green
+                                                                }
+
+                                                                let availabilityLabel = "";
+                                                                if (data.is_pre_order === "yes" && data.is_in_stock === true) {
+                                                                    availabilityLabel = "Pre-Order"; // Blue
+                                                                } else if (data.is_in_stock === true && stockNumber <= 20) {
+                                                                    availabilityLabel = "Last Units"; // Orange
+                                                                } else if (data.backorders_allowed === true) {
+                                                                    availabilityLabel = "Back-Order"; // Yellow
+                                                                } else if (data.is_in_stock === false) {
+                                                                    availabilityLabel = "Out of Stock"; // Red
+                                                                } else if (data.is_in_stock === true) {
+                                                                    availabilityLabel = "In Stock"; // Green
+                                                                }
+
+                                                                return (
+                                                                    <td style={{ fontWeight: "bold" }} className="variation-type">{availabilityLabel}
+                                                                        <span style={{
+                                                                            display: "inline-block",
+                                                                            height: '17px',
+                                                                            width: '17px',
+                                                                            borderRadius: "50%",
+                                                                            backgroundColor: availabilityColor,
+                                                                            border: '2px solid black',
+                                                                            position: 'relative',
+                                                                            left: '10px',
+                                                                            top: '3px'
+                                                                        }}>
+                                                                        </span>
+                                                                    </td>
+                                                                );
+                                                            })}
+                                                        </tr>
+                                                    )}
 
                                                     {variationData.length > 0 && (
                                                         <tr>

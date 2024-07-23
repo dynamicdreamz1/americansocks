@@ -2,11 +2,11 @@ import axios from 'axios';
 
 // Create an Axios instance for fetching data
 export const fetchDataInstance = axios.create({
-  // baseURL: 'https://dddemo.net/wordpress/2024/americansocks/wp-admin/admin-ajax.php',
+  baseURL: 'https://dddemo.net/wordpress/2024/americansocks/wp-admin/admin-ajax.php',
   // baseURL: 'https://daylightband.com/proamericansocks/pro/wp-admin/admin-ajax.php',
-  
-  baseURL: process.env.REACT_APP_BASE_URL,
-  
+
+  // baseURL: process.env.REACT_APP_BASE_URL,
+
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
   }
