@@ -131,8 +131,6 @@ const Orderform = () => {
     setItemOffset(0);
   };
 
-  console.log(orderdata);
-
   const filteredData = sortedData().filter((item) => {
     const nameMatch = item?.name.toLowerCase().includes(searchQuery.toLowerCase());
     const skuMatch = item?.sku.toLowerCase().includes(searchQuery.toLowerCase());
@@ -140,8 +138,6 @@ const Orderform = () => {
     return (nameMatch || skuMatch) && categoryMatch;
   });
   
-  console.log("selectedCategory",selectedCategory);
-
 
   const pageCount = Math.ceil(filteredData.length / pageSize);
 
