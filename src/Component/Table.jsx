@@ -195,7 +195,7 @@ const Table = ({checkCustomer, loading, handleSort, setLoading, orderdata, setSe
                                                 <TableHeader variationData={variationData} />
                                                 <tbody>
                                                     {variationData.map((data) => {
-                                                        const { availabilityColor, availabilityLabel } = getAvailabilityDetails(data);
+                                                        const { availabilityColor } = getAvailabilityDetails(data);
 
                                                         return (
                                                             <td key={data.variation_id} className="">
@@ -215,7 +215,7 @@ const Table = ({checkCustomer, loading, handleSort, setLoading, orderdata, setSe
                                                     {variationData.length > 0 && (
                                                         <tr>
                                                             {variationData.map((data, index) => {
-                                                                const { availabilityColor, availabilityLabel } = getAvailabilityDetails(data);
+                                                                const { availabilityLabel } = getAvailabilityDetails(data);
 
                                                                 return (
                                                                     <td style={{ fontWeight: "bold" }} className="variation-type">{availabilityLabel}
@@ -248,7 +248,7 @@ const Table = ({checkCustomer, loading, handleSort, setLoading, orderdata, setSe
 
                                                                 return (
                                                                     
-                                                                    <td style={{color : '#000'}}
+                                                                    <td style={{color: 'rgb(0, 0, 0)' }}
                                                                         key={index}
                                                                         dangerouslySetInnerHTML={{ __html: data.availability_html }}
                                                                     />
