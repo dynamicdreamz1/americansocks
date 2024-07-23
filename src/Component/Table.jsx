@@ -9,7 +9,7 @@ import ImageThumbnail from "./ImageThumbnail";
 const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
     const [loadingButtonIndex, setLoadingButtonIndex] = useState(null);
 
-    
+
     const handleInputChange = (event, data, selectedSize, item, index) => {
         const { value } = event.target;
         let intValue = parseInt(value);
@@ -87,6 +87,34 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
     };
 
 
+    const getAvailabilityDetails = (data) => {
+        let availabilityColor = "";
+        let availabilityLabel = "";
+
+        const stockNumberMatch = data?.availability_html?.match(/\d+/);
+        const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
+
+        if (data.is_pre_order === "yes" && data.is_in_stock === true) {
+            availabilityColor = "#5a84c8"; // Blue
+            availabilityLabel = "Pre-Order";
+        } else if (data.is_in_stock === true && stockNumber <= 20) {
+            availabilityColor = "#ff992c"; // Orange
+            availabilityLabel = "Last Units";
+        } else if (data.backorders_allowed === true) {
+            availabilityColor = "#f6c94a"; // Yellow
+            availabilityLabel = "Back-Order";
+        } else if (data.is_in_stock === false) {
+            availabilityColor = "red"; // Red
+            availabilityLabel = "Out of Stock";
+        } else if (data.is_in_stock === true) {
+            availabilityColor = "#0f834d"; // Green
+            availabilityLabel = "In Stock";
+        }
+
+        return { availabilityColor, availabilityLabel };
+    };
+
+
 
     return (
         <div className="table-sub">
@@ -115,7 +143,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                             <i className="fa fa-caret-down" aria-hidden="true"></i>
                         </div>
                     </th>
-                    <th>Stock</th>
+                    {/* <th>Stock</th> */}
                     <th>Buy</th>
                 </tr>
 
@@ -165,21 +193,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                 <TableHeader variationData={variationData} />
                                                 <tbody>
                                                     {variationData.map((data) => {
-                                                        const stockNumberMatch = data?.availability_html?.match(/\d+/);
-                                                        const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
-
-                                                        let availabilityColor = "";
-                                                        if (data.is_pre_order === "yes" && data.is_in_stock === true) {
-                                                            availabilityColor = "#5a84c8"; // Blue
-                                                        } else if (data.is_in_stock === true && stockNumber <= 20) {
-                                                            availabilityColor = "#ff992c"; // Orange
-                                                        } else if (data.backorders_allowed === true) {
-                                                            availabilityColor = "#f6c94a"; // Yellow
-                                                        } else if (data.is_in_stock === false) {
-                                                            availabilityColor = "red"; // Red
-                                                        } else if (data.is_in_stock === true) {
-                                                            availabilityColor = "#0f834d"; // Green
-                                                        }
+                                                        const { availabilityColor, availabilityLabel } = getAvailabilityDetails(data);
 
                                                         return (
                                                             <td key={data.variation_id} className="">
@@ -199,33 +213,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                     {variationData.length > 0 && (
                                                         <tr>
                                                             {variationData.map((data, index) => {
-                                                                const stockNumberMatch = data?.availability_html?.match(/\d+/);
-                                                                const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
-                                                                let availabilityColor = "";
-                                                                if (data.is_pre_order === "yes" && data.is_in_stock === true) {
-                                                                    availabilityColor = "#5a84c8"; // Blue
-                                                                } else if (data.is_in_stock === true && stockNumber <= 20) {
-                                                                    availabilityColor = "#ff992c"; // Orange
-                                                                } else if (data.backorders_allowed === true) {
-                                                                    availabilityColor = "#f6c94a"; // Yellow
-                                                                } else if (data.is_in_stock === false) {
-                                                                    availabilityColor = "red"; // Red
-                                                                } else if (data.is_in_stock === true) {
-                                                                    availabilityColor = "#0f834d"; // Green
-                                                                }
-
-                                                                let availabilityLabel = "";
-                                                                if (data.is_pre_order === "yes" && data.is_in_stock === true) {
-                                                                    availabilityLabel = "Pre-Order"; // Blue
-                                                                } else if (data.is_in_stock === true && stockNumber <= 20) {
-                                                                    availabilityLabel = "Last Units"; // Orange
-                                                                } else if (data.backorders_allowed === true) {
-                                                                    availabilityLabel = "Back-Order"; // Yellow
-                                                                } else if (data.is_in_stock === false) {
-                                                                    availabilityLabel = "Out of Stock"; // Red
-                                                                } else if (data.is_in_stock === true) {
-                                                                    availabilityLabel = "In Stock"; // Green
-                                                                }
+                                                                const { availabilityColor, availabilityLabel } = getAvailabilityDetails(data);
 
                                                                 return (
                                                                     <td style={{ fontWeight: "bold" }} className="variation-type">{availabilityLabel}
