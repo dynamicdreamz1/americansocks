@@ -10,7 +10,7 @@ const Orderform = () => {
   const [orderCategory, setOrderCategory] = useState();
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [pageSize, setPageSize] = useState(10); // Default page size
+  const [pageSize, setPageSize] = useState(); // Default page size
   // const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [itemOffset, setItemOffset] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState([]);
@@ -26,6 +26,7 @@ const Orderform = () => {
         setLoading(true);
         const result = await fetchData();
         setOrderData(result.data);
+        setPageSize(result.data.length)
         setOrderCategory(result.categories);
         setLoading(false);
       } catch (error) {
