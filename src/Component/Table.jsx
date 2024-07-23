@@ -6,7 +6,7 @@ import TableHeader from "./TableHead";
 import { Skeleton } from "@mui/material";
 import ImageThumbnail from "./ImageThumbnail";
 
-const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
+const Table = ({checkCustomer, loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
     const [loadingButtonIndex, setLoadingButtonIndex] = useState(null);
 
 
@@ -237,7 +237,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                         </tr>
                                                     )}
 
-                                                    {variationData.length > 0 && (
+                                                    {variationData.length > 0 && checkCustomer && (
                                                         <tr>
                                                             {variationData.map((data, index) => {
                                                             const { backOrder } = getAvailabilityDetails(data);

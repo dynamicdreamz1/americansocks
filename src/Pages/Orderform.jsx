@@ -19,6 +19,7 @@ const Orderform = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
+  const [checkCustomer, setcheckCustomer] = useState(true);
 
 
   function checkVisitData(visitdata) {
@@ -45,6 +46,8 @@ const Orderform = () => {
         setOrderData(result.data);
         setPageSize(result.data.length)
         setOrderCategory(result.categories);
+        const customer = checkVisitData(result.user_data);
+        setcheckCustomer(customer)
         setLoading(false);
       } catch (error) {
         console.error("Error occurred while fetching data:", error);
@@ -175,6 +178,7 @@ const Orderform = () => {
           selectedItems={selectedItems}
           setLoading={setLoading}
           orderdata={paginatedData}
+          checkCustomer={checkCustomer}
         />
       </div>
     </>
