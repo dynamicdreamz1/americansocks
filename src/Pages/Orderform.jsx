@@ -131,13 +131,16 @@ const Orderform = () => {
     setItemOffset(0);
   };
 
+  console.log(orderdata);
+
   const filteredData = sortedData().filter((item) => {
     const nameMatch = item?.name.toLowerCase().includes(searchQuery.toLowerCase());
     const skuMatch = item?.sku.toLowerCase().includes(searchQuery.toLowerCase());
-    const categoryMatch = selectedCategory.length === 0 || selectedCategory.some(cat => item?.categories.toLowerCase().includes(cat.toLowerCase()));
+    const categoryMatch = selectedCategory.length === 0 || selectedCategory.every(cat => item?.categories.toLowerCase().includes(cat.toLowerCase()));
     return (nameMatch || skuMatch) && categoryMatch;
   });
-
+  
+  console.log("selectedCategory",selectedCategory);
 
 
   const pageCount = Math.ceil(filteredData.length / pageSize);
