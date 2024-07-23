@@ -20,6 +20,23 @@ const Orderform = () => {
   const [loading, setLoading] = useState(true);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
 
+
+  function checkVisitData(visitdata) {
+    // Initialize the flag as true
+    let flag = true;
+  
+    // Check if visitdata is not null and is an array
+    if (visitdata && Array.isArray(visitdata)) {
+      // Check if the array contains the role 'customer'
+      if (visitdata.includes('customer')) {
+        flag = false;
+      }
+    }
+  
+    return flag;
+  }
+  
+
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {

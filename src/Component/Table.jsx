@@ -90,17 +90,20 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
     const getAvailabilityDetails = (data) => {
         let availabilityColor = "";
         let availabilityLabel = "";
+        let backOrder = "";
+
 
         const stockNumberMatch = data?.availability_html?.match(/\d+/);
         const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
-
+    
         if (data.is_pre_order === "yes" && data.is_in_stock === true) {
             availabilityColor = "#5a84c8"; // Blue
             availabilityLabel = "Pre-Order";
-        } else if (data.is_in_stock === true && stockNumber <= 20) {
+        } else if (data.is_in_stock === true && stockNumber <= 20 &&  stockNumber >= 1  ) {
             availabilityColor = "#ff992c"; // Orange
             availabilityLabel = "Last Units";
-        } else if (data.backorders_allowed === true) {
+        } else if (data.backorders_allowed === true && stockNumber === 0) {
+            backOrder = "Available on backorder"
             availabilityColor = "#f6c94a"; // Yellow
             availabilityLabel = "Back-Order";
         } else if (data.is_in_stock === false) {
@@ -110,8 +113,9 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
             availabilityColor = "#0f834d"; // Green
             availabilityLabel = "In Stock";
         }
+        
 
-        return { availabilityColor, availabilityLabel };
+        return { availabilityColor, availabilityLabel ,backOrder };
     };
 
 
@@ -156,8 +160,6 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                             variationData = correctedVariationJson ? JSON.parse(correctedVariationJson) : [];
                             const size = variationData.length > 0 && variationData[0]
 
-                            const showPreoOrder = size.is_pre_order === "yes" && (size.is_in_stock === true || size.availability_html.includes("Available on backorder"))
-
                             return (
                                 <tr key={index}>
                                     <td data-label="SKU" dangerouslySetInnerHTML={{ __html: item.sku }} />
@@ -167,7 +169,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                     <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.name }}></td>
                                     <td data-label="Categories" dangerouslySetInnerHTML={{ __html: item.categories }}></td>
                                     <td data-label="Price" dangerouslySetInnerHTML={{ __html: item.price }}></td>
-                                    {showPreoOrder ?
+                                    {/* {showPreoOrder ?
                                         <td>
                                             <div style={{
                                                 display: 'inline-block',
@@ -186,7 +188,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                         </td>
                                         :
                                         <td data-label="Stock" className="stoct-list-data" dangerouslySetInnerHTML={{ __html: item.stock }}></td>
-                                    }
+                                    } */}
                                     <td className={`stoke_buy_data  variation-${variationData.length}`} data-label="Buy">
                                         <div className={`add-to-cart-btndiv ${variationData.length > 0 ? "" : "add-to-cart-btndiv-two"}`}>
                                             <table className="stoke_info_table_test">
@@ -217,7 +219,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
 
                                                                 return (
                                                                     <td style={{ fontWeight: "bold" }} className="variation-type">{availabilityLabel}
-                                                                        <span style={{
+                                                                        {/* <span style={{
                                                                             display: "inline-block",
                                                                             height: '17px',
                                                                             width: '17px',
@@ -228,7 +230,7 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                                             left: '10px',
                                                                             top: '3px'
                                                                         }}>
-                                                                        </span>
+                                                                        </span> */}
                                                                     </td>
                                                                 );
                                                             })}
@@ -238,12 +240,15 @@ const Table = ({ loading, handleSort, setLoading, orderdata, setSelectedItems, s
                                                     {variationData.length > 0 && (
                                                         <tr>
                                                             {variationData.map((data, index) => {
-                                                                if (!data.availability_html) {
-                                                                    return null;
+                                                            const { backOrder } = getAvailabilityDetails(data);
+
+                                                                if (data.availability_html === "") {
+                                                                    data.availability_html = backOrder
                                                                 }
 
                                                                 return (
-                                                                    <td
+                                                                    
+                                                                    <td style={{color : '#000'}}
                                                                         key={index}
                                                                         dangerouslySetInnerHTML={{ __html: data.availability_html }}
                                                                     />
