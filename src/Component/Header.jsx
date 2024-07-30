@@ -108,8 +108,10 @@ const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount,
           <h6>Showing {filteredData?.length} products</h6>
         </div>
       </div>
+      
+      <div className="pannel-top-right-data">
       {showAddToCartButton&&
-      <div className="add-to-cart-btndiv">
+      <div className="add-to-cart-btndiv bulk-button">
         <button onClick={() => handleSubmit(selectedItems)}
           className={`add-cart-btn ${loadingButtonIndex ? "show_loader" : ""}`}
           style={{
@@ -124,7 +126,6 @@ const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount,
         </button>
      </div>
       }
-      <div className="pannel-top-right-data">
         <div className="pagination">
           <ReactPaginate
             breakLabel="..."
