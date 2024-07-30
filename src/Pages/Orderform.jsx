@@ -169,6 +169,8 @@ const Orderform = () => {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
           resetFilter={resetFilter}
+          selectedItems={selectedItems}
+
         />
         <Table
           loading={loading}

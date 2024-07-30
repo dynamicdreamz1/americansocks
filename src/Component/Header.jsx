@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ReactPaginate from 'react-paginate'
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -7,6 +9,8 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
+import { addToCartProducts } from '../services/order';
+import { shouldShowAddToCartButton } from '../Common/function';
 
 const ITEM_HEIGHT = 80;
 const ITEM_PADDING_TOP = 4;
@@ -20,18 +24,40 @@ const MenuProps = {
 };
 
 
-const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount, handlePageClick, searchQuery, handleSearch, pageSize, handlePageSizeChange, filteredData, handleCategoryChange, selectedCategory }) => {
+const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount, handlePageClick, searchQuery, handleSearch, pageSize, handlePageSizeChange, filteredData, handleCategoryChange, selectedCategory, selectedItems }) => {
+
+  const [loadingButtonIndex, setLoadingButtonIndex] = useState(false);
+  const showAddToCartButton = shouldShowAddToCartButton(selectedItems);
 
 
   useEffect(() => {
 
   }, [currentPage])
 
+  const handleSubmit = async (selectedItems) => {
+
+    try {
+      let result;
+      setLoadingButtonIndex(true);
+      result = await addToCartProducts(selectedItems.length > 0 && selectedItems);
+      setLoadingButtonIndex(false);
+      if (result.cart_hash) {
+        document.body.dispatchEvent(new Event('added_to_orderform_cart'));
+        //toast.success("Product added to cart successfully!");
+      } else {
+        toast.error("Sorry, it's not possible to mix Regular Products and Pre-Order Products in the same cart.");
+      }
+    } catch (error) {
+      setLoadingButtonIndex(null);
+      toast.error("Error occurred while adding product to cart. Please select Quantity");
+    }
+  };
+
 
   return (
     <div className="pannel-top-data">
       <div className="pannel-top-left-data">
-        <FormControl sx={{ m: 1, width: 200  }}>
+        <FormControl sx={{ m: 1, width: 200 }}>
           <InputLabel id="demo-multiple-checkbox-label">Categories</InputLabel>
           <Select
             labelId="demo-multiple-checkbox-label"
@@ -41,7 +67,7 @@ const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount,
             value={selectedCategory}
             onChange={handleCategoryChange}
             input={<OutlinedInput label="Categories" />}
-            renderValue={(selected) =>selected && selected?.join(', ')}
+            renderValue={(selected) => selected && selected?.join(', ')}
             MenuProps={MenuProps}
           >
             {orderCategory && Object.keys(orderCategory).map((key) => (
@@ -82,6 +108,22 @@ const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount,
           <h6>Showing {filteredData?.length} products</h6>
         </div>
       </div>
+      {showAddToCartButton&&
+      <div className="add-to-cart-btndiv">
+        <button onClick={() => handleSubmit(selectedItems)}
+          className={`add-cart-btn ${loadingButtonIndex ? "show_loader" : ""}`}
+          style={{
+            cursor: showAddToCartButton ? "pointer" : "not-allowed"
+          }}
+        >
+          <a href="#" style={{
+            cursor: showAddToCartButton ? "pointer" : "not-allowed"
+          }}>
+            add to cart
+          </a>
+        </button>
+     </div>
+      }
       <div className="pannel-top-right-data">
         <div className="pagination">
           <ReactPaginate

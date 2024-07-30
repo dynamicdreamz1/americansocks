@@ -16,6 +16,17 @@ export const getQueryStringParams = () => {
     return data;
 };
 
+export const shouldShowAddToCartButton = (products) => {
+  if (products.length <= 1) {
+    return false;
+  }
+  
+  const productIds = products.map(product => product.product_id);
+  const uniqueProductIds = new Set(productIds);
+
+  return uniqueProductIds.size > 1;
+};
+
 
 
 export const  calculateTotalQuantity =(items, productId) => {
