@@ -3,10 +3,23 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addToCart, addToCartProducts } from "../services/order";
 import TableHeader from "./TableHead";
-import { Skeleton } from "@mui/material";
+import { Box, Modal, Skeleton, Typography } from "@mui/material";
 import ImageThumbnail from "./ImageThumbnail";
 
-const Table = ({checkCustomer, loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 10,
+    p: 4,
+  };
+
+  
+const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
     const [loadingButtonIndex, setLoadingButtonIndex] = useState(null);
 
 
@@ -95,11 +108,11 @@ const Table = ({checkCustomer, loading, handleSort, setLoading, orderdata, setSe
 
         const stockNumberMatch = data?.availability_html?.match(/\d+/);
         const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
-    
+
         if (data.is_pre_order === "yes" && data.is_in_stock === true) {
             availabilityColor = "#5a84c8"; // Blue
             availabilityLabel = "Pre-Order";
-        } else if (data.is_in_stock === true && stockNumber <= 20 &&  stockNumber >= 1  ) {
+        } else if (data.is_in_stock === true && stockNumber <= 20 && stockNumber >= 1) {
             availabilityColor = "#ff992c"; // Orange
             availabilityLabel = "Last Units";
         } else if (data.backorders_allowed === true && stockNumber === 0) {
@@ -113,9 +126,9 @@ const Table = ({checkCustomer, loading, handleSort, setLoading, orderdata, setSe
             availabilityColor = "#0f834d"; // Green
             availabilityLabel = "In Stock";
         }
-        
 
-        return { availabilityColor, availabilityLabel ,backOrder };
+
+        return { availabilityColor, availabilityLabel, backOrder };
     };
 
 
@@ -240,15 +253,15 @@ const Table = ({checkCustomer, loading, handleSort, setLoading, orderdata, setSe
                                                     {variationData.length > 0 && checkCustomer && (
                                                         <tr>
                                                             {variationData.map((data, index) => {
-                                                            const { backOrder } = getAvailabilityDetails(data);
+                                                                const { backOrder } = getAvailabilityDetails(data);
 
                                                                 if (data.availability_html === "") {
                                                                     data.availability_html = backOrder
                                                                 }
 
                                                                 return (
-                                                                    
-                                                                    <td style={{color: 'rgb(0, 0, 0)' }}
+
+                                                                    <td style={{ color: 'rgb(0, 0, 0)' }}
                                                                         key={index}
                                                                         dangerouslySetInnerHTML={{ __html: data.availability_html }}
                                                                     />
@@ -289,6 +302,19 @@ const Table = ({checkCustomer, loading, handleSort, setLoading, orderdata, setSe
                                         ))}
                                     </tr>
                                 ))}
+
+                            <Modal
+                                open={loading}
+                                // onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                                <Box sx={style}>
+                                    <Typography id="modal-modal-description" sx={{ mt: 0 }}>
+                                        We're loading a ton of data, bear with us  😊
+                                    </Typography>
+                                </Box>
+                            </Modal>
                         </>
                     )}
                 </tbody>
