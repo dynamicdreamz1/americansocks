@@ -3229,6 +3229,6 @@ a:focus-visible {
 }
 
 .category-list span {
-  display: inline-block !important;
+  display: unset !important;
   padding-bottom: 0 !important;
 }
