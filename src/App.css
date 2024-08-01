@@ -783,6 +783,7 @@ table tr td:last-child {
 .MuiPaper-root .MuiCheckbox-root {
   padding: 5px !important;
   padding-left: 0px !important;
+  padding-bottom: 0px !important;
 }
 
 .stoct-list-data .stock {
@@ -3225,4 +3226,9 @@ a:focus-visible {
 
 .category-list + span ,.css-8je8zh-MuiTouchRipple-root span {
   display: none;
+}
+
+.category-list span {
+  display: inline-block !important;
+  padding-bottom: 0 !important;
 }

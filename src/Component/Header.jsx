@@ -59,14 +59,14 @@ const Header = ({ setSelectedCategory, orderCategory, resetFilter, currentPage, 
       const isSelected = selectedCategory.includes(categoryKey);
 
       return (
-        <li key={category.id} style={{ marginLeft: level * 10 }}>
+        <li key={category.id} style={{ margin : 0, padding : 0 , marginLeft: level * 10 }}>
           <Checkbox
             checked={isSelected}
             onChange={(event) => handleCategoryToggle(event, categoryKey)}
           />
           {category.name}
           {category.children && category.children.length > 0 && (
-            <ul style={{listStyle : "none"}} className='sub-category'>
+            <ul style={{listStyle : "none" ,margin : 0, padding : 0 }} className='sub-category'>
               {renderNestedMenuItems(category.children, selectedCategory, level + 1)}
             </ul>
           )}
@@ -105,7 +105,7 @@ const Header = ({ setSelectedCategory, orderCategory, resetFilter, currentPage, 
         MenuProps={MenuProps}
       >
         <MenuItem>
-          <ul className='category-list'>
+          <ul className='category-list' style={{margin : 0, padding : 0 }}>
             {orderCategory && renderNestedMenuItems(orderCategory, selectedCategory)}
           </ul>
         </MenuItem>
