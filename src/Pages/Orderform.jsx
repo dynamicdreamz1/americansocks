@@ -119,10 +119,14 @@ const Orderform = () => {
 
   const handleCategoryChange = (event) => {
     setCurrentPage(0);
-    setSelectedCategory(event.target.value);
-    setCurrentPage(0);
+    if (event.target.value && event.target.value.every(value => value !== undefined)) {
+      setSelectedCategory(event.target.value);
+    } 
     setItemOffset(0);
   };
+
+  console.log("select",selectedCategory);
+  
 
   const resetFilter = () => {
     setPageSize(10);
@@ -133,9 +137,9 @@ const Orderform = () => {
   };
 
   const filteredData = sortedData().filter((item) => {
-    const nameMatch = item?.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const skuMatch = item?.sku.toLowerCase().includes(searchQuery.toLowerCase());
-    const categoryMatch = selectedCategory.length === 0 || selectedCategory.every(cat => item?.categories.toLowerCase().includes(cat.toLowerCase()));
+    const nameMatch = item?.name?.toLowerCase().includes(searchQuery?.toLowerCase());
+    const skuMatch = item?.sku?.toLowerCase().includes(searchQuery?.toLowerCase());
+    const categoryMatch = selectedCategory.length === 0 || selectedCategory.every(cat => item?.categories?.toLowerCase().includes(cat?.toLowerCase()));
     return (nameMatch || skuMatch) && categoryMatch;
   });
   

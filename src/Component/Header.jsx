@@ -59,14 +59,14 @@ const Header = ({ setSelectedCategory, orderCategory, resetFilter, currentPage, 
       const isSelected = selectedCategory.includes(categoryKey);
 
       return (
-        <li key={category.id} style={{ marginLeft: level * 20 }}>
+        <li key={category.id} style={{ marginLeft: level * 10 }}>
           <Checkbox
             checked={isSelected}
             onChange={(event) => handleCategoryToggle(event, categoryKey)}
           />
           {category.name}
           {category.children && category.children.length > 0 && (
-            <ul style={{listStyle : "none"}}>
+            <ul style={{listStyle : "none"}} className='sub-category'>
               {renderNestedMenuItems(category.children, selectedCategory, level + 1)}
             </ul>
           )}
@@ -74,7 +74,6 @@ const Header = ({ setSelectedCategory, orderCategory, resetFilter, currentPage, 
       );
     });
   };
-
   const handleCategoryToggle = (event, categoryKey) => {
     const newSelectedCategory = [...selectedCategory];
     if (event.target.checked) {
@@ -85,7 +84,6 @@ const Header = ({ setSelectedCategory, orderCategory, resetFilter, currentPage, 
         newSelectedCategory.splice(index, 1);
       }
     }
-    console.log("newSelectedCategory", newSelectedCategory);
     setSelectedCategory(newSelectedCategory);
   };
 
@@ -93,7 +91,7 @@ const Header = ({ setSelectedCategory, orderCategory, resetFilter, currentPage, 
   return (
     <div className="pannel-top-data">
       <div className="pannel-top-left-data">
-      <FormControl sx={{ m: 1, width: 200 }}>
+      <FormControl sx={{ m: 1, width: 240 }}>
       <InputLabel id="demo-multiple-checkbox-label">Categories</InputLabel>
       <Select
         labelId="demo-multiple-checkbox-label"
@@ -107,7 +105,7 @@ const Header = ({ setSelectedCategory, orderCategory, resetFilter, currentPage, 
         MenuProps={MenuProps}
       >
         <MenuItem>
-          <ul>
+          <ul className='category-list'>
             {orderCategory && renderNestedMenuItems(orderCategory, selectedCategory)}
           </ul>
         </MenuItem>
