@@ -24,12 +24,12 @@ const MenuProps = {
 };
 
 
-const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount, handlePageClick, searchQuery, handleSearch, pageSize, handlePageSizeChange, filteredData, handleCategoryChange, selectedCategory, selectedItems }) => {
+const Header = ({ setSelectedCategory, orderCategory, resetFilter, currentPage, orderdata, pageCount, handlePageClick, searchQuery, handleSearch, pageSize, handlePageSizeChange, filteredData, handleCategoryChange, selectedCategory, selectedItems }) => {
 
   const [loadingButtonIndex, setLoadingButtonIndex] = useState(false);
   const showAddToCartButton = shouldShowAddToCartButton(selectedItems);
 
-
+  
   useEffect(() => {
 
   }, [currentPage])
@@ -53,31 +53,66 @@ const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount,
     }
   };
 
+  const renderNestedMenuItems = (categories, selectedCategory, level = 0) => {
+    return categories.map((category) => {
+      const categoryKey = category.slug;
+      const isSelected = selectedCategory.includes(categoryKey);
+
+      return (
+        <li key={category.id} style={{ marginLeft: level * 20 }}>
+          <Checkbox
+            checked={isSelected}
+            onChange={(event) => handleCategoryToggle(event, categoryKey)}
+          />
+          {category.name}
+          {category.children && category.children.length > 0 && (
+            <ul style={{listStyle : "none"}}>
+              {renderNestedMenuItems(category.children, selectedCategory, level + 1)}
+            </ul>
+          )}
+        </li>
+      );
+    });
+  };
+
+  const handleCategoryToggle = (event, categoryKey) => {
+    const newSelectedCategory = [...selectedCategory];
+    if (event.target.checked) {
+      newSelectedCategory.push(categoryKey);
+    } else {
+      const index = newSelectedCategory.indexOf(categoryKey);
+      if (index > -1) {
+        newSelectedCategory.splice(index, 1);
+      }
+    }
+    console.log("newSelectedCategory", newSelectedCategory);
+    setSelectedCategory(newSelectedCategory);
+  };
+
 
   return (
     <div className="pannel-top-data">
       <div className="pannel-top-left-data">
-        <FormControl sx={{ m: 1, width: 200 }}>
-          <InputLabel id="demo-multiple-checkbox-label">Categories</InputLabel>
-          <Select
-            labelId="demo-multiple-checkbox-label"
-            id="demo-multiple-checkbox"
-            className='catagaries-select-box'
-            multiple
-            value={selectedCategory}
-            onChange={handleCategoryChange}
-            input={<OutlinedInput label="Categories" />}
-            renderValue={(selected) => selected && selected?.join(', ')}
-            MenuProps={MenuProps}
-          >
-            {orderCategory && Object.keys(orderCategory).map((key) => (
-              <MenuItem key={key} value={key}>
-                <Checkbox checked={selectedCategory.includes(key)} />
-                <ListItemText primary={orderCategory[key]} />
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+      <FormControl sx={{ m: 1, width: 200 }}>
+      <InputLabel id="demo-multiple-checkbox-label">Categories</InputLabel>
+      <Select
+        labelId="demo-multiple-checkbox-label"
+        id="demo-multiple-checkbox"
+        className='catagaries-select-box'
+        multiple
+        value={selectedCategory}
+        onChange={handleCategoryChange}
+        input={<OutlinedInput label="Categories" />}
+        renderValue={(selected) => selected && selected.join(', ')}
+        MenuProps={MenuProps}
+      >
+        <MenuItem>
+          <ul>
+            {orderCategory && renderNestedMenuItems(orderCategory, selectedCategory)}
+          </ul>
+        </MenuItem>
+      </Select>
+    </FormControl>
 
         <h6 onClick={() => resetFilter()} style={{ cursor: 'pointer' }}>
           <i className="fas fa-sync-alt" style={{ width: "31px", position: "relative", top: "2px" }} onClick={resetFilter} />
@@ -108,24 +143,24 @@ const Header = ({ orderCategory, resetFilter, currentPage, orderdata, pageCount,
           <h6>Showing {filteredData?.length} products</h6>
         </div>
       </div>
-      
+
       <div className="pannel-top-right-data">
-      {showAddToCartButton&&
-      <div className="add-to-cart-btndiv bulk-button">
-        <button onClick={() => handleSubmit(selectedItems)}
-          className={`add-cart-btn ${loadingButtonIndex ? "show_loader" : ""}`}
-          style={{
-            cursor: showAddToCartButton ? "pointer" : "not-allowed"
-          }}
-        >
-          <a href="#" style={{
-            cursor: showAddToCartButton ? "pointer" : "not-allowed"
-          }}>
-            add to cart
-          </a>
-        </button>
-     </div>
-      }
+        {showAddToCartButton &&
+          <div className="add-to-cart-btndiv bulk-button">
+            <button onClick={() => handleSubmit(selectedItems)}
+              className={`add-cart-btn ${loadingButtonIndex ? "show_loader" : ""}`}
+              style={{
+                cursor: showAddToCartButton ? "pointer" : "not-allowed"
+              }}
+            >
+              <a href="#" style={{
+                cursor: showAddToCartButton ? "pointer" : "not-allowed"
+              }}>
+                add to cart
+              </a>
+            </button>
+          </div>
+        }
         <div className="pagination">
           <ReactPaginate
             breakLabel="..."

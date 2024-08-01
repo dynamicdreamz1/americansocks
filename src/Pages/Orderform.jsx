@@ -45,7 +45,8 @@ const Orderform = () => {
         const result = await fetchData();
         setOrderData(result.data);
         setPageSize(result.data.length)
-        setOrderCategory(result.categories);
+        setOrderCategory(result.product_categories_new);
+        
         const customer = checkVisitData(result.user_data);
         setcheckCustomer(customer)
         setLoading(false);
@@ -170,6 +171,8 @@ const Orderform = () => {
           setCurrentPage={setCurrentPage}
           resetFilter={resetFilter}
           selectedItems={selectedItems}
+          setSelectedCategory={setSelectedCategory}
+
 
         />
         <Table
