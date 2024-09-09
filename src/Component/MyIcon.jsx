@@ -8,7 +8,7 @@ const MyComponent = ({ color}) => {
           xmlnsXlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 512 512"
           xmlSpace="preserve"
-          style={{ width: '100px', height: '100px' }} // You can adjust the size here
+          style={{ width: '20px', height: '20px' }} // You can adjust the size here
         >
           <polygon
             style={{ fill: "#FFFFFF" }}

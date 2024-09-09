@@ -3232,3 +3232,27 @@ a:focus-visible {
   display: unset !important;
   padding-bottom: 0 !important;
 }
+
+.date-label {
+  position: absolute; /* Position at bottom-left */
+  bottom: 0;
+  left: 0;
+  background-color: var(--dateColor); /* Use a variable or replace with a fixed color */
+  padding: 10px; /* Optional: Add padding */
+  display: flex; /* Align items horizontally */
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Ensure proper spacing between elements */
+  width: fit-content; /* Make the div fit the content */
+  max-width: 300px; /* Optional: Set a max width if needed */
+  border-radius: 5px; /* Optional: Round the corners */
+}
+
+.date-label p {
+  margin-right: 10px; /* Space between the text and the icon */
+  font-size: 14px; /* Adjust the font size as needed */
+}
+
+.date-label svg {
+  width: 20px; /* Adjust the icon size */
+  height: 20px;
+}

@@ -173,6 +173,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
 
                             variationData = correctedVariationJson ? JSON.parse(correctedVariationJson) : [];
                             const preAndBackdate = item.ywpo_preorder_json ? JSON.parse(item.ywpo_preorder_json) : [];
+                            const dateColor =  variationData.some(data => getAvailabilityDetails(data).backOrder) ? "#673AB7" : "#5a84c8"
 
                             return (
                                 <tr key={index}>
@@ -242,13 +243,11 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
 
                                                 </tbody>
                                             </table>
-                                            <div className="date-label" style={{ color: "black", backgroundColor: variationData.some(data => getAvailabilityDetails(data).backOrder) ? "#673AB7" : "#5a84c8" }}>
-                                                <MyIcon
-                                                    style={{ width: '100px', height: '100px' }}
-                                                    color={variationData.some(data => getAvailabilityDetails(data).backOrder) ? "#673AB7" : "#5a84c8"}
-                                                />
+                                            {preAndBackdate?._ywpo_preorder_no_date_label &&
+                                            <div className="date-label" style={{ backgroundColor: dateColor }}>
+                                                <MyIcon color={dateColor} />
                                                 <p>{preAndBackdate?._ywpo_preorder_no_date_label}</p>
-                                            </div>
+                                            </div>}
 
                                             <button onClick={() => handleSubmit(variationData.length > 0 ? "" : item, index, item.product_id)}
                                                 disabled={selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? false : true}
