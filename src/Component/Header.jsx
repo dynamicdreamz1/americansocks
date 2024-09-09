@@ -154,7 +154,7 @@ const Header = ({ setSelectedCategory, orderCategory, resetFilter, currentPage, 
               <a href="#" style={{
                 cursor: showAddToCartButton ? "pointer" : "not-allowed"
               }}>
-                add to cart
+                BULK ADD
               </a>
             </button>
           </div>
