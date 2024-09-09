@@ -5,6 +5,8 @@ import { addToCart, addToCartProducts } from "../services/order";
 import TableHeader from "./TableHead";
 import { Box, Modal, Skeleton, Typography } from "@mui/material";
 import ImageThumbnail from "./ImageThumbnail";
+import MyIcon from './MyIcon';
+
 
 const style = {
     position: 'absolute',
@@ -16,9 +18,9 @@ const style = {
     border: '2px solid #000',
     boxShadow: 10,
     p: 4,
-  };
+};
 
-  
+
 const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
     const [loadingButtonIndex, setLoadingButtonIndex] = useState(null);
 
@@ -117,7 +119,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
             availabilityLabel = "Last Units";
         } else if (data.backorders_allowed === true && stockNumber === 0) {
             backOrder = "Available on backorder"
-            availabilityColor = "#f6c94a"; // Yellow
+            availabilityColor = "#673AB7"; // Yellow
             availabilityLabel = "Back-Order";
         } else if (data.is_in_stock === false) {
             availabilityColor = "red"; // Red
@@ -135,7 +137,6 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
 
     return (
         <div className="table-sub">
-            {/* <ToastContainer /> */}
             <table>
                 <tr>
                     <th onClick={() => handleSort("sku")}>
@@ -171,7 +172,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
                             let variationData;
 
                             variationData = correctedVariationJson ? JSON.parse(correctedVariationJson) : [];
-                            const size = variationData.length > 0 && variationData[0]
+                            const preAndBackdate = item.ywpo_preorder_json ? JSON.parse(item.ywpo_preorder_json) : [];
 
                             return (
                                 <tr key={index}>
@@ -182,26 +183,6 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
                                     <td data-label="Name" dangerouslySetInnerHTML={{ __html: item.name }}></td>
                                     <td data-label="Categories" dangerouslySetInnerHTML={{ __html: item.categories }}></td>
                                     <td data-label="Price" dangerouslySetInnerHTML={{ __html: item.price }}></td>
-                                    {/* {showPreoOrder ?
-                                        <td>
-                                            <div style={{
-                                                display: 'inline-block',
-                                                backgroundColor: '#01426a',
-                                                color: 'white',
-                                                fontSize: 'smaller',
-                                                padding: '2px 5px',
-                                                marginLeft: '5px',
-                                                borderRadius: '3px',
-                                                fontWeight: 600,
-                                                textTransform: "uppercase"
-
-                                            }}>
-                                                Pre-Order
-                                            </div>
-                                        </td>
-                                        :
-                                        <td data-label="Stock" className="stoct-list-data" dangerouslySetInnerHTML={{ __html: item.stock }}></td>
-                                    } */}
                                     <td className={`stoke_buy_data  variation-${variationData.length}`} data-label="Buy">
                                         <div className={`add-to-cart-btndiv ${variationData.length > 0 ? "" : "add-to-cart-btndiv-two"}`}>
                                             <table className="stoke_info_table_test">
@@ -232,18 +213,6 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
 
                                                                 return (
                                                                     <td style={{ fontWeight: "bold" }} className="variation-type">{availabilityLabel}
-                                                                        {/* <span style={{
-                                                                            display: "inline-block",
-                                                                            height: '17px',
-                                                                            width: '17px',
-                                                                            borderRadius: "50%",
-                                                                            backgroundColor: availabilityColor,
-                                                                            border: '2px solid black',
-                                                                            position: 'relative',
-                                                                            left: '10px',
-                                                                            top: '3px'
-                                                                        }}>
-                                                                        </span> */}
                                                                     </td>
                                                                 );
                                                             })}
@@ -260,7 +229,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
                                                                 }
 
                                                                 return (
-
+                                                                    data.availability_html &&
                                                                     <td style={{ color: 'rgb(0, 0, 0)' }}
                                                                         key={index}
                                                                         dangerouslySetInnerHTML={{ __html: data.availability_html }}
@@ -270,8 +239,17 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
                                                         </tr>
                                                     )}
 
+
                                                 </tbody>
                                             </table>
+                                            <div className="date-label" style={{ color: "black", backgroundColor: variationData.some(data => getAvailabilityDetails(data).backOrder) ? "#673AB7" : "#5a84c8" }}>
+                                                <MyIcon
+                                                    style={{ width: '100px', height: '100px' }}
+                                                    color={variationData.some(data => getAvailabilityDetails(data).backOrder) ? "#673AB7" : "#5a84c8"}
+                                                />
+                                                <p>{preAndBackdate?._ywpo_preorder_no_date_label}</p>
+                                            </div>
+
                                             <button onClick={() => handleSubmit(variationData.length > 0 ? "" : item, index, item.product_id)}
                                                 disabled={selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? false : true}
                                                 className={`add-cart-btn ${loadingButtonIndex === index ? "show_loader" : ""}`}
