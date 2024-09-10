@@ -124,8 +124,6 @@ const Orderform = () => {
     } 
     setItemOffset(0);
   };
-
-  console.log("select",selectedCategory);
   
 
   const resetFilter = () => {

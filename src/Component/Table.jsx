@@ -28,8 +28,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
     const handleInputChange = (event, data, selectedSize, item, index) => {
         const { value } = event.target;
         let intValue = parseInt(value);
-        const maxStockNumber = data.max_qty;
-        if (intValue > maxStockNumber && data?.backorders_allowed === false) {
+        if (data?.is_in_stock === false) {
             intValue = 0;
         }
         const isSelected = selectedItems.some((selectedItem) => selectedItem.variation_id === data.variation_id && selectedItem.selectedSize === selectedSize);
@@ -190,18 +189,19 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
                                                 <TableHeader variationData={variationData} />
                                                 <tbody>
                                                     {variationData.map((data) => {
-                                                        const { availabilityColor } = getAvailabilityDetails(data);
+                                                        const { availabilityColor ,availabilityLabel } = getAvailabilityDetails(data);
 
                                                         return (
                                                             <td key={data.variation_id} className="">
                                                                 <input
                                                                     type="number"
                                                                     name={`quantity-${data.variation_id}`}
+                                                                    disabled={availabilityLabel === "Out of Stock" ? true : false}
                                                                     className="countsize"
                                                                     min={0}
                                                                     value={(selectedItems.find((selectedItem) => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
                                                                     onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item, index)}
-                                                                    style={{ borderBottom: `4px solid ${availabilityColor}` }}
+                                                                    style={{ borderBottom: `4px solid ${availabilityColor}`, cursor : availabilityLabel === "Out of Stock" ?  "not-allowed" : "default" }}
                                                                 />
                                                             </td>
                                                         );
