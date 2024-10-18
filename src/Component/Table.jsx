@@ -90,7 +90,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
                 document.body.dispatchEvent(new Event('added_to_orderform_cart'));
                 //toast.success("Product added to cart successfully!");
             } else {
-                toast.error("Sorry, it's not possible to mix Regular Products and Pre-Order Products in the same cart.");
+                toast.error(<div  dangerouslySetInnerHTML={{ __html: result.sku }}  ></div>);
             }
         } catch (error) {
             setLoading(false);
