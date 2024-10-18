@@ -90,7 +90,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
                 document.body.dispatchEvent(new Event('added_to_orderform_cart'));
                 //toast.success("Product added to cart successfully!");
             } else {
-                toast.error(<div  dangerouslySetInnerHTML={{ __html: result.sku }}  ></div>);
+                toast.error(<div dangerouslySetInnerHTML={{ __html: result.error_message }}  ></div>);
             }
         } catch (error) {
             setLoading(false);
@@ -172,7 +172,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
 
                             variationData = correctedVariationJson ? JSON.parse(correctedVariationJson) : [];
                             const preAndBackdate = item.ywpo_preorder_json ? JSON.parse(item.ywpo_preorder_json) : [];
-                            const dateColor =  variationData.some(data => getAvailabilityDetails(data).backOrder) ? "#673AB7" : "#5a84c8"
+                            const dateColor = variationData.some(data => getAvailabilityDetails(data).backOrder) ? "#673AB7" : "#5a84c8"
 
                             return (
                                 <tr key={index}>
@@ -189,7 +189,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
                                                 <TableHeader variationData={variationData} />
                                                 <tbody>
                                                     {variationData.map((data) => {
-                                                        const { availabilityColor ,availabilityLabel } = getAvailabilityDetails(data);
+                                                        const { availabilityColor, availabilityLabel } = getAvailabilityDetails(data);
 
                                                         return (
                                                             <td key={data.variation_id} className="">
@@ -201,7 +201,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
                                                                     min={0}
                                                                     value={(selectedItems.find((selectedItem) => selectedItem.variation_id === data.variation_id) || {}).quantity || 0}
                                                                     onChange={(e) => handleInputChange(e, data, data.attributes.attribute_pa_size, item, index)}
-                                                                    style={{ borderBottom: `4px solid ${availabilityColor}`, cursor : availabilityLabel === "Out of Stock" ?  "not-allowed" : "default" }}
+                                                                    style={{ borderBottom: `4px solid ${availabilityColor}`, cursor: availabilityLabel === "Out of Stock" ? "not-allowed" : "default" }}
                                                                 />
                                                             </td>
                                                         );
@@ -244,10 +244,10 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
                                                 </tbody>
                                             </table>
                                             {preAndBackdate?._ywpo_preorder_no_date_label &&
-                                            <div className="date-label" style={{ backgroundColor: dateColor }}>
-                                                <MyIcon color={dateColor} />
-                                                <p>{preAndBackdate?._ywpo_preorder_no_date_label}</p>
-                                            </div>}
+                                                <div className="date-label" style={{ backgroundColor: dateColor }}>
+                                                    <MyIcon color={dateColor} />
+                                                    <p>{preAndBackdate?._ywpo_preorder_no_date_label}</p>
+                                                </div>}
 
                                             <button onClick={() => handleSubmit(variationData.length > 0 ? "" : item, index, item.product_id)}
                                                 disabled={selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? false : true}
