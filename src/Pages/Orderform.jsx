@@ -19,24 +19,27 @@ const Orderform = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
-  const [checkCustomer, setcheckCustomer] = useState(true);
+  const [checkCustomer, setcheckCustomer] = useState(false);
 
 
-  function checkVisitData(visitdata) {
-    // Initialize the flag as true
-    let flag = true;
-  
+  function checkVisitData(visitdata, capsData) {
+    // Initialize the flag as false
+    let flag = false;
+
     // Check if visitdata is not null and is an array
     if (visitdata && Array.isArray(visitdata)) {
-      // Check if the array contains the role 'customer'
-      if (visitdata.includes('customer')) {
-        flag = false;
+      // Check if the array contains either 'administrator' or 'product_editor'
+      if (visitdata.includes('administrator') || visitdata.includes('product_editor')) {
+        flag = true;
       }
     }
-  
+    if (capsData && capsData?.salesking_role_none) {
+      flag = true;
+    }
+
     return flag;
   }
-  
+
 
   useEffect(() => {
     const fetchDataFromApi = async () => {
@@ -46,8 +49,7 @@ const Orderform = () => {
         setOrderData(result.data);
         setPageSize(result.data.length)
         setOrderCategory(result.product_categories_new);
-        
-        const customer = checkVisitData(result.user_data);
+        const customer = checkVisitData(result.user_data, result.user_caps);
         setcheckCustomer(customer)
         setLoading(false);
       } catch (error) {
@@ -121,10 +123,10 @@ const Orderform = () => {
     setCurrentPage(0);
     if (event.target.value && event.target.value.every(value => value !== undefined)) {
       setSelectedCategory(event.target.value);
-    } 
+    }
     setItemOffset(0);
   };
-  
+
 
   const resetFilter = () => {
     setPageSize(10);
@@ -140,7 +142,7 @@ const Orderform = () => {
     const categoryMatch = selectedCategory.length === 0 || selectedCategory.every(cat => item?.categories?.toLowerCase().includes(cat?.toLowerCase()));
     return (nameMatch || skuMatch) && categoryMatch;
   });
-  
+
 
   const pageCount = Math.ceil(filteredData.length / pageSize);
 
