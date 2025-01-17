@@ -100,3 +100,21 @@ export const getStatusClass = (status) => {
         return 'Pre-order';
     }
   };
+
+
+
+  export const checkInventoryData = (jsonData, cookies) => {    
+    // First check in JSON data
+    if (jsonData && jsonData.woocommerce_multi_inventory_inventory) {
+      return jsonData.woocommerce_multi_inventory_inventory;
+    }
+    
+    // If not found in JSON, check in cookies
+    if (cookies && cookies.woocommerce_multi_inventory_inventory) {
+      return cookies.woocommerce_multi_inventory_inventory;
+    }
+    
+    // If not found in either, return null
+    return "186";
+  };
+  

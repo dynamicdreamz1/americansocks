@@ -21,7 +21,7 @@ const style = {
 };
 
 
-const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
+const Table = ({ checkCookie, checkCustomer, loading, handleSort, setLoading, orderdata, setSelectedItems, selectedItems }) => {
     const [loadingButtonIndex, setLoadingButtonIndex] = useState(null);
 
 
@@ -101,15 +101,19 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
     };
 
 
-    const getAvailabilityDetails = (data) => {
+    const getAvailabilityDetails = (data, product) => {
         let availabilityColor = "";
         let availabilityLabel = "";
         let backOrder = "";
 
+        const variationId = data.variation_id;
 
-        const stockNumberMatch = data?.availability_html?.match(/\d+/);
-        const stockNumber = stockNumberMatch ? parseInt(stockNumberMatch[0]) : 0;
+    
+        const checkCookieValue = product?.inventory_json[variationId];
 
+        const stockNumber = checkCookieValue?.[checkCookie] ? parseInt(checkCookieValue[checkCookie]) : 0;
+
+        // Determine availability details
         if (data.is_pre_order === "yes" && data.is_in_stock === true) {
             availabilityColor = "#5a84c8"; // Blue
             availabilityLabel = "Pre-Order";
@@ -117,7 +121,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
             availabilityColor = "#ff992c"; // Orange
             availabilityLabel = "Last Units";
         } else if (data.backorders_allowed === true && stockNumber === 0) {
-            backOrder = "Available on backorder"
+            backOrder = "Available on backorder";
             availabilityColor = "#673AB7"; // Yellow
             availabilityLabel = "Back-Order";
         } else if (data.is_in_stock === false) {
@@ -128,9 +132,10 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
             availabilityLabel = "In Stock";
         }
 
-
-        return { availabilityColor, availabilityLabel, backOrder };
+        // Return all availability details including stock number
+        return { availabilityColor, availabilityLabel, backOrder, stockNumber };
     };
+
 
 
 
@@ -172,7 +177,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
 
                             variationData = correctedVariationJson ? JSON.parse(correctedVariationJson) : [];
                             const preAndBackdate = item.ywpo_preorder_json ? JSON.parse(item.ywpo_preorder_json) : [];
-                            const dateColor = variationData.some(data => getAvailabilityDetails(data).backOrder) ? "#673AB7" : "#5a84c8"
+                            const dateColor = variationData.some(data => getAvailabilityDetails(data, item).backOrder) ? "#673AB7" : "#5a84c8"
 
                             return (
                                 <tr key={index}>
@@ -189,7 +194,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
                                                 <TableHeader variationData={variationData} />
                                                 <tbody>
                                                     {variationData.map((data) => {
-                                                        const { availabilityColor, availabilityLabel } = getAvailabilityDetails(data);
+                                                        const { availabilityColor, availabilityLabel } = getAvailabilityDetails(data, item);
 
                                                         return (
                                                             <td key={data.variation_id} className="">
@@ -210,7 +215,7 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
                                                     {variationData.length > 0 && (
                                                         <tr>
                                                             {variationData.map((data, index) => {
-                                                                const { availabilityLabel } = getAvailabilityDetails(data);
+                                                                const { availabilityLabel } = getAvailabilityDetails(data, item);
 
                                                                 return (
                                                                     <td style={{ fontWeight: "bold" }} className="variation-type">{availabilityLabel}
@@ -223,18 +228,14 @@ const Table = ({ checkCustomer, loading, handleSort, setLoading, orderdata, setS
                                                     {variationData.length > 0 && checkCustomer && (
                                                         <tr>
                                                             {variationData.map((data, index) => {
-                                                                const { backOrder } = getAvailabilityDetails(data);
-
-                                                                if (data.availability_html === "") {
-                                                                    data.availability_html = backOrder
-                                                                }
+                                                                const { stockNumber } = getAvailabilityDetails(data, item);
 
                                                                 return (
                                                                     data.availability_html &&
                                                                     <td style={{ color: 'rgb(0, 0, 0)' }}
                                                                         key={index}
-                                                                        dangerouslySetInnerHTML={{ __html: data.availability_html }}
-                                                                    />
+                                                                    // dangerouslySetInnerHTML={{ __html: data.availability_html }}
+                                                                    >{stockNumber}</td>
                                                                 );
                                                             })}
                                                         </tr>

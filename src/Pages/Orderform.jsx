@@ -4,6 +4,7 @@ import Table from "../Component/Table";
 import { fetchData } from "../services/order";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { checkInventoryData } from "../Common/function";
 
 const Orderform = () => {
   const [orderdata, setOrderData] = useState([]);
@@ -20,6 +21,8 @@ const Orderform = () => {
   const [loading, setLoading] = useState(true);
   const [sortConfig, setSortConfig] = useState({ key: null, direction: "asc" });
   const [checkCustomer, setcheckCustomer] = useState(false);
+  const [checkCookie, setCheckCookie] = useState({});
+
 
 
   function checkVisitData(visitdata, capsData) {
@@ -41,11 +44,15 @@ const Orderform = () => {
   }
 
 
+
   useEffect(() => {
     const fetchDataFromApi = async () => {
       try {
         setLoading(true);
         const result = await fetchData();
+        const inventoryData = checkInventoryData(result?.cookie_new, document.cookie)
+
+        setCheckCookie(parseInt(inventoryData));
         setOrderData(result.data);
         setPageSize(result.data.length)
         setOrderCategory(result.product_categories_new);
@@ -187,6 +194,7 @@ const Orderform = () => {
           setLoading={setLoading}
           orderdata={paginatedData}
           checkCustomer={checkCustomer}
+          checkCookie={checkCookie}
         />
       </div>
     </>
