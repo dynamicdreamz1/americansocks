@@ -108,10 +108,14 @@ const Table = ({ checkCookie, checkCustomer, loading, handleSort, setLoading, or
 
         const variationId = data.variation_id;
 
-    
-        const checkCookieValue = product?.inventory_json[variationId];
 
-        const stockNumber = checkCookieValue?.[checkCookie] ? parseInt(checkCookieValue[checkCookie]) : 0;
+        const checkCookieValue = product?.inventory_json[variationId];
+        let stockNumber = parseInt(checkCookieValue?.[checkCookie]) || 0;
+
+        // Normalize stockNumber for invalid values like negative numbers or NaN
+        if (isNaN(stockNumber) || stockNumber < 0) {
+            stockNumber = 0;
+        }
 
         // Determine availability details
         if (data.is_pre_order === "yes" && data.is_in_stock === true) {
