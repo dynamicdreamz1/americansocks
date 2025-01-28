@@ -3234,7 +3234,7 @@ a:focus-visible {
 }
 
 .date-label {
-  position: absolute; /* Position at bottom-left */
+  /* position: absolute; */
   bottom: 0;
   left: 0;
   background-color: var(--dateColor); /* Use a variable or replace with a fixed color */
@@ -3251,4 +3251,23 @@ a:focus-visible {
   line-height: 20px;
   color: #fff !important;
   margin-left: 3px;
+}
+
+.orderform-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 20px;
+}
+
+.orderform-wrapper.preorder-label {
+  justify-content: space-between;
+}
+@media(max-width:350px){
+  .orderform-wrapper {
+    gap: 0;
+    flex-direction: column;
+    margin-top: 20px;
+}
 }

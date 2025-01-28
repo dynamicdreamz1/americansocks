@@ -248,25 +248,27 @@ const Table = ({ checkCookie, checkCustomer, loading, handleSort, setLoading, or
 
                                                 </tbody>
                                             </table>
-                                            {preAndBackdate?._ywpo_preorder_no_date_label &&
-                                                <div className="date-label" style={{ backgroundColor: dateColor }}>
-                                                    <MyIcon color={dateColor} />
-                                                    <p>{preAndBackdate?._ywpo_preorder_no_date_label}</p>
-                                                </div>}
+                                            <div className={`orderform-wrapper ${preAndBackdate?._ywpo_preorder_no_date_label ? "preorder-label" : ""}`}>
+                                                {preAndBackdate?._ywpo_preorder_no_date_label &&
+                                                    <div className="date-label" style={{ backgroundColor: dateColor }}>
+                                                        <MyIcon color={dateColor} />
+                                                        <p>{preAndBackdate?._ywpo_preorder_no_date_label}</p>
+                                                    </div>}
 
-                                            <button onClick={() => handleSubmit(variationData.length > 0 ? "" : item, index, item.product_id)}
-                                                disabled={selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? false : true}
-                                                className={`add-cart-btn ${loadingButtonIndex === index ? "show_loader" : ""}`}
-                                                style={{
-                                                    cursor: selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? "pointer" : "not-allowed"
-                                                }}
-                                            >
-                                                <a href="#" style={{
-                                                    cursor: selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? "pointer" : "not-allowed"
-                                                }}>
-                                                    add to cart
-                                                </a>
-                                            </button>
+                                                <button onClick={() => handleSubmit(variationData.length > 0 ? "" : item, index, item.product_id)}
+                                                    disabled={selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? false : true}
+                                                    className={`add-cart-btn ${loadingButtonIndex === index ? "show_loader" : ""}`}
+                                                    style={{
+                                                        cursor: selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? "pointer" : "not-allowed"
+                                                    }}
+                                                >
+                                                    <a href="#" style={{
+                                                        cursor: selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? "pointer" : "not-allowed"
+                                                    }}>
+                                                        add to cart
+                                                    </a>
+                                                </button>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
