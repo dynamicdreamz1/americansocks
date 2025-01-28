@@ -877,7 +877,7 @@ table tr td:last-child {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .table-sub table th {
     display: none;
   }
@@ -3264,7 +3264,7 @@ a:focus-visible {
 .orderform-wrapper.preorder-label {
   justify-content: space-between;
 }
-@media(max-width:350px){
+@media(max-width:360px){
   .orderform-wrapper {
     gap: 0;
     flex-direction: column;
