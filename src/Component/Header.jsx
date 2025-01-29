@@ -24,7 +24,7 @@ const MenuProps = {
 };
 
 
-const Header = ({ setSelectedCategory, orderCategory, resetFilter, currentPage, orderdata, pageCount, handlePageClick, searchQuery, handleSearch, pageSize, handlePageSizeChange, filteredData, handleCategoryChange, selectedCategory, selectedItems }) => {
+const Header = ({setSelectedItems, setSelectedCategory, orderCategory, resetFilter, currentPage, orderdata, pageCount, handlePageClick, searchQuery, handleSearch, pageSize, handlePageSizeChange, filteredData, handleCategoryChange, selectedCategory, selectedItems }) => {
 
   const [loadingButtonIndex, setLoadingButtonIndex] = useState(false);
   const showAddToCartButton = shouldShowAddToCartButton(selectedItems);
@@ -41,6 +41,7 @@ const Header = ({ setSelectedCategory, orderCategory, resetFilter, currentPage, 
       setLoadingButtonIndex(true);
       result = await addToCartProducts(selectedItems.length > 0 && selectedItems);
       setLoadingButtonIndex(false);
+      setSelectedItems([])
       if (result.cart_hash) {
         document.body.dispatchEvent(new Event('added_to_orderform_cart'));
         //toast.success("Product added to cart successfully!");
@@ -49,6 +50,7 @@ const Header = ({ setSelectedCategory, orderCategory, resetFilter, currentPage, 
       }
     } catch (error) {
       setLoadingButtonIndex(null);
+      setSelectedItems([])
       toast.error("Error occurred while adding product to cart. Please select Quantity");
     }
   };

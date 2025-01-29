@@ -183,6 +183,7 @@ const Orderform = () => {
           resetFilter={resetFilter}
           selectedItems={selectedItems}
           setSelectedCategory={setSelectedCategory}
+          setSelectedItems={setSelectedItems}
 
 
         />

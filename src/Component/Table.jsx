@@ -84,6 +84,7 @@ const Table = ({ checkCookie, checkCustomer, loading, handleSort, setLoading, or
                 const selectedData = selectedItems.filter(order => order.product_id === id)
                 result = await addToCartProducts(selectedItems.length > 0 && selectedData);
             }
+            setSelectedItems([])            
             setLoading(false);
             setLoadingButtonIndex(null);
             if (result.cart_hash) {
@@ -95,6 +96,7 @@ const Table = ({ checkCookie, checkCustomer, loading, handleSort, setLoading, or
         } catch (error) {
             setLoading(false);
             setLoadingButtonIndex(null);
+            setSelectedItems([])
 
             toast.error("Error occurred while adding product to cart. Please select Quantity");
         }
