@@ -264,7 +264,7 @@ const Table = ({ checkCookie, checkCustomer, loading, handleSort, setLoading, or
                                                         cursor: selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? "pointer" : "not-allowed"
                                                     }}
                                                 >
-                                                    <a href="#" style={{
+                                                    <a style={{
                                                         cursor: selectedItems.some(order => order.product_id === item.product_id) || variationData.length === 0 ? "pointer" : "not-allowed"
                                                     }}>
                                                         add to cart
