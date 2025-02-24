@@ -130,7 +130,7 @@ const Table = ({ checkCookie, checkCustomer, loading, handleSort, setLoading, or
             backOrder = "Available on backorder";
             availabilityColor = "#673AB7"; // Yellow
             availabilityLabel = "Back-Order";
-        } else if (data.is_in_stock === false) {
+        } else if (data.is_in_stock === false || stockNumber <= 0) {
             availabilityColor = "red"; // Red
             availabilityLabel = "Out of Stock";
         } else if (data.is_in_stock === true) {
